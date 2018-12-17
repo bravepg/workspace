@@ -1,0 +1,5 @@
+1.精读Classes, Complexity, and Functional Programming（This的困惑）
+    --来源：https://medium.com/@kentcdodds/classes-complexity-and-functional-programming-a8dd86903747
+    --总结：在类中会出现this，会带来this指向的问题，可以采用函数编程，但是自己不太熟悉，
+        在文章中利用类返回一个对象是一个不错的idea，但是由于会clone方法，占用内存，
+        也不建议使用，最后有一个提案正在被使用（具有类的私有属性）

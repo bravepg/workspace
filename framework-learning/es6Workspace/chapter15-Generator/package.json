@@ -1,0 +1,17 @@
+{
+  "name": "chapter15",
+  "version": "1.0.0",
+  "description": "",
+  "main": "browser.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "co": "^4.6.0",
+    "fs-readfile-promise": "^3.0.0",
+    "node-fetch": "^1.7.3",
+    "thunkify": "^2.1.2"
+  }
+}

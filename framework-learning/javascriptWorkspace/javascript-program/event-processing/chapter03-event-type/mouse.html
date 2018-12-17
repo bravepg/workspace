@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="myDiv" style="width: 200px; height: 200px; background: yellow;">
+		<input type="button" value="Click me" id="myBtn">
+	<div>
+</body>
+	<script type="text/javascript">
+		var btn = document.getElementById('myBtn');
+		var div = document.getElementById('myDiv');
+		div.addEventListener('mouseleave', function(event) {
+			console.log(event.eventPhase)
+			console.log(event.target)
+		}, true);
+
+		btn.addEventListener('click', function (event) {
+			console.log('event', event);
+			console.log('event.detail', event.detail);
+		});
+	</script>
+</html>

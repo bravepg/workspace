@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript" src="./browser.js"></script>
+<script type="text/javascript">
+	const p = Promise.race([
+	  fetch('https://api.github.com').then(res => res.json()),
+	  new Promise(function (resolve, reject) {
+	    setTimeout(() => reject(new Error('request timeout')), 5000)
+	  })
+	]);
+
+	p
+	.then(console.log)
+	.catch(console.error);
+</script>

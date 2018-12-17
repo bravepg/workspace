@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        #long {
+            opacity: 0;
+            animation-name: show;
+            animation-delay: 1s;
+            animation-duration: .5s;
+            animation-fill-mode: forwards;
+            animation-iteration-count: 1;
+            animation-timing-function: ease;
+        }
+        @keyframes show {
+          to {
+              opacity: 1;
+          }
+        }
+
+        #N {
+            animation-name: N-move;
+            animation-duration: .5s;
+            animation-delay: .5s;
+            animation-fill-mode: forwards;
+            animation-iteration-count: 1;
+            animation-timing-function: ease;
+        }
+        @keyframes N-move {
+            to {
+                transform: translateX(-328px) translateY(0px);
+            }
+        }
+          
+        #P {
+            animation-name: P-move;
+            animation-duration: .5s;
+            animation-delay: .5s;
+            animation-fill-mode: forwards;
+            animation-iteration-count: 1;
+            animation-timing-function: ease;
+        }
+        @keyframes P-move {
+            to {
+                transform: translateX(-177px) translateY(0px);
+            }
+        }
+          
+        #M {
+            animation-name: M-move;
+            animation-duration: .5s;
+            animation-delay: .5s;
+            animation-fill-mode: forwards;
+            animation-iteration-count: 1;
+            animation-timing-function: ease;
+        }
+        @keyframes M-move {
+            to {
+                transform: translateX(93px) translateY(0px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg width="823px" height="100px" viewBox="0 0 823 100" version="1.1">
+        <g id="animation" font-size="72" font-weight="500">
+          <g id="long" fill="#DDDDDD">
+            <text id="Node" x="0" y="76">Node</text>
+            <text id="Package" x="204" y="76">Package</text>
+            <text id="Manager" x="522" y="76">Manager</text>
+            <text id="pos-N" x="0" y="76">N</text>
+            <text id="pos-P" x="204" y="76">P</text>
+            <text id="pos-M" x="522" y="76">M</text>
+          </g>
+          <g id="short" transform="translate(328, 0)" fill="#FF0000">
+            <text id="N" x="0" y="76">N</text>
+            <text id="P" x="53" y="76">P</text>
+            <text id="M" x="101" y="76">M</text>
+          </g>
+        </g>
+    </svg>
+</body>
+</html>

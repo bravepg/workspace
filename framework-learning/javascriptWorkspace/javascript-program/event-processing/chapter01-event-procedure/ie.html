@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<input type="button" id="myBtn" value="Click me">
+</body>
+	<!-- ie事件处理程序 -->
+	<script type="text/javascript">
+		var btn = document.getElementById("myBtn");
+		// 作用域指向全局
+		btn.attachEvent("onclick", function (argument) {
+			alert(this === window);  // true
+		}, false);
+		
+	</script>
+</html>

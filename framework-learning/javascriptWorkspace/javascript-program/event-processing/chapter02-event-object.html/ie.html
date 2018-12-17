@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<input type="button" value="Click me" id="myBtn">
+</body>
+	<script type="text/javascript">
+		// 若采用dom0级事件处理程序，则this===srcElement
+		var btn = document.getElementById('myBtn');
+		btn.onclick = function () {
+			console.log(window.event.srcElement === this);   // true
+		}
+		
+		btn.attachEvent('onclick', function (event) {
+			console.log(event.srcElement === this);    // false
+		});
+	</script>
+</html>

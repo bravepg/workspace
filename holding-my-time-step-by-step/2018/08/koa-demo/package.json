@@ -1,0 +1,15 @@
+{
+  "name": "koa-demo",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "gaopeng <gaopeng19960108@gmail.com> (http://github.com/gaopeng0108)",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.5.2"
+  }
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+	// 对于setTimeout、Promise、async等异步处理来说，直接在外层的try..catch是无法捕获错误的
+	// 并且不会退出进程、终止脚本执行
+
+	// 普通执行
+	// console.log(a.b);
+	// console.log(123);
+	// a is not defined，没有打印出123，说明程序立即退出
+
+
+	// Promise
+	// new Promise((resolve, reject) => {
+	// 	console.log(a.b)
+	// })
+	// console.log(123);
+	// a is not defined，打印出123，说明程序没有立即退出
+
+	// setTimeout
+	// setTimeout(() => {
+	// 	console.log(a.b);
+	// }, 0);
+	// console.log(123);
+	// a is not defined，打印出123，是由于浏览器执行机制
+
+
+	// 利用try...catch
+	// 普通执行
+	// try {
+	// 	console.log(a.b);
+	// 	console.log(123);	
+	// } catch(e) {
+	// 	console.log(e)
+	// }
+	// console.log(456)
+	// 捕获住a is not defined， 打印出456，说明只对try内的代码块产生了影响
+
+
+	// try {
+	// 	new Promise((resolve, reject) => {
+	// 		console.log(a.b)
+	// 	})
+	// 	console.log(123);	
+	// } catch(e) {
+	// 	console.log(e)
+	// }
+	// 没有捕获住a is not defined， 说明外层try catch无效
+
+	// try {
+	// 	new Promise((resolve, reject) => {
+	// 		console.log(a.b)
+	// 	}).catch(e => console.log('e', e))
+	// 	console.log(123);	
+	// } catch(e) {
+	// 	console.log(e)
+	// }
+	// 捕获住a is not defined， 说明外层.catch生效
+	// 说明Promise需要单独使用.catch来捕获错误
+
+	// try {
+	// 	setTimeout(() => {
+	// 		console.log(a.b);
+	// 	}, 0);
+	// 	console.log(123);
+	// } catch(e) {
+	// 	console.log(e)
+	// }
+	// 没有捕获住错误 说明外层try catch无效
+
+	// try {
+	// 	setTimeout(() => {
+	// 		try {
+	// 			console.log(a.b);
+	// 		} catch(e) {
+	// 			console.log(e);
+	// 		}
+	// 	}, 0);
+	// 	console.log(123);
+	// } catch(e) {
+	// 	console.log(e)
+	// }
+	// 捕获住错误 说明内层try catch生效
+</script>
+<script>
+	// 对于 setTimeout 这样的异步错误，可以通过 onerror 捕获错误
+	// window.onerror = function (msg, url, row, col, error) {
+	// 	console.log('我知道异步错误了');
+	// 	console.log({
+	// 		msg,  url,  row, col, error
+	// 	})
+	// 	return true;
+	// };
+
+	// 但是上述的代码无法处理网络请求的错误(由于网络请求不存在冒泡)，可以通过事件捕获获取
+	// window.addEventListener('error', (msg, url, row, col, error) => {
+	// 	console.log('我知道 404 错误了');
+	// 	console.log(
+	// 		msg, url, row, col, error
+	// 	);
+	// 	return true;
+	// }, true);
+	// setTimeout(() => {
+	// 	error;
+	// });
+
+	// 对于 promise 没有 catch 到的错误，可以通过 unhandledrejection 来捕获
+	window.addEventListener("unhandledrejection", function(e){
+		e.preventDefault()
+		console.log('我知道 promise 的错误了');
+		console.log(e.reason);
+		return true;
+	});
+	window.addEventListener("rejectionhandled", function(e) {
+		console.log(e)
+	});
+	Promise.reject('promise error');
+	new Promise((resolve, reject) => {
+		console.log(a)
+	});
+	new Promise((resolve, reject) => {
+		reject('promise error');
+	});
+	new Promise((resolve, reject) => {
+		// reject();
+		resolve(Error("anything you want" ))
+	}).then((e) => {
+		throw e
+	});
+	/**
+	 * 注意一点很重要的东西
+	 * 下面两个错误是不会被捕获的，具体原因是没有抛出 e(e 必须是一个错误对象)，这个 promise 产生的错误，而是抛出了 123
+	 * 对于第二个来说，resolve的是 1 而不是错误对象
+	 * 
+	 * 简单来说 throw 出去的必须是一个 Error 对象才可以触发 unhandledrejection
+	 */
+	new Promise((resolve, reject) => {
+		// reject();
+		resolve(Error("anything you want" ))
+	}).then((e) => {
+		throw e
+	});
+	new Promise((resolve, reject) => {
+		// reject();
+		resolve(new Error(1))
+	}).then((e) => {
+		throw e
+	});
+	new Promise((resolve, reject) => {
+		resolve(1);
+		// resolve(1)
+	}).then(() => {
+		// console.log(b)
+		throw new Error(2)
+	})
+
+	/**
+	 * 但是对于 Promise 后面如果存在 catch 来说
+	 * 无论 throw 的是 Error 对象 还是其他类型的
+	 * 都可以被捕获到，而且捕获的优先级比 unhandledrejection 要高
+	 */
+	new Promise((resolve, reject) => {
+		// reject();
+		resolve(1)
+	}).then((e) => {
+		throw 1
+	}).catch(e => console.log('e',e));
+</script>
+<!-- <img src="./404.png"> -->

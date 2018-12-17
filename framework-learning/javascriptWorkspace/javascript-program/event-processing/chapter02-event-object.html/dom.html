@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<input type="button" value="Click me" id="myBtn">
+</body>
+	<script type="text/javascript">
+		// 若事件处理程序直接注册到目标元素上，则this===currentTarget===target
+		var btn = document.getElementById('myBtn');
+
+		btn.onclick = function (event) {
+			console.log(this);
+			console.log(this === event.currentTarget);  // true
+			console.log(this === event.target);         // true
+		}
+
+		// 若事件处理程序没有直接注册到目标元素上，则this===currentTarget!==target
+		document.body.onclick = function (event) {
+			console.log(this);
+			console.log(this === event.currentTarget);  // true
+			console.log(this === event.target);         // false
+		}
+
+
+		// 演示事件流
+		btn.onclick = function (event) {
+			console.log(event.eventPhase);  // 2
+		}
+
+		document.body.addEventListener('click', function (event) {
+			console.log(event.eventPhase);  // 1
+		}, true);
+
+		document.body.onclick = function (event) {
+			console.log(event.eventPhase);  // 3
+		}
+	</script>
+</html>

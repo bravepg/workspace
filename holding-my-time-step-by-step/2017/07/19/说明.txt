@@ -1,0 +1,7 @@
+1.今天主要学习了优化react性能的几个办法
+    资料来源：https://medium.freecodecamp.org/make-react-fast-again-tools-and-techniques-for-speeding-up-your-react-app-7ad39d3c1b82
+
+    1）why-did-you-update
+    2）React插件中的Highlight Updates
+    3）pureComponent和shouldComponentUpdate
+    4）在生产环境中 LogRocket

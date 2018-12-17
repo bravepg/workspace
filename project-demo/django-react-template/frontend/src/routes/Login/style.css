@@ -1,0 +1,45 @@
+.signin {
+  background-color: #394263;
+}
+.panel-signin {
+  width: 400px;
+  margin: 80px auto 0 auto;
+}
+.panel-signin .panel-body {
+  padding: 40px;
+}
+.panel-signin .panel-footer {
+  padding-left: 40px;
+  padding-right: 40px;
+  background: #f7f7f7;
+  background-color: #ddd;
+}
+.panel-footer {
+  padding: 20px;
+}
+
+.mb15 {
+  margin-bottom: 15px;
+}
+
+.ml5 {
+  margin-left: 5px;
+}
+.mb5 {
+  margin-bottom: 5px;
+}
+
+.form-control:focus {
+  border-color: #394263;
+}
+.btn-primary {
+  background-color: #1fb5ad;
+  color: #fff;
+  border-color: #1fb5ad;
+}
+
+.btn-primary:hover {
+  background-color: #949e9f;
+  color: #fff;
+  border-color: #949e9f;
+}

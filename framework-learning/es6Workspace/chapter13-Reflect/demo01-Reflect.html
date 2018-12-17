@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            //Reflect设计的主要目的
+            //1.在Object中Object.defineProperty(target, property, atrributes)在无法定义属性时，会抛出错误
+            //Reflect.defineProperty(obj, name, desc)则会返回false
+
+            //让Object操作都变成函数行为
+            //get方法查找并返回target对象的name属性，如果没有该属性，则返回undefined
+            var myObject = {
+                foo: 1,
+                bar: 2,
+                get baz() {
+                    return this.foo + this.bar;
+                }
+            }
+            console.log(Reflect.get(myObject, 'foo'));
+            console.log(Reflect.get(myObject, 'baz'));
+
+            console.log("===================");
+
+            //如果name属性部署了读取函数（getter），则读取函数的this绑定receiver
+            var myReceiverObject = {
+                foo: 4,
+                bar: 4
+            }
+            console.log(Reflect.get(myObject, 'baz', myReceiverObject));
+
+            //如果第一个参数不是对象，get/set方法会报错
+            console.log("===================");
+            //set与get类似
+            //Reflect.has()等同于in
+
+            //delete myObj.foo === Reflect.deleteProperty(myObj, 'foo')
+
+            //new Greeting('zhang')  === Reflect.constructor(Greeting, 'zhang')
+
+
+            //Reflect.apply
+            const ages = [11, 33, 12];
+            //旧写法
+            console.log(Math.min.apply(Math, ages));
+            console.log(Math.max.apply(Math, ages));
+            console.log(Object.prototype.toString.call(Math.min.apply(Math, ages)));
+
+            //Reflect.defineProperty 代替 Object.defineProperty
+
+
+
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

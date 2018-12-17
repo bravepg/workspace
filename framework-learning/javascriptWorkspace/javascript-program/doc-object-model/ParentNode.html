@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    1
+</body>
+</html>
+<script>
+   var parent = document.body;
+
+    // 添加元素子节点
+    var p = document.createElement('p');
+    var t = document.createTextNode('p');
+    parent.append(t); 
+    console.log(parent.firstChild);   // 返回第一个节点
+    console.log(parent.firstElementChild); // 返回第一个元素节点
+
+    parent.appendChild(p); 
+    console.log(parent.lastChild);   // 返回第一个节点
+    console.log(parent.lastElementChild); // 返回第一个元素节点
+</script>

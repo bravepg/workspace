@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>demo06</title>
+    </head>
+    <body>
+        <ul id="filelist"></ul>
+
+        <div id="container">
+            <a id="file-picker" href="javascript:;">Browse...</a>
+        </div>
+
+        <script src="plupload.full.min.js"></script>
+        <script>
+            var uploader = new plupload.Uploader({
+                browse_button: 'file-picker',
+                url: '/upload',
+                chunk_size: '1mb'
+            });
+
+            uploader.inint();
+
+            function getOffset(files) {
+                return new Promise(function(resolve, reject) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.onload = function(d) {
+                        var percent = parseInt(d.currentTarget.response);
+                        for (var i = 0; i < files.length; i++) {
+                            console.log(files[i]);
+                            files[i].percent = percent;
+                            files[i].loaded = parseInt(percent * files[i].size / 100);
+                        }
+                        resolve(percent);
+                    };
+                    xhr.open('GET', '/offset');
+                    xhr.send();
+                });
+            }
+
+            uploader.bind('FilesAdded', function(up, files) {
+                var ulRef = document.getElementById('filelist');
+                plupload.each(files, function(file) {
+                    var liRef = document.createElement('li');
+                    liRef.innerText = 'Step1: select file ' + file.name;
+                    ulRef.appendChild(liRef);
+
+                    var liRef = document.createElement('li');
+                    liRef.setAttribute('id', file.id + 'tip');
+                    ulRef.appendChild(liRef);
+
+                    var liRef = document.createElement('li');
+                    liRef.setAttribute('id', file.id + 'progress');
+                    ulRef.appendChild(liRef);
+                });
+                getOffset(files)
+                    .then(function(percent) {
+                        plupload.each(files, function(file) {
+                            document.getElementById(file.id + 'tip')
+                            .innerText = 'Step2: get a random break-point from server: ' + percent + '%';
+                        });
+                    }) 
+                    .then(function() {
+                        up.start();
+                    });
+            });
+
+            uploader.bind('UploadProgress', function(up, flie) {
+                document.getElementById(file.id + 'progress')
+                .innerText = 'Step3: upload ' + file.percent + '%';
+            });
+        </script>
+    </body>
+</html>

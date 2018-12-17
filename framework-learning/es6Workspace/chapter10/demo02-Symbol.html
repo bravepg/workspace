@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            //Symbol作为对象属性名时，不能用点运算符
+            var mySymbol = Symbol();
+            var a = {};
+            a.mySymbol = "Hello";
+            console.log(a[mySymbol]);  //undefined
+            console.log(a['mySymbol']); //Hello
+
+            //因此在对象内部，Symbol值必须放在方括号内
+            let s = Symbol();
+            var obj = {
+                [s](arg) {
+                    return arg;
+                }
+            }
+            console.log(obj[s](123));  //123
+
+
+            //保证一组常量均不相等
+            const COLOR_RED   = Symbol();
+            const COLOR_GREEN = Symbol();
+            function getComplement(color) {
+                switch(color) {
+                    case COLOR_RED:
+                        return COLOR_GREEN;
+                    case COLOR_GREEN:
+                        return COLOR_RED;
+                    default:
+                        throw new Error('undefined color');
+                }
+            }
+
+            console.log(getComplement(COLOR_RED));
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

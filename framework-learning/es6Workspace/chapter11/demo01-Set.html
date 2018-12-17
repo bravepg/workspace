@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            //Set结构接受一个数组（或者类似数组的对象）作为参数，用来初始化
+            var set = new Set([1, 2, 3, 3, 4]);
+            console.log(set); //Set {1, 2, 3, 4}
+            console.log([...set]); //[1, 2, 3, 4]
+
+            //去除数组的重复成员
+            [...new Set([1, 2, 4, 4,5])];
+
+
+            //向Set加入值的时候，不会发生类型转换，所以5和"5"是两个不同的值
+            //注意：在Set中，认为NaN等于自身，而精确运算符认为不相等
+            //另外，两个对象总是不相等的
+            let set1 = new Set();
+            let a = NaN;
+            let b = NaN;
+            set1.add(a);
+            set1.add(b);
+            console.log(set1);
+
+            //==============================================================================
+            //Set的属性和方法
+            //属性
+            //  1.constructor
+            //  2.size
+            //方法
+            //  1.add() 2.has() 3.delete() 4.clear()
+            set1.add(1).add(2).add(2);
+            console.log(set1);
+
+            //Array.from可以将Set结构转化为数组
+            console.log(Array.from(set1));
+
+
+            //Set遍历操作
+            //  1.keys() 返回键名
+            //  2.values() 返回键值
+            //  3.entries() 返回键值对
+            //  4.forEach() 使用回调函数遍历成员
+            let set2 = new Set(['red', 'green']);
+            console.log(set2);
+            //由于Set结构没有键名，只有键值（或者说键名和键值是同一个值）所以keys方法与values方法行为完全一致
+            for(let item of set2.keys()) {
+                console.log(item); //red green
+            }
+            for(let item of set2.values()) {
+                console.log(item); //red green
+            }
+            for(let item of set2.entries()) {
+                console.log(item);  //["red", "red"] ["green", "green"]
+            }
+
+            //Set的实例默认可遍历，它的默认遍历器生成函数就是它的values方法
+            for(let item of set2) {
+                console.log(item);
+            }
+
+
+            //Set结构的forEach方法，没有返回值，参数默认为value、key、集合本身
+            set2.forEach((value, key) => {console.log(value, key)});
+            //=======================================================================
+
+
+            //扩展运算符（...）内部使用了for...of循环
+            let set3 = new Set([1, 2, 3]);
+            console.log([...set3]);   //[1, 2, 3]
+            //数组的map、filter方法也可以用于Set
+            console.log(new Set([...set3].map(x => x * 2)));
+            console.log(new Set([...set3].filter(x => (x % 2) === 0)));
+
+
+            //同步改变Set结构的两种方法
+            set3 = new Set([...set3].map(x => x * 2));
+            set3 = new Set(Array.from(set3, val => val * 2));
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

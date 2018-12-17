@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            //then方法与catch方法
+            //Promise.all方法
+            //该方法接受一个数组作为参数（或者具有Iterator接口）
+            //每个成员的返回值都是Promise实例，如果不是，将会调用Promise.reslove方法，将参数转化为Promise实例
+
+            //Promise.race方法
+            //Promise.resolve方法
+            //立即resolve的Promise对象，是在本轮"事件循环"结束时调用，而不是在下一轮循环开始时(不带任何参数)
+            setTimeout(function() {
+                console.log('three');
+            }, 0);
+            Promise.resolve().then(function() {
+                console.log('two');
+            });
+            console.log('one');
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

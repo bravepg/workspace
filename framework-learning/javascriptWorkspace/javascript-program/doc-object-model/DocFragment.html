@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <ul id="ul">
+        <li><span>1</span></li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</body>
+</html>
+<script>
+    function reverse(n) {
+        var f = document.createDocumentFragment();
+        while(n.lastChild) f.appendChild(n.lastChild);
+        n.appendChild(f);
+    }
+
+    reverse(document.getElementById('ul'));
+
+    // children 与 childNodes 的不同
+    console.log(document.body.children);   // HTMLCollection(2) [ul#ul, script, ul: ul#ul]
+    console.log(document.body.childNodes); // NodeList(4) [text, ul#ul, text, script]
+</script>

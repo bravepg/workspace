@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            var sleep = function (time) {
+              return new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    resolve();
+                }, time);
+              })  
+            };
+
+            // 利用Promise的then来执行
+            var start = function () {
+                console.log('start');
+                sleep(3000).then(() => {
+                    console.log('end');
+                })    
+            }
+            start();
+
+            // 利用async来执行
+            var start = async function () {
+                console.log('start');
+                await sleep(3000);
+                console.log('end');
+            }
+            start();
+
+            // 上述两个表达式返回的结果是相同的，因此await就相当于等待promise完成
+
+            // 再看一个有返回值的例子
+            var sleep = function (time) {
+              return new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    resolve('ok');
+                }, time);
+              })  
+            };
+
+            // 利用Promise的then来执行
+            var start = function () {
+                sleep(3000).then((result) => {
+                    console.log(result);
+                })    
+            }
+            start();
+
+            // 利用async来执行
+            var start = async function () {
+                let result = await sleep(3000);
+                console.log(result);
+            }
+            start();
+
+            // 结果也是相同，更加证明了上述的说法
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

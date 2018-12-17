@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<input type="button" id="myBtn" value="Click me">
+</body>
+	<!-- DOM2级事件处理程序 -->
+	<script type="text/javascript">
+		var btn = document.getElementById("myBtn");
+		btn.addEventListener("click", function (argument) {
+			alert(this.id);
+		}, false);
+		btn.addEventListener("click", function (argument) {
+			alert("hello world");
+		}, false);
+
+		// 通过addEventListener添加的匿名函数无法通过removeListener来移除
+		// 只能像这样
+		var hanlder = function () {
+			alert(this.id);
+		}
+		btn.addEventListener("click", hanlder, false);
+		btn.removeEventListener("click", hanlder, false);
+	</script>
+</html>

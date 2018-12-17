@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex@3.0.1/dist/vuex.js"></script>
+</head>
+<body>
+	<div id="app">
+        <counter></counter>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+    // 如果在模块化构建系统中，请确保在开头调用了 Vue.use(Vuex)
+    const store = new Vuex.Store({
+        state: {
+            count: 0
+        },
+        mutations: {
+            increment (state) {
+                state.count++
+            }
+            // Mutation 必须是同步函数
+            // 原因：每一条 mutation 被记录，devtools 都需要捕捉到前一状态和后一状态的快照
+            // 回调函数还没有被调用，devtools 不知道什么时候回调函数实际上被调用
+        }
+    });
+    store.commit('increment')
+    console.log(store.state.count) // -> 1
+
+    // 创建一个 Counter 组件
+    const Counter = {
+        template: `<div>{{ countPlusLocalState }}</div>`,
+        data() {
+            return {
+                localCount: 1,
+            }
+        },
+        // computed: {
+            
+        //     count() {
+        //         // 如果根实例下没有注入 store
+        //         // 则不能使用 $store
+        //         // return store.state.count
+        //         return this.$store.state.count
+        //     }
+            
+        // }
+        // 如果获取多个状态时候 借助 mapState
+        computed: Vuex.mapState({
+            // 箭头函数可使代码更简练
+            count: state => state.count,
+
+            // 传字符串参数 'count' 等同于 `state => state.count`
+            countAlias: 'count',
+
+            // 为了能够使用 `this` 获取局部状态，必须使用常规函数
+            countPlusLocalState (state) {
+                console.log('this.localCount', this.localCount);
+                return state.count + this.localCount
+            }
+        }),
+        methods: {
+            ...mapMutations([
+                'increment', // 将 `this.increment()` 映射为 `this.$store.commit('increment')`
+            ]),
+            ...mapMutations({
+                add: 'increment' // 将 `this.add()` 映射为 `this.$store.commit('increment')`
+            })
+        }
+    }
+	new Vue({ 
+        el: '#app',
+        store,
+        components: { Counter },
+    });
+</script>

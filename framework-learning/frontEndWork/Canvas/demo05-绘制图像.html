@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas tutorial</title>
+    <script type="text/javascript">
+        function draw() {
+            var canvas = document.getElementById('tutorial');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+                // var image = document.images[0];
+                // ctx.drawImage(image, 0, 0);
+                ctx.strokeStyle = 'red';
+                ctx.strokeRect(10, 10, 50, 50);
+                // 显示图像
+                var image = document.createElement('img');
+                var imgURI = canvas.toDataURL('image/jpeg');
+                console.log(imgURI)
+                image.src = imgURI;
+                document.body.appendChild(image);
+
+                
+            }
+        }
+    </script>
+    <style type="text/css">
+      canvas { border: 1px solid black; }
+    </style>
+</head>
+<body onload="draw();">
+    <canvas id="tutorial" width="300" height="300"></canvas>
+    <!-- <img src="./yuner.jpg" style="height: 300px;"> -->
+</body>
+</html>

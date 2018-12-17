@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            var target = function() {
+                return 'I am the target';
+            };
+            var handler = {
+                // 三个参数
+                // 目标对象
+                // 目标对象上下文
+                // 目标对象的参数数组
+                apply: function(target, ctx, args) {
+                    console.log('target', target);
+                    console.warn('ctx', ctx)
+                    return 'I am the proxy';
+                }
+            };
+
+            var p = new Proxy(target, handler);
+
+            console.log(p());
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

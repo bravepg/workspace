@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div id="div">1</div>
+</body>
+</html>
+<script>
+    const div = document.getElementById('div');
+    div.id = 'div1';   // 可以直接修改标准属性
+
+    div.className = 'div'
+    div.onclick = function() {
+        console.log(1)
+    };
+
+    // div.name = 'name';  // 无法直接修改非标准属性
+    // 可以通过 setAttribute
+    div.setAttribute('name', "true");  
+    console.log(typeof div.name)
+</script>

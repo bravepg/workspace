@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas tutorial</title>
+    <script type="text/javascript">
+        function draw() {
+            var canvas = document.getElementById('tutorial');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+
+                ctx.fillStyle = '#ff0000';  // 红色
+                ctx.save();
+
+                ctx.fillStyle = '#00ff00';  // 绿色
+                ctx.translate(100, 100);
+                ctx.save();
+
+                ctx.fillStyle = '#0000ff';  // 蓝色
+                ctx.fillRect(0, 0, 100, 200);     // (100, 100)蓝色
+
+                ctx.restore();
+                ctx.fillRect(10, 10, 100, 200);  //(110, 110)绿色
+                ctx.restore();
+                ctx.fillRect(0, 0, 100, 200);   // (0, 0)红色
+            }
+        }
+    </script>
+    <style type="text/css">
+      canvas { border: 1px solid black; }
+    </style>
+</head>
+<body onload="draw();">
+    <canvas id="tutorial" width="300" height="300"></canvas>
+</body>
+</html>

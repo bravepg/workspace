@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <svg>
+        <defs>
+            <filter id="blurFilter1" y="-5" height="40">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
+            </filter>
+            <filter id="blurFilter4" x="-20" y="-20" width="200" height="200">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
+            </filter>
+        </defs>
+        <ellipse cx="55" cy="60" rx="25" ry="15"
+          style="stroke: none; fill: #0000ff; " />
+
+        <ellipse cx="155" cy="60" rx="25" ry="15"
+            style="stroke: none; fill: #0000ff; filter: url(#blurFilter1);" />
+
+        <rect x="20" y="20" width="90" height="90"
+            style="stroke: none; fill: #00ff00; filter: url(#blurFilter4);" />
+    </svg> 
+</body>
+</html>

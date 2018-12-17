@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <svg>
+        <defs>
+            <mask id="mask1" x="0" y="0" width="100" height="100">
+                <rect x="0" y="0" width="100" height="50"
+                    style="stroke: none; fill: #ffffff" />
+            </mask>
+        </defs>
+        <rect x="1" y="1" width="100" height="100"
+            style="stroke: none; fill: #0000ff; mask: url(#mask1);" />
+    </svg>
+    <svg>
+        <defs>
+            <mask id="mask2" x="0" y="0" width="100" height="100">
+                <rect x="0" y="0" width="100" height="50"
+                    style="stroke: none; fill: #ffffff;" />
+                <rect x="0" y="50" width="100" height="50"
+                    style="stroke: none; fill: #666666;" />    
+            </mask>
+        </defs>
+        <text x="10" y="55" style="stroke: none; fill: #000000;">
+            This text is under the rectangle
+        </text>
+        <rect x="1" y="1" width="100" height="100"
+            style="stroke: none; fill: #0000ff; mask: url(#mask2)"/>
+    </svg>
+    <svg>
+        <defs>
+            <linearGradient id="gradient1"
+                x1="0%" y1="0%"
+                x2="100%" y2="0%"
+                spreadMethod="pad">
+                <stop offset="0%"   stop-color="#ffffff" stop-opacity="1"/>
+                <stop offset="100%" stop-color="#000000" stop-opacity="1"/>
+            </linearGradient>
+            <mask id="mask3" x="0" y="0" width="200" height="100">
+                <rect x="0" y="0" width="200" height="100"
+                    style="stroke: none; fill: url(#gradient1)" />
+            </mask>
+        </defs>
+        <text x="10" y="55" style="stroke: none; fill: #000000;">
+            This text is under the rectangle
+        </text>
+        <rect x="1" y="1" width="200" height="100"
+            style="stroke: none; fill: #0000ff; mask: url(#mask3)"/>
+    </svg>
+
+    <svg>
+        <defs>
+            <linearGradient id="gradient2"
+                x1="0%" y1="0%"
+                x2="100%" y2="0%"
+                spreadMethod="pad">
+                <stop offset="0%"   stop-color="#ffffff" stop-opacity="1"/>
+                <stop offset="100%" stop-color="#000000" stop-opacity="1"/>
+            </linearGradient>
+            <pattern id="pattern2"
+                x="10" y="10" width="20" height="20"
+                patternUnits="userSpaceOnUse">
+                <circle cx="10" cy="10" r="10" style="stroke: none; fill: #0000ff; " />
+            </pattern>
+            <mask id="mask4" x="0" y="0" width="200" height="100">
+                <rect x="0" y="0" width="200" height="100"
+                    style="stroke: none; fill: url(#gradient2)" />
+            </mask>
+        </defs>
+        <text x="10" y="55" style="stroke: none; fill: #000000;">
+            This text is under the rectangle
+        </text>
+        <rect x="1" y="1" width="200" height="100"
+            style="stroke: none; fill: url(#pattern2); mask: url(#mask3)"/>
+    </svg>
+</body>
+</html>

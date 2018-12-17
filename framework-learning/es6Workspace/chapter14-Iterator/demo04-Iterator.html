@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            //Iterator接口与Generator函数
+            var myIterable = {};
+            myIterable[Symbol.iterator] = function*() {
+                yield 1;
+                yield 2;
+                yield 3;
+            };
+            console.log([...myIterable]);
+            console.log('----------');
+
+            let obj = {
+                * [Symbol.iterator]() {
+                    yield 'hello';
+                    yield 'world'
+                }
+            }
+            console.log([...obj]);
+            for(let item of obj) {
+                console.log(item);
+            }
+            console.log('-----------');
+
+
+            //遍历器对象的return()，throw()
+            //for...of
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

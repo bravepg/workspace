@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+    </head>
+    <body>
+    <!-- <img src="./404.png" alt=""> -->
+    </body>
+</html>
+<script type="text/javascript">
+    window.onerror = function (msg, url, row, col, error) {
+        console.log('我知道异步错误了');
+        console.log({
+            msg,  url,  row, col, error
+        });
+        return true;
+    };
+    // console.log(a.b);
+    async function demo() {
+        console.log(a.b);
+    }
+    demo();
+    // try {
+    //     setTimeout(() => {
+    //         console.log(a.b)
+    //     }, 0);
+    // } catch(e) {
+    //     console.log(e);
+    // }
+    window.addEventListener("unhandledrejection", function(e){
+      e.preventDefault();   //如果不使用，错误依旧会抛出
+      console.log('我知道 promise 的错误了');
+      console.log(e.reason);
+      return true;
+    });
+    window.addEventListener('error', (msg, url, row, col, error) => {
+        console.log('我知道 404 错误了');
+        console.log(
+        msg, url, row, col, error
+      );
+      return true;
+    }, true);
+    // console.log(a.b);
+    Promise.reject('promise error');
+    // new Promise((resolve, reject) => {
+    //     reject('promise error')
+    // });
+    try {
+        fetch('https://api1.github.com/')
+    } catch(e) {
+        console.log(e)
+    }
+    
+</script>

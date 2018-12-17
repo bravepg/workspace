@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas tutorial</title>
+    <script type="text/javascript">
+        function draw() {
+            var canvas = document.getElementById('tutorial');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+
+                var gradient = ctx.createLinearGradient(30, 30, 70, 70);
+
+                gradient.addColorStop(0, 'white');
+                gradient.addColorStop(1, 'black');
+
+                ctx.fillStyle = gradient;
+                ctx.fillRect(30, 30, 40, 40);
+
+                ctx.fillRect(100, 100, 50, 50);
+
+
+            }
+        }
+    </script>
+    <style type="text/css">
+      canvas { border: 1px solid black; }
+    </style>
+</head>
+<body onload="draw();">
+    <canvas id="tutorial" width="300" height="300"></canvas>
+</body>
+</html>

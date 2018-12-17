@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	// 在遇到throw操作符，所有代码立即停止执行
+
+	// demo1 只会打印1
+	// console.log(1);
+	// throw 123;
+	// console.log(2);	
+
+
+	// demo2 只会打印0 1 2
+	// 在此处如果使用return，会报错 Uncaught SyntaxError: Illegal return statement
+	// 原因是return只能用于函数中，break用于代码执行
+	// 第一段代码报错，第二段代码可以执行
+	// for (let i = 0; i < 5; i++) {
+	// 	console.log(i);
+	// 	if (i === 2) return;
+	// }
+
+	// for (let i = 0; i < 5; i++) {
+	// 	console.log(i);
+	// 	if (i === 2) break;
+	// }
+
+	// demo3 第一个例子会打印1 2 3 第二个例子只会打印1
+	// [1, 2, 3].forEach(function (key) {
+	// 	console.log(key);
+	// 	if (key === 1) return;
+	// });
+
+	// [1, 2, 3].forEach(function (key) {
+	// 	console.log(key);
+	// 	if (key === 1) throw 123;
+	// });
+
+
+	let promise = new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve(1);
+		}, 1000);
+		throw 123;
+	});
+	// 这段代码只会输出 123，因为 promise 的状态一旦变成 reject 便无法修改
+	promise.then((v) => console.log(v), (e) => {
+		console.log(e);
+	});
+</script>
+</html>

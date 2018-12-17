@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <router-view></router-view>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    // 全局的, 单个路由独享的, 或者组件级的
+    // 参数和查询并不会触发进入/离开的导航守卫，可以通过 $route 的变化和 beforeRouteUpdate 进行守卫
+
+    // 全局守卫
+    // 守卫是异步解析的，此时导航在所有守卫 resolve 完之前一直处于等待中
+    // to 即将进入的路由
+    // from 当前导航正要离开的路由
+    // next 一定要调用该方法来 resolve 这个钩子，否则钩子就不会被 resolved
+    // next(false): 中断当前的导航
+    // next('/') 跳转到一个不同的地址
+    // next(error) 该错误被传递给 router.onError() 注册过的回调
+    const router = new VueRouter({  })
+
+    router.beforeEach((to, from, next) => {
+        // ...
+    })
+
+    // 全局解析守卫
+    // 同时在所有组件内守卫和异步路由组件被解析之后，解析守卫就被调用
+    // router.beforeResolve
+
+    // 全局后置钩子，然而和守卫不同的是，这些钩子不会接受 next 函数也不会改变导航本身
+    // router.afterEach((to, from) => {
+    //     // ...
+    // })
+
+
+
+
+    // 路由独享的守卫 beforeEnter
+    const router = new VueRouter({
+        routes: [
+            {
+                path: '/foo',
+                component: Foo,
+                beforeEnter: (to, from, next) => {
+                    // ...
+                }
+            }
+        ]
+    });
+
+
+    // 组件内的守卫
+    const Foo = {
+        template: `...`,
+        beforeRouteEnter (to, from, next) {
+            // 在渲染该组件的对应路由被 confirm 前调用
+            // 不！能！获取组件实例 `this`
+            // 因为当守卫执行前，组件实例还没被创建
+        },
+        beforeRouteUpdate (to, from, next) {
+            // 在当前路由改变，但是该组件被复用时调用
+            // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+            // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+            // 可以访问组件实例 `this`
+        },
+        beforeRouteLeave (to, from, next) {
+            // 导航离开该组件的对应路由时调用
+            // 可以访问组件实例 `this`
+        }
+    }
+</script>

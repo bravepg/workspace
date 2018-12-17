@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>节点属性</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div id="div1">
+        1
+        <span>span1</span>
+    </div>
+    2
+    <div id="div2">
+        2
+        <span>span2</span>
+    </div>
+</body>
+<script>
+    const div1 = document.getElementById('div1');
+    console.log(div1.firstChild);   // firstChild 是一个 Text 节点
+    console.log(div1.firstChild.nodeValue);
+    console.log(div1.firstChild.nodeValue.length);
+
+    console.log(div1.nextSibling);  // nextSibling 也是一个 Text 节点
+</script>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+    </head>
+    <body>
+        <p>1</p>
+        <p>2</p>
+        <script type="text/javascript">
+            //数组（for...of本质上就是调用了这个接口产生的遍历器）
+            const arr = ['red', 'green', 'blue'];
+            for(let v of arr) {
+                console.log(v);
+            }
+            const obj = {};
+            obj[Symbol.iterator] = arr[Symbol.iterator].bind(arr);
+            for(let v of obj) {
+                console.log(v);
+            }
+            //代替了数组的forEach方法
+            //for...in遍历键名、for...of遍历键值,若想获取数组的键名可以通过keys()、entries()方法
+
+            //for...of只会遍历具有数字索引的属性，跟for...in不一样
+
+
+
+            //Set和Map结构
+
+
+            //计算生的数据结构（对于数组、Set、Map而言，存在keys()、values()、entries()）
+
+            //类似数组的对象
+            //1.字符串
+            //2.DOM NodeList对象
+            // DOM NodeList对象
+            // let paras = document.querySelectorAll("p");
+
+            // for (let p of paras) {
+            //   p.classList.add("test");
+            // }
+            //3.argumets对象
+            function printArgs() {
+                for(let x of arguments) {
+                    console.log(x)
+                }
+            }
+            printArgs('a', 'b');
+
+            console.log('--------------');
+            //并不是所有类似数组的对象都具有Iterator接口，最简单的解决办法就是利用Array.from方法将其转为对象
+            let arrayLike = {0: 'a', 1: 'b', length: 2};
+            // for(let x of arrayLike) {
+            //     console.log(x);
+            // } 报错
+            for(let x of Array.from(arrayLike)) {
+                console.log(x);
+            }
+            
+
+            //对象，对于对象来说for...in循环可以遍历键名，for...of会报错
+            //解决办法
+            //  1.使用Object.keys()将对象的键名生成一个数组
+            //  2.使用Generator函数将对象重新包装
+            function* entries(obj) {
+                for(let key of Object.keys(obj)) {
+                    yield [key, obj[key]]
+                }
+            }
+            for(let [key, value] of entries({a: 1, b: 2})) {
+                console.log(key, '->', value);
+            } 
+
+
+            //与其他遍历语法比较
+            //1.for循环
+            //2.forEach（无法利用break、return跳出循环）
+
+        </script>
+    </body>
+</html>

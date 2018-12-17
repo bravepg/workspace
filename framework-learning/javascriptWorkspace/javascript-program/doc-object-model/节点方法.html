@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>节点方法</title>
+</head>
+<body>
+    <span id="span1"></span>
+    <div id="div1"></div>
+</body>
+</html>
+<script>
+    var p = document.createElement('p');
+    console.log(document.body.appendChild(p));  // 返回值是插入文档的子节点
+
+    var element = document
+        .createElement('div')
+        .appendChild(document.createElement('b'));
+    console.log(element);  // <b></b>
+
+    var p = document.createElement('p');
+    document.body.insertBefore(p, document.body.firstChild);
+    console.log(document.body.firstChild)
+
+    var span1 = document.getElementById('span1');
+    var div1 = document.getElementById('div1');
+    div1.appendChild(span1, div1.nextSibling);
+
+    // span1.removeChild(div1);  // 不是子节点的话会报错
+</script>

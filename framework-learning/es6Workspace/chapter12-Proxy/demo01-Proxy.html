@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            var obj = new Proxy({}, {
+                get: function(target, key, receiver) {
+                    console.log(`getting ${key}!`);
+                    return Reflect.get(target, key, receiver);  
+                },
+                set: function(target, key, value, receiver) {
+                    console.log(`setting ${key}!`);
+                    return Reflect.set(target, key, value, receiver);
+                }
+            });
+            obj.count = 1;  //setting count!
+            ++obj.count;    //getting count! setting count!
+
+
+            //Proxy 实例生成方式 var proxy = new Proxy(target, handler);
+
+            //如果handler没有设置任何拦截，就会直接通向原对象
+            var target = {};
+            var handler = {};
+            var proxy = new Proxy(target, handler);
+            proxy.a = 'b';
+            console.log(target.a);
+
+
+
+            // Proxy多种拦截操作，每种操作的第一个参数是target，基本上不使用，但是必须传递
+            handler = {
+                get: function(target, name) {
+                    if(name === 'propotype') {
+                        return Object.propotype;
+                    }
+                    return 'Hello ' + name;
+                },
+                apply: function(target, thisBinding, args) {
+                    console.log('target', thisBinding);
+                    console.log('thisBinding', thisBinding);
+                    console.log('args', args);
+                    return args[0];
+                },
+                construct: function(target, args) {
+                    return {value: args[1]};
+                }
+            }
+            var fproxy = new Proxy(function(x, y) {
+                return x + y;
+            }, handler);
+            //apply 拦截Proxy实例作为函数调用的操作，比如proxy(...args)
+            console.log(fproxy(1, 2));
+            //拦截Proxy实例作为构造函数调用的操作，比如new proxy(...args)
+            console.log(new fproxy(1, 2));
+            //get  proxy.foo proxy['foo'] 最后一个参数是receiver，可选
+            console.log(fproxy.foo);
+            //set proxy.foo = 1、proxy['foo'] = 1
+            //has 拦截propKey in proxy
+            //deleteProperty
+            //ownKeys返回目标对象所有自身属性的属性名，包括原型上以及Symbol属性名
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

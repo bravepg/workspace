@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            //resolve、reject这两个函数都接受Promise对象传出的值作为参数
+            function timeout(ms) {
+                return new Promise((resolve, reject) => {
+                    setTimeout(resolve, ms,'done')
+                });
+            }
+            timeout(1000).then(value => {
+                console.log(value);
+            });
+
+            //Promise加载图片
+            function loadImageAsync(url) {
+                return new Promise(function(resolve, reject) {
+                    var image = new Image();
+
+                    image.onload = function() {
+                        console.log(image)
+                        resolve(image);
+                    }
+                    image.onerror = function() {
+                        reject(new Error('Could not load image at' + url));
+                    }
+                    console.log('url', url)
+                    image.src = url;
+                });
+            }
+
+            loadImageAsync('./yuner.jpg')
+
+            //Promise对象实现Ajax
+            var getJSON = function(url) {
+                var pomise = new Promise(function(resolve, reject) {
+                    var client = new XMLHttpRequest();
+                    client.open('GET', url);
+                    client.onreadystatechange = handler;
+                    client.responseType = 'json';
+                    client.setRequesetHeader('Accept', 'application/json');
+                    client.send();
+                    function handler() {
+                        if(this.readyState !== 4) {
+                            return;
+                        }
+                        if(this.status === 200) {
+                            resolve(this.response);
+                        } else {
+                            reject(new Error(this.statusText));
+                        }
+                    }
+                });
+                return pomise;
+            }
+            //下面的代码如果只利用本地访问，即使用的是file协议，会报错
+
+            // getJSON('./post.json').then(function(json) {
+            //     console.log('Contents: ' + json);
+            // }, function(error) {
+            //     console.error('出错了', error);
+            // });
+
+            //Promise新建后会立即执行，它的then回调函数会在当前所有同步任务执行完才会执行
+            let promise = new Promise(function(resolve, reject) {
+                console.log('Promise');
+                resolve();
+                console.log('Promise2');
+            });
+
+            promise.then(function() {
+                console.log('Resolved');
+            });
+
+            console.log('Hello');
+            console.log('World');
+            console.log('World');
+
+            
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

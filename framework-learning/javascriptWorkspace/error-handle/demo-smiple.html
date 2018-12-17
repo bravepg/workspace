@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    error
+    console.log('永远不会执行');
+</script>
+<script>
+    console.log('我继续执行')
+</script>
+<!--上面两段 script 标签证明了异常的出现不会导致 ``JS`` 的引擎崩溃，最多只会使当前的任务终止执行 -->
+
+<script>
+    // 由于 setTimeout 也是一个新的任务，因此表现跟上述一致
+    setTimeout(() => {
+        console.log(1);
+    });
+    console.log(error);
+    throw 'error';    // throw 跟上述描述的一致
+</script>

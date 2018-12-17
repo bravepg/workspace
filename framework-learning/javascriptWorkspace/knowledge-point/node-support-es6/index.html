@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="compiled.js"></script>
+	<script src="tiny-require.js"></script>
+</head>
+<body>
+</body>
+</html>
+<script>
+	require.register("./b.js", function(module, exports, require) {
+	  module.exports = function(x) {
+	    console.log(x);
+	  };
+	});
+	var result = require("./b.js");
+	console.log(result);
+</script>

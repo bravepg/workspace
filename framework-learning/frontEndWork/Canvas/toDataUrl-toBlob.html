@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas tutorial</title>
+    <script type="text/javascript">
+        function draw() {
+            var canvas = document.getElementById('tutorial');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+
+                // 绘制红色矩形
+                ctx.fillStyle = '#ff0000';
+                ctx.fillRect(10, 10, 50, 50);
+
+                // 修改全局透明度
+                ctx.globalAlpha = 0.5;
+
+                // 设置合成操作
+                ctx.globalCompositeOperation = 'xor';
+
+                // 绘制蓝色矩形
+                ctx.fillStyle = 'rgba(0, 255, 255, 1)';
+                ctx.fillRect(30, 30, 50, 50);
+
+                // 重置全局透明度
+                ctx.globalAlpha = 0;
+            }
+            // toBlob
+            canvas.toBlob(function (blob) {
+                var newImage = document.createElement('img');
+
+                var url = URL.createObjectURL(blob);
+                console.log('url', url);
+                newImage.onload = function() {
+                    URL.revokeObjectURL(url);
+                }
+                newImage.src = url;
+                document.body.appendChild(newImage);
+            });
+
+            // toDataUrl
+            var dataURL = canvas.toDataURL();
+            var newImage = document.createElement('img');
+            newImage.src = dataURL;
+            document.body.appendChild(newImage);
+        }
+    </script>
+    <style type="text/css">
+      canvas { border: 1px solid black; }
+    </style>
+</head>
+<body onload="draw();">
+    <canvas id="tutorial" width="300" height="300"></canvas>
+</body>
+</html>

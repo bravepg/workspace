@@ -1,0 +1,24 @@
+{
+  "name": "error-handle",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "nocors": "http-server ./cross_origin_without_cors/server1/ -p 8080 & http-server ./cross_origin_without_cors/server2/ -p 8081",
+    "cors": "http-server ./cross_origin_with_cors/server1/ -p 8080 & node ./cross_origin_with_cors/server2/index.js",
+    "jsonp": "http-server ./jsonp_with_cors/server1/ -p 8080 & node ./jsonp_with_cors/server2/index.js"
+  },
+  "keywords": [],
+  "author": "gaopeng <gaopeng19960108@gmail.com> (http://github.com/gaopeng0108)",
+  "license": "MIT",
+  "devDependencies": {
+    "koa": "^2.5.2",
+    "koa-cors": "^0.0.16",
+    "koa-route": "^3.2.0",
+    "koa-static": "^5.0.0"
+  },
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}

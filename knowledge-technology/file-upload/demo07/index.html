@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Plupload: UI Widget</title>
+        <script src="jquery.min.js" type="text/javascript" charset="UTF-8"></script>
+        <link rel="stylesheet" href="jquery-ui.css" type="text/css" media="screen">
+        <script src="jquery-ui.min.js" type="text/javascript" charset="UTF-8"></script>
+        <link   href="jquery.ui.plupload.css" type="text/css" rel="stylesheet" media="screen">
+        <script src="plupload.full.min.js" type="text/javascript" charset="UTF-8"></script>
+        <script src="jquery.ui.plupload.js" type="text/javascript" charset="UTF-8"></script>
+    </head>
+    <body>
+        <div id="uploader"></div>
+        <script>
+            $(function() {
+                $("#uploader").plupload({
+                    runtimes: 'html5, flash, silverlight, html4',
+                    url: '/upload',
+                    max_file_size: '2mb',
+                    chunk_size: '1mb',
+                    resize: {
+                        width: 200,
+                        height: 200,
+                        quality: 90,
+                        crop: true
+                    },
+                    rename: true,
+                    sortable: true,
+                    dradrop: true,
+                    views: {
+                        list: true,
+                        thumbs: true,
+                        active: 'thumbs'
+                    }
+                })
+            })
+        </script>
+    </body>
+</html>

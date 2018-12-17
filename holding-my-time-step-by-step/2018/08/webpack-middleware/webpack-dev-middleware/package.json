@@ -1,0 +1,19 @@
+{
+  "name": "webpack-dev-middleware",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "gaopeng <gaopeng19960108@gmail.com> (http://github.com/gaopeng0108)",
+  "license": "MIT",
+  "devDependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-middleware": "^3.1.3"
+  }
+}

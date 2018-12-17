@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            //魔术字符串实例
+            function getArea(shape, options) {
+                let area = 0;
+                switch(shape) {
+                    case 'Triangle':  //魔术字符串
+                        area = 0.5 * options.width * options.height;
+                        break;
+                }
+                return area;
+            }
+            console.log(getArea('Triangle', {width: 100, height: 100}));
+
+            //优化
+            const shapeType = {
+                triangle: Symbol()
+            }
+
+            function getArea2(shape, options) {
+                let area = 0;
+                switch(shape) {
+                    case shapeType.triangle:
+                        area = 0.5 * options.width * options.height;
+                        break;
+                }
+                return area;
+            }
+            console.log(getArea2(shapeType.triangle, {width: 100, height: 100}));
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

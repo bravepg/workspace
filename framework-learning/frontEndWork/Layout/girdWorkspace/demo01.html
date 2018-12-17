@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>demo01-flex vs gird</title>
+        <style>
+            /*.container  {
+                display: flex;
+                flex-direction: column;
+            }
+            header {
+                height: 100px;
+                background-color: red;
+            }
+            .main-and-sidebar-wrapper {
+                height: 100px;
+                display: flex;
+                flex-direction: row;
+            }
+            .main {
+                flex: 3;
+                margin-right: 60px;
+            }
+            .sidebar {
+                flex: 1;
+                background-color: yellow;
+            }
+            footer {
+                height: 100px;
+                background-color: green;
+            }被注释的部分为flex布局*/
+            .container {
+                display: grid;
+
+                /* 	Define the size and number of columns in our grid. 
+                The fr unit works similar to flex:
+                fr columns will share the free space in the row in proportion to their value.
+                We will have 2 columns - the first will be 3x the size of the second.  */
+                grid-template-columns: 3fr 1fr;
+
+                /* 	Assign the grid areas we did earlier to specific places on the grid. 
+                    First row is all header.
+                    Second row is shared between main and sidebar.
+                    Last row is all footer.  */
+                grid-template-areas: 
+                    "header header"
+                    "main sidebar"
+                    "footer footer";
+
+                /*  The gutters between each grid cell will be 60 pixels. */
+                grid-gap: 60px;
+            }
+            header {
+                height: 100px;
+                background-color: red;
+                grid-area: header;
+            }
+            .main {
+                height: 100px;
+                grid-area: main;
+            }
+            .sidebar {
+                height: 100px;
+                background-color: yellow;
+                grid-area: sidebar;
+            }
+            
+            footer {
+                height: 100px;
+                background-color: green;
+                grid-area: footer;
+            }
+        </style>
+    </head>
+    <body>
+        <!--<div class="container">
+            <header></header>
+            <div class="main-and-sidebar-wrapper">
+                <section class="main"></section>
+                <aside class="sidebar"></aside>
+            </div>
+            <footer></footer>
+        </div> 被注释的部分为flex布局-->
+        <div class="container">
+            <header></header>
+            <section class="main"></section>
+            <aside class="sidebar"></aside>
+            <footer></footer>
+        </div>
+    </body>
+</html>

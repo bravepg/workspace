@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            // Proxy get
+            let preson = {
+                name : '张三'
+            };
+            let proxy = new Proxy(preson, {
+                get: function(target, property, receiver) {
+                    console.log('target', target);
+                    console.log('receiver', receiver);
+                    if(property in target) {
+                        return target[property];
+                    } else {
+                        throw new ReferenceError("Property \"" + property + "\"does not exist.");
+                    }
+                }
+            });
+            console.log(proxy.name);  //张三
+            proxy.a = 1;
+            console.log(preson.a)
+            //console.log(proxy.age);   //Uncaught ReferenceError: Property "age"does not exist.
+            //由于拦截操作，使原本应该为undefined的结果会报错
+
+            //get方法可以继承
+            proto = new Proxy({}, {
+                get(target, propertyKey, receiver) {
+                    console.log('GET' + propertyKey);
+                }
+            })
+            let obj = Object.create(proto);
+            obj.xxx;
+            console.log('====', proto.prototype);
+            //console.log('----', obj);
+
+
+
+            //get拦截。实现数组读取负数的索引
+            function createArray(...elements) {
+                let handler = {
+                    get(target, propKey, recevier) {
+                        let index = Number(propKey);
+                        if(index < 0) {
+                            propKey = String(target.length + index);
+                        }
+                        return Reflect.get(target, propKey, recevier);
+                    }
+                };
+                let target = [];
+                target.push(...elements);
+                return new Proxy(target, handler);
+            }
+            let arr = createArray('a', 'b', 'c');
+            console.log(arr[-1]);
+
+            console.log("=================================")
+            var pipe = (function() {
+                return function(value) {
+                    var funcStack = [];
+                    var oproxy = new Proxy({}, {
+                        get: function(pipeObject, fnName) {
+                            if(fnName === 'get') {
+                                return funcStack.reduce(function(val, fn) {
+                                    return fn(val);
+                                }, value);
+                            }
+                            funcStack.push(window[fnName]);
+                            return oproxy;
+                        }
+                    });
+                    return oproxy;
+                }
+            }());
+            var double = n => n *2;
+            var pow = n => n * n;
+            var reverseInt = n => n.toString().split("").reverse().join("") | 0;
+            console.log(pipe(3).double.pow.reverseInt.get);
+
+
+            console.log("================");
+            //set方法拦截属性的赋值操作
+            let validator = {
+                set: function(obj, prop, value) {
+                    if(prop === 'age') {
+                        if(!Number.isInteger(value)) {
+                            throw new TypeError('The age is not integer');
+                        }
+                        if(value > 200) {
+                            throw new RangeError('The age seems invalid');
+                        }
+                    }
+                    obj[prop] = value;
+                }
+            };
+
+            let preson02 = new Proxy({}, validator);
+            preson02.age = 100;
+            console.log(preson02.age);
+            //preson02.age = 'young';
+
+
+            
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

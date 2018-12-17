@@ -1,0 +1,6 @@
+1.学习了react-navigation导航库
+    --来源：https://reactnavigation.org/docs/intro/
+    --代码位置：D://reactNativeWorkspace//rnrouter
+
+2.构建nodejs的天气应用：
+    --来源：https://codeburst.io/build-a-simple-weather-app-with-node-js-in-just-16-lines-of-code-32261690901d

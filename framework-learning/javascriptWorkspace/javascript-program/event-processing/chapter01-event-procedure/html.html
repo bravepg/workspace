@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<!-- HTML事件处理程序直接包含要执行的具体动作：注意转义 -->
+	<input type="button" value="Click me" onclick="alert(&quot;Clicked&quot;)">
+
+	<!-- HTML事件处理程序调用页面其他地方定义的脚本 -->
+	<input type="button" value="Click me" onclick="showMessage(this);">
+</body>
+	<!-- HTML事件处理程序 -->
+	<script type="text/javascript">
+		// 事件处理程序中的代码在执行时有权访问全局作用域中的任何代码
+		function showMessage(self) {
+			// alert("Hello World");
+			alert(self.value);
+		}
+
+		// 扩展作用域利用with，因此事件处理程序可以访问全局作用中的变量，以及元素本身的成员
+		// function () {
+		// 	with (document) {
+		// 		with (this) {
+
+		// 		}
+		// 	}
+		// }
+
+
+		// 缺点
+		// 1. 存在时差问题
+		// 2. 不同浏览器扩展作用域链的结果不同
+		// 3. HTML代码与Javascript代码耦合--因此引出了利用Javascript的指定事件处理程序
+	</script>
+</html>

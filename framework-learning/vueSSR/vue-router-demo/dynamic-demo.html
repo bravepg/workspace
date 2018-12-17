@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Hello App!</h1>
+        <router-view></router-view>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    const User = {
+        template: '<div>User {{ $route.params.id }} </div>',
+        // watch: {
+        //     '$route' (to, from) {
+        //         // 对路由变化作出响应...
+        //         console.log(to, from);
+        //     }
+        // }
+        beforeRouteUpdate (to, from, next) {
+            console.log(to, from, next);
+            // react to route changes...
+            // don't forget to call next()
+            // 如果不调用 next 则不会跳转
+            next();
+        }
+    }
+
+    const routes = [
+        // 动态路径参数 以冒号开头
+        { path: '/user/:id', component: User }
+    ]
+
+    // 3. 创建 router 实例，然后传 `routes` 配置
+    const router = new VueRouter({
+        routes // (缩写) 相当于 routes: routes
+    })
+
+    const app = new Vue({
+        router
+    }).$mount('#app')
+</script>

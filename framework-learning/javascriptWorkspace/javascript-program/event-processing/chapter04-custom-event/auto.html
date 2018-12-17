@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<input type="button" value="Click me" id="myBtn">
+<script type="text/javascript">
+	var btn = document.getElementById('myBtn');
+	var event = document.createEvent('CustomEvent');
+
+	btn.addEventListener('myevent', function() {
+		console.log('模拟自定义事件');
+	});
+
+	// 初始化事件
+	event.initCustomEvent('myevent');
+
+	// 触发事件
+	btn.dispatchEvent(event);
+</script>
+</body>
+</html>

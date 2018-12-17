@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>前端布局</title>
+        <style>
+            @media screen and (max-width: 360px) {
+                body {
+                    background-color:lightblue;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 字体会被继承 -->
+        <div style="font-size: 24px;">
+            <div>
+                111
+                <div>333</div>
+            </div>
+        </div>
+        <span>222</span>
+        <!-- 为什么有的书上说 font-size 不能被块级元素继承
+        如下：因为 h2 不会继承父级 div 的字体大小
+        但是 span 却与 父级 div 的大小一致 -->
+        <div style="font-size: 12px;">
+            <h2>这是h2标签</h2>
+        </div>
+        <div style="font-size: 12px;">
+            <span>这是h2标签</span>
+        </div>
+        <script>
+            var scale = 1 / devicePixelRatio;
+            document.querySelector('meta[name="viewport"]')
+            .setAttribute('content','initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+            document.documentElement.style.fontSize = document.documentElement.clientWidth / 10 + 'px';
+        </script>
+    </body>
+</html>

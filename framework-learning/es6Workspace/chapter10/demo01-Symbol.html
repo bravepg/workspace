@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            let s = Symbol();
+            console.log(typeof s);   //"symbol"
+
+            //Symbol函数接受字符串作为参数，如果参数是对象，则会调用对象的toString方法
+            var s1 = Symbol('foo');
+            var s2 = Symbol('bar');
+            console.log(s1, s2);
+            const obj = {
+                toString() {
+                    return 'abc';
+                }
+            }
+            const sym = Symbol(obj);
+            console.log(sym);
+
+            //参数相同的Symbol函数是不相等的
+            console.log(Symbol() === Symbol()); //false
+
+            //Symbol值不能与其他类型的值进行运算
+            //console.log("your symbol is" + Symbol('My symbol'), `your symbol is ${Symbol('My symbol')}`); // Uncaught TypeError: Cannot convert a Symbol value to a string
+
+            //Symbol可以显式的转化为字符串、布尔值，但是不可以转化为数值
+            console.log(Symbol('My symbol').toString());
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

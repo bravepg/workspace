@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            // for (var i = 0; i < 5; i++) {
+            //     (function (j) {
+            //         setTimeout(function () {
+            //             console.log(new Date(), j);
+            //         }, 1000)
+            //     })(i)
+            // }
+            // 上述代码1s后会输出5个值
+
+
+            // for (var i = 0; i < 5; i++) {
+            //     (function (j) {
+            //         setTimeout(function () {
+            //             console.log(new Date(), j);
+            //         }, 1000 * j)
+            //     })(i)
+            // }
+            // 上述代码每隔1s输出一个值
+
+
+            const tasks = []; // 这里存放异步操作的 Promise
+            const output = (i) => new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log(new Date, i);
+                    resolve();
+                }, 1000 * i);
+            });
+
+            // 生成全部的异步操作
+            for (var i = 0; i < 5; i++) {
+                tasks.push(output(i));
+            }
+
+            // 异步操作完成之后，输出最后的 i
+            Promise.all(tasks).then(() => {
+                setTimeout(() => {
+                    console.log(new Date, 5);
+                }, 1000);
+            });
+            // 利用Promise完成
+
+
+            const sleep = (timeountMS) => new Promise((resolve) => {
+                setTimeout(resolve, timeountMS);
+            })
+
+            (async () => {
+                for(var i = 0; i < 5; i++) {
+                    await sleep(1000);
+                    console.log(new Date(), i);
+                }
+                await sleep(1000);
+                console.log(new Date(), i);
+            })()
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

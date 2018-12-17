@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            //Symbol.iterator接口
+            const obj = {
+                [Symbol.iterator] : function() {
+                    return {
+                        next: function() {
+                            return {
+                                value: 1,
+                                done: true
+                            }
+                        }
+                    }   
+                }
+            }
+
+            // 执行Symbol.iteartor会返回一个遍历器对象，该对象的根本特征是具有next方法
+            // 三类数据结构具备原生Iterator接口：数组、某些类似数组的对象、Set和Map结构
+            // 对象部署遍历器接口不是很必要，因为ES6存在Map结构
+            class RangeIterator {
+                constructor(start, stop) {
+                    this.value = start;
+                    this.stop = stop;
+                }
+                [Symbol.iterator]() {
+                    return this;
+                }
+                next() {
+                    var value = this.value;
+                    if(value < this.stop) {
+                        this.value++;
+                        return {done: false, value: value}
+                    } else {
+                        return {done: true, value: undefined}
+                    }
+                }
+            }
+            function range(start, stop) {
+                return new RangeIterator(start, stop);
+            }
+            for(var value of range(0, 3)) {
+                console.log(value)
+            }
+
+            console.log("====================");
+            //类似数组的对象
+            let iterable = {
+                0: 'a',
+                1: 'b',
+                2: 'c',
+                length: 3,
+                [Symbol.iterator]: Array.prototype[Symbol.iterator]
+            }
+            for(let item of iterable) {
+                console.log(item);
+            }
+
+            //普通对象部署数组的Symbol.iterator方法，并无效果
+            //Symbol.iterator方法对应的不是遍历器生成函数，解释引擎会报错
+
+            
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

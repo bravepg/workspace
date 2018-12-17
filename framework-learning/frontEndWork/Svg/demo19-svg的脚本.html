@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <svg width="500" height="100">
+        <rect id="rect1" x="10" y="10" width="50" height="80"
+            style="stroke: #000000; fill: none;" />
+    </svg>
+    <input id="button1" type="button" value="Change Dimensions"
+            onclick="changeDimensions()" />
+</body>
+<script type="text/javascript">
+    function changeDimensions() {
+        document.getElementById('rect1').setAttribute('width', 100);
+    }
+</script>
+</html>

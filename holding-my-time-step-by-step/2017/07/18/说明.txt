@@ -1,0 +1,6 @@
+1.主要学习了es6的语法中的Iterator、Promise、async
+    --资料来源
+        http://es6.ruanyifeng.com/
+        https://hackernoon.com/es8-was-released-and-here-are-its-main-new-features-ee9c394adf66
+    --代码
+        D:\autonomous-learning\es6Workspace

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            //Singleton模式 调用一个类，任何时候都会返回同一个实例
+            //如何实现这种模式呢？把实例放到顶层对象global
+            function A() {
+                this.foo = 'hello';
+            }
+            if(!global._foo) {
+                global._foo = new A();
+            }
+            module.exports = global._foo;
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

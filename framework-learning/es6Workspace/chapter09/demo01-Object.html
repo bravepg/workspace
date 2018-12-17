@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            function Shape() {
+                this.x = 0;
+                this.y = 0;
+            }
+            Shape.prototype.move = function(x, y) {
+                this.x += x;
+                this.y += y;
+                console.info("Shape moved.");
+            };
+
+            function Rectangle() {
+                Shape.call(this);
+            }
+
+            Rectangle.prototype = Object.create(Shape.prototype);
+            var rectPropo = Object.create(Shape)
+            var rect = new Rectangle();
+            console.log(rect.__proto__);
+            console.log(rect instanceof Rectangle);
+            console.log(rect instanceof Shape);
+            console.log(rect.constructor === Rectangle);
+            console.log(rect.constructor === Shape);
+            console.log(rectPropo);
+            console.log(rectPropo.prototype);
+            console.log(Shape.prototype.__proto__);
+            console.log(Shape.prototype);
+            
+
+
+            console.log("===========================");
+            console.log(Rectangle.prototype);  //此处竟然没有constructor是由于重写原型
+            console.log(Rectangle.prototype.constructor);
+            console.log(Rectangle.prototype.move);
+            console.log(Rectangle.prototype.__proto__);
+            console.log(Rectangle.prototype.isPrototypeOf(rect));
+            // rect.move(1, 1);
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

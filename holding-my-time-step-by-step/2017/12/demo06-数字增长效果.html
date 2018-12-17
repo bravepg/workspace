@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>数字增长效果</title>
+	<script type="text/javascript" src="./jquery.min.js"></script>
+</head>
+<body>
+	<div id="app"></div>
+</body>
+<script type="text/javascript">
+	function NumberGrow(element, options) {
+		options = options || {};
+
+		var $this = $(element),
+			time = options.time || $this.data('time'), //总时间
+			num = options.num || $this.data('value'), // 要显示的真实值
+			step = num * 16 / (time * 1000), // 每1ms增加的数值
+			start = 0,
+			interval,
+			old = 0;
+
+		interval = setInterval(function () {
+			start = start + step;
+			console.log(start)
+			if (start >= num) {
+				clearInterval(interval);
+				interval = undefined;
+				start = num;
+			}
+
+			var t = Math.floor(start);
+
+	        //t未发生改变的话就直接返回
+	        //避免调用text函数，提高DOM性能
+	        if (t == old) {
+	            return;
+	        }
+
+	        old = t;
+	        $this.text(old);
+		}, 1);
+	}
+
+	NumberGrow('#app', {
+		time: 1,
+		num: 10000
+	})
+</script>
+</html>

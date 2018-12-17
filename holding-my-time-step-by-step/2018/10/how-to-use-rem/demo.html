@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+        /* 文章来源：https://mp.weixin.qq.com/s/bYDQVhcp4WWp-pylx5FuIw */
+        /* 字体大小一般使用 rem，border 使用 px，其他都是使用 em */
+        /* 伪类 :root 等价于 html 选择器 */
+        :root {
+            font-size: 0.75em;
+        }
+        @media (min-width: 800px) {
+            :root {
+                font-size: 0.875em;
+            }
+        }
+        @media (min-width: 1200px) {
+            :root {
+                font-size: 1em;
+            }
+        }
+        .panel {
+            padding: 1em;
+            border-radius: 0.5em;
+            border: 1px solid #999;
+        }
+        .panel > h2 {
+            margin-top: 0;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div id="panel" class="panel">
+        <h2>Single-origin</h2>
+        <div class="panel-body">
+            We have built partnerships with small farms around the world to
+            hand-select beans at the peak of season. We then carefully roast
+            in <a href="#">small batches</a> to maximize their
+            potential.
+        </div>
+    </div>
+</body>
+</html>

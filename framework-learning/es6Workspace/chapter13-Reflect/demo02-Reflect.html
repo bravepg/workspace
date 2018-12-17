@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            const queuedObservers = new Set();
+            const observer = fn => queuedObservers.add(fn);
+            const observable = obj => new Proxy(obj, {set});
+            function set(target, key, value, reciever) {
+                const result = Reflect.set(target, key, value, reciever);
+                queuedObservers.forEach(observer => observer());
+                return result;
+            }
+
+            //使用Proxy实现观察者模式
+            const person = observable({
+                name: '张三',
+                age: 20
+            })
+            function print() {
+                console.log(`${person.name}, ${person.age}`);
+            }
+
+            observer(print);
+            person.name = '李四';
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

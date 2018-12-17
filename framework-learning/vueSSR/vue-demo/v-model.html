@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+	<div id="components-demo">
+        <custom-input v-model="searchText"></custom-input>
+	</div>
+</body>
+</html>
+<script type="text/javascript">	
+    Vue.component('custom-input', {
+        props: ['value'],
+        template: `
+            <input
+            v-bind:value="value"
+            v-on:input="$emit('input', $event.target.value)"
+            >
+        `
+    });
+	new Vue({ 
+        el: '#components-demo',
+        data: {
+            searchText: '',
+        }
+    });
+</script>

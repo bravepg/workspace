@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+    </head>
+    <body>
+        <button id="button">点击</button>
+        <script type="text/javascript">
+            //WeakMap结构有助于防止内存泄漏，只接受对象作为键名（null除外）
+            //最常用的地方就是用来存储DOM节点
+            let myElement = document.getElementById('button');
+            let myWeakMap = new WeakMap();
+            myWeakMap.set(myElement, {timesClicked: 0});
+            myElement.addEventListener('click', function() {
+               let data = myWeakMap.get(myElement);
+               data.timesClicked++;
+               console.log(data); 
+            }, false);
+        </script>
+    </body>
+</html>

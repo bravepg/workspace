@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            function timeout(ms) {
+              return new Promise((resolve) => {
+                setTimeout(resolve, ms);
+              });
+            }
+
+            async function asyncPrint(value, ms) {
+              await timeout(ms);
+              console.log(value);
+            }
+
+            asyncPrint('hello world', 50);
+
+            // async函数内部return语句返回值会成为then方法回调函数的参数
+            async function f() {
+              return 'hello world';
+            }
+            f().then(v => console.log(v));
+
+            // 多次重复尝试
+            // const superagent = require('superagent');
+            // const NUM_RETRIES = 3;
+
+            // async function test() {
+            //   let i;
+            //   for (i = 0; i < NUM_RETRIES; ++i) {
+            //     try {
+            //       await superagent.get('http://google.com/this-throws-an-error');
+            //       break;
+            //     } catch(err) {}
+            //   }
+            //   console.log(i); // 3
+            // }
+
+            // test();
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

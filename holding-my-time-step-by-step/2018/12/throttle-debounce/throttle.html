@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="height: 2000px; background-color: chocolate;">
+</body>
+</html>
+<script>
+    var _throttle= function () {
+        let canRun = true;
+
+        return function () {
+            if (!canRun) return;
+            canRun = false;
+            timer = setTimeout(() => {
+                console.log('滚动啦');
+                canRun = true;
+            }, 2000);
+        }
+    };
+
+    window.addEventListener('scroll', _throttle());
+</script>

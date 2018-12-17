@@ -1,0 +1,20 @@
+{
+  "name": "crawler",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "gaopeng <gaopeng19960108@gmail.com> (http://github.com/gaopeng0108)",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "crypto": "^1.0.1",
+    "js-xlsx": "^0.8.22",
+    "json2xls": "^0.1.2",
+    "pako": "^1.0.6",
+    "request": "^2.88.0",
+    "superagent": "^4.0.0-beta.5"
+  }
+}

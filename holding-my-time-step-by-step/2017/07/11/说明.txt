@@ -1,0 +1,3 @@
+今天主要做了的事情是研究了flux、redux、mobx的用法与区别
+    --资料来源：
+        1.http://zhenhua-lee.github.io/react/state-manage.html

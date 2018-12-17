@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas tutorial</title>
+    <script type="text/javascript">
+        function draw() {
+            var canvas = document.getElementById('tutorial');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+
+                // 开始路径
+                ctx.beginPath();
+                // 绘制外圆
+                ctx.moveTo(200, 100);
+                ctx.arc(100, 100, 100, 0, 2 * Math.PI, false);
+                // 绘制内圆
+                ctx.moveTo(194, 100);
+                ctx.arc(100, 100, 94, 0, 2 * Math.PI, false);
+
+                // 变换原点
+                ctx.translate(100, 100);
+                // ctx.ratate(1);
+
+                ctx.moveTo(0, 0);
+                ctx.lineTo(0, -85);
+
+                ctx.moveTo(0, 0);
+                ctx.lineTo(-65, 0);
+
+
+                ctx.stroke();
+
+                ctx.font = 'blod 14px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('12', 0, -85);
+                console.log(ctx.measureText(12).width);
+            }
+        }
+    </script>
+    <style type="text/css">
+      canvas { border: 1px solid black; }
+    </style>
+</head>
+<body onload="draw();">
+    <canvas id="tutorial" width="300" height="300"></canvas>
+</body>
+</html>

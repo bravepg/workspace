@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <svg>
+      <defs>
+        <marker id="markerSquare" markerWidth="7" markerHeight="7" refX="4" refY="4" orient="auto">
+          <rect x="1" y="1" width="5" height="5" style="stroke: none; fill: #000000;" />
+        </marker>
+
+        <marker id="markerArrow" markerWidth="13" markerHeight="13" refX="0" refY="5" orient="auto">
+          <path d="M0,0 L0,11 L6,5 L0,0" style="fill: #000000;" />
+        </marker>
+      </defs>
+      <path d="M100,20 l50,0 l0,50 l50,0"
+            style="stroke: #0000cc; stroke-width: 1px; fill: none; marker-start: url(#markerSquare); marker-mid: url(#markerSquare); marker-end: url(#markerArrow)" />
+    </svg>
+</body>
+</html>

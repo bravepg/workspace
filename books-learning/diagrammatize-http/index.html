@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		button {
+			border: 1px solid green;
+			border-radius: 10px;
+			outline: 0;
+			height: 50px;
+			width: 100px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<button id="myBtn">点击上传</button>
+
+	<button id="getPic">获取资源</button>
+</body>
+<script type="text/javascript">
+	var btn = document.getElementById('myBtn');
+
+	var btnGetPic = document.getElementById('getPic');
+	btn.addEventListener('click', function () {
+		var fakeInput = document.createElement('input');
+		fakeInput.type = 'file';
+
+		fakeInput.onchange = function (e) {
+			console.log();
+			var data = new FormData();
+			data.append('image', e.target.files[0]);
+			fetch('/api/fileUpload', {
+				method: 'POST',
+				body: data
+			})
+			.then(() => console.log('图片上传成功'));
+		}
+		fakeInput.click();
+	}, false);
+
+	btnGetPic.addEventListener('click', function () {
+		var headers = new Headers();
+		headers.append("Range", "bytes=0-50000");
+		fetch('/static/avatar.jpg', {
+			headers: headers
+		})
+	}, false);
+</script>
+</html>

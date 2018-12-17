@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+	<form id="form">
+		<input type="text" name="username">
+		<input type="password" name="passeword">
+		<input type="file" name="file">
+		<input type='submit' value='提交'>
+	</form>
+</body>
+<script type="text/javascript">
+	// $('#form').submit(); 
+	// 传统利用submit()方法提交表单页面会跳转
+	// 因此产生了下面的利用ajax提交表单的方法
+	// $('#form').on('submit', function (e) {
+		// 首先阻止默认提交表单
+	   	// e.preventDefault();
+	   	// 利用ajax无刷新提交表单
+	   	// axios.post("http://localhost:3000/post_form", $('#form').serialize())
+	// });
+	var formData = new FormData();
+	formData.append('username', $('input[name="username"]').val());
+
+	axios.post('http://localhost:3000/post_form', {
+		name: 'gao'
+	}, {
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		withCredentials: true
+	})
+	  .then(function (response) {
+	    console.log(response.data);
+	  })
+	  .catch(function (error) {
+	    console.log(error);
+	  });
+
+	axios.post('http://localhost:3000/post_form2', "name=gao&&age=20", {
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded'
+		}, 
+		withCredentials: true 
+	})
+	  .then(function (response) {
+	    console.log(response.data);
+	  })
+	  .catch(function (error) {
+	    console.log(error);
+	  });
+
+	axios.post('http://localhost:3000/post_form3', formData)
+	  .then(function (response) {
+	    console.log(response.data);
+	  })
+	  .catch(function (error) {
+	    console.log(error);
+	  });
+
+	// 客户端也需要设置credentials: "include"，不然服务端设置的cookie，也发送不过来
+	fetch("http://localhost:3000/post_form3", { method: "post", body: formData, credentials: "include" }).then(function(response) {
+		    return response.json();
+		}).then(function(data) {
+		    console.log(data);
+		}).catch(function(e) {
+		    console.log(e);
+		});
+</script>
+</html>

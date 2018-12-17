@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div id="div" style="margin-top: 1000px; height: 50px; background-color: brown;">div</div>
+</body>
+<script>
+    const div = document.querySelector('#div');
+    window.onscroll = function() {
+        if (document.documentElement.clientHeight + document.documentElement.scrollTop > div.offsetTop) {
+            console.log('元素展示出来啦');
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas tutorial</title>
+    <script type="text/javascript">
+        function draw() {
+            var canvas = document.getElementById('tutorial');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+                console.log(ctx)
+                // ctx中的数据结构类似这样
+                // 变量在ctx的实例上
+                // 方法在CanvasRenderingContext2D的原型上
+                ctx.fillRect(25, 25, 100, 100);
+                ctx.clearRect(45, 45, 60, 60);
+                ctx.strokeStyle = "rgba(0, 0, 255, 0.5)";
+                ctx.strokeRect(50, 50, 50, 50);
+            }
+        }
+    </script>
+    <style type="text/css">
+      canvas { border: 1px solid black; }
+    </style>
+</head>
+<body onload="draw();">
+    <canvas id="tutorial" width="150" height="150"></canvas>
+</body>
+</html>

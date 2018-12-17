@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="./jquery.2.2.4.min.js"></script>
+</head>
+<body>
+	<input type="button" id="myBtn" value="Click me">
+</body>
+	<script type="text/javascript">
+		function mouseDoubleClick (e) {
+			const element = e.currentTarget;
+			const eventType = 'CornerstoneToolsMouseDoubleClick';
+			const eventData = {
+			    event: e,
+			    element: element,
+			    type: eventType
+			};
+			console.log(e)
+
+			const event = $.Event(eventType, eventData);
+			console.log(event)
+			$(eventData.element).trigger(event, eventData);
+		}
+
+		function mouseDoubleClickCallback (e, eventData) {
+			console.log('e', e);
+			console.log('eventData', eventData);
+		}
+
+		$("#myBtn").on('CornerstoneToolsMouseDoubleClick', mouseDoubleClickCallback);
+
+		$("#myBtn").on('click', mouseDoubleClick);
+
+		// $("#myBtn").trigger('CornerstoneToolsMouseDoubleClick');
+
+		// var btn = document.getElementById('myBtn');
+		// btn.addEventLisenter('CornerstoneToolsMouseDoubleClick', mouseDoubleClick, false);
+	</script>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<input type="button" id="myBtn" value="Click me">
+</body>
+	<!-- DOM0级事件处理程序 -->
+	<script type="text/javascript">
+		var btn = document.getElementById("myBtn");
+		btn.onclick = function () {
+			alert(this.id);
+		}
+	</script>
+</html>

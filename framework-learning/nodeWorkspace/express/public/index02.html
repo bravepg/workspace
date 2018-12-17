@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h4>文件上传：</h4>
+        <form enctype="multipart/form-data">
+            <input type="file" name="image" size="500" />
+            <br />
+            <button id="button">上传文件</button>
+        </form>
+        <script type="text/javascript">
+        $("#button").click(function(e) {
+            e.preventDefault();
+            //用form 表单直接 构造formData 对象; 就不需要下面的append 方法来为表单进行赋值了。
+            var formData = new FormData();
+            formData.append('image', $('input[type="file"]')[0].files[0]);
+            var url = "/file_upload";
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+
+                /**
+                 * 必须false才会避开jQuery对 formdata 的默认处理
+                 * XMLHttpRequest会对 formdata 进行正确的处理
+                 */
+                processData: false,
+                /**
+                 *必须false才会自动加上正确的Content-Type
+                 */
+                contentType: false,
+                success: function (responseStr) {
+                    alert(responseStr.newPath);
+                    $("img").attr({"src": responseStr.newPath}).prependTo($("body"));
+                },
+                error: function (responseStr) {
+                    alert(responseStr.newPath);
+                }
+            });
+        })
+    </script>
+    </body>
+</html>

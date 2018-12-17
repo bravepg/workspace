@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            //Symbol作为属性名，不会出现在for..in、for..of、Object.keys()、Object.getOwnPropertyNames()、JSON.stringify()中
+            //但是可以通过getOwnPropertySymbols方法获取
+            var obj = {};
+            var a = Symbol('a');
+            var b = Symbol('b');
+            obj[a] = 'Hello';
+            obj[b] = 'World';
+
+            var objectSymbols = Object.getOwnPropertySymbols(obj);
+            console.log(objectSymbols);  //[Symbol(a), Symbol(b)]
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "commander",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client:build": "cross-env isClient=true node app.js"
+  },
+  "keywords": [],
+  "author": "gaopeng <gaopeng19960108@gmail.com> (http://github.com/gaopeng0108)",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.19.0",
+    "cross-spawn": "^6.0.5",
+    "inquirer": "^6.2.0",
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0"
+  }
+}

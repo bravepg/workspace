@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>fullPage.js — 回调函数演示_dowebok</title>
+<link rel="stylesheet" href="css/jquery.fullPage.css">
+<style>
+.section { text-align: center; font: 50px "Microsoft Yahei"; color: #fff;}
+.section1 .logo_react {width: 160px; height: 160px; background-image: url('./images/img01.png'); background-position: 0 0}
+.section1 .logo_webpack {width: 160px; height: 160px; background-image: url('./images/img02.png'); background-position: -133px -10px; margin-top: 10px}
+.section1 .logo_redux {width: 160px; height: 160px; background-image: url('./images/img03.png'); background-position: -175px 0}
+.section1 .logo_react_router {width: 160px; height: 160px; background-image: url('./images/img04.png'); background-position: -175px 0px; margin-top: 10px}
+
+.section2 p { position: relative; left: -120%;}
+.section3 p { position: relative; bottom: -120%;}
+.section4 p { display: none;}
+.section5 p { position: relative; bottom: -120%;}
+.section6 p { position: relative; bottom: -120%;}
+</style>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.fullPage.min.js"></script>
+<script src="http://cdn.staticfile.org/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script>
+$(function(){
+	$('#dowebok').fullpage({
+		sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90', '#1bbc9b', '#4BBFC3', '#7BAABE', '#f90','#1bbc9b', '#4BBFC3', '#7BAABE', '#f90'],
+		'navigation': true,
+		afterLoad: function(anchorLink, index){
+			if(index == 2){
+				$('.section2').find('p').delay(500).animate({
+					left: '0'
+				}, 1500, 'easeOutExpo');
+			}
+			if(index == 3){
+				$('.section3').find('p').delay(500).animate({
+					bottom: '0'
+				}, 1500, 'easeOutExpo');
+			}
+			if(index == 4){
+				$('.section4').find('p').fadeIn(2000);
+			}
+			if(index == 5){
+				$('.section5').find('p').delay(500).animate({
+					bottom: '0'
+				}, 1500, 'easeOutExpo');
+			}
+			if(index == 6){
+				$('.section6').find('p').delay(500).animate({
+					bottom: '0'
+				}, 1500, 'easeOutExpo');
+			}
+		},
+		onLeave: function(index, direction){
+			if(index == '2'){
+				$('.section2').find('p').delay(500).animate({
+					left: '-120%'
+				}, 1500, 'easeOutExpo');
+			}
+			if(index == '3'){
+				$('.section3').find('p').delay(500).animate({
+					bottom: '-120%'
+				}, 1500, 'easeOutExpo');
+			}
+			if(index == '4'){
+				$('.section4').find('p').fadeOut(2000);
+			}
+			if(index == '5'){
+				$('.section5').find('p').delay(500).animate({
+					bottom: '-120%'
+				}, 1500, 'easeOutExpo');
+			}
+			if(index == '6'){
+				$('.section6').find('p').delay(500).animate({
+					bottom: '-120%'
+				}, 1500, 'easeOutExpo');
+			}
+		}
+	});
+});
+</script>
+</head>
+
+<body>
+
+<div id="dowebok">
+	<div class="section section1">
+		<div style="display: flex; justify-content: center; align-items: center;">
+			<div>
+				<div class="logo_react"></div>
+				<div class="logo_webpack"></div>
+			</div>
+			<div>前后端分离</div>
+			<div>
+				<div class="logo_redux"></div>
+				<div class="logo_react_router"></div>
+			</div>
+		</div>
+	</div>
+	<div class="section section2">
+		<h3>我们该储备的其他技术</h3>
+		<p>简单Node语法、JSX语法、ESLint检查语法、ES6语法</p>
+	</div>
+	<div class="section section3">
+		<div class="slide"><h3>React</h3>
+			<p>虚拟DOM
+				<span style="display: inline-block; font-size: 30px; margin-top: 50px">
+					根据 React 的设计，所有的 DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，<br />反映在真实 DOM上，这种算法叫做 DOM diff ，它可以极大提高网页的性能表现。
+				<span>
+			</p>
+		</div>
+		<div class="slide"><h3>React</h3><p>状态state</p>
+			<span style="display: inline-block; font-size: 30px;">
+				组件免不了要与用户互动，React 的一大创新，就是将组件看成是一个状态机，<br />
+				一开始有一个初始状态，然后用户互动，导致状态变化，从而触发重新渲染 UI
+			<span>
+		</div>
+		<div class="slide"><h3>React</h3><p>生命周期</p>
+			<span style="display: inline-block; font-size: 30px;">
+				componentWillMount()<br />
+				componentDidMount() <br />
+				componentWillReceiveProps(object nextProps)<br />
+				componentWillUpdate(object nextProps, object nextState)<br />
+				componentWillUnmount()
+			<span>
+		</div>
+	</div>
+	<div class="section section4">
+		<div class="slide"><h3>React-Router</h3>
+			<p>路由匹配原理<br />
+				<span style="display: inline-block; font-size: 30px; margin-top: 50px">
+					< Route path="/hello/:name">         // 匹配 /hello/michael 和 /hello/ryan<br />
+					:paramName – 匹配一段位于 /、? 或 # 之后的 URL。 
+				<span>
+			</p>
+		</div>
+		<div class="slide"><h3>React-Router</h3><p>History</p>
+			<span style="display: inline-block; font-size: 30px;">
+				React Router 是建立在 history 之上的。 简而言之，一个 history 知道如何去监听浏览器地址栏的变化，<br />
+				并解析这个 URL 转化为 location 对象， 然后 router 使用它匹配到路由，最后正确地渲染对应的组件。
+			<span>
+		</div>
+		<div class="slide"><h3>React-Router</h3><p>组件生命周期</p>
+			<span style="display: inline-block; font-size: 30px;">
+				路由组件的生命周期和 React 组件相比并没有什么不同。
+				假设：<br />
+					< Route path="/" component={App}><br />
+					  < IndexRoute component={Home}/><br />
+					  < Route path="invoices/:invoiceId" component={Invoice}/><br />
+					  < Route path="accounts/:accountId" component={Account}/><br />
+					< /Route>
+			<span>
+		</div>
+	</div>
+	<div class="section section5">
+		<div class="slide"><h3>Redux</h3>
+			<p>Action<br />
+				<span style="display: inline-block; font-size: 30px; margin-top: 50px">
+					action是纯声明式的数据结构，只提供事件的所有要素，不提供逻辑。类似：<br />
+						funtion action() {<br />
+							return {type: Action1}<br />
+						}
+				<span>
+			</p>
+		</div>
+		<div class="slide"><h3>Redux</h3><p>reducer</p>
+			<span style="display: inline-block; font-size: 30px;">
+				 reducer是一个匹配函数，action的发送是全局的：所有的reducer都可以捕捉到并匹配与自己相关与否，<br />
+				 相关就拿走action中的要素进行逻辑处理，修改store中的状态，不相关就不对state做处理原样返回.
+
+			<span>
+		</div>
+		<div class="slide"><h3>Redux</h3><p>store</p>
+			<span style="display: inline-block; font-size: 30px;">
+				 store负责存储状态并可以被react api回调，触发action
+			<span>
+		</div>
+	</div>
+	<div class="section section6">
+		<h3>Webpack</h3>
+		<p>Webpack是一个模块加载器，这里所谓模块其实就是项目中用到javascript、css、less、jsx以及图片等等资源，Webpack采用不同的loader将这些资源加载后打包，然后输出打包后的文件，打包后的文件可以是一个或多个js文件，也可以根据需要分别打包，比如将所有css文件单独输出。
+		</p>
+	</div>
+	<div class="section section7">
+		<h3>代码示例</h3>
+	</div>
+	<div class="section section8">
+		<img src="./images/img05.png">
+	</div>
+	<div class="section section9">
+		<img src="./images/img06.png">
+	</div>
+	<div class="section section10">
+		<img src="./images/img07.png">
+	</div>
+	<div class="section section11">
+		<img src="./images/img08.png">
+	</div>
+	<div class="section section12">
+		<h3>谢谢</h3>
+	</div>
+</div>
+</body>
+</html>

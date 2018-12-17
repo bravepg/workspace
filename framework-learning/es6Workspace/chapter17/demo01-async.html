@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            //回调函数会出现"回调函数地狱"的情况
+            //Promise解决了上面的问题，但是代码会冗余
+            //Generator（更好的写法，但是流程管理不方便）
+
+            //利用Thunk函数管理Generator函数的流程
+
+
+            //async函数就是Generator的语法糖
+            // var gen = function* () {
+            //     var f1 = yield readFile('./1.json');
+            //     var f2 = yield readFile('./2.json');
+            //     console.log(f1.toString());
+            //     console.log(f2.toString());
+            // }
+
+            // var asyncReadFile = async function() {
+            //     var f1 = await readFile('./1.json');
+            //     var f2 = await readFile('./2.json');
+            //     console.log(f1.toString());
+            //     console.log(f2.toString());
+            // }
+            //async 函数的返回值是Promise对象，Generator函数返回值是Iterator对象 
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

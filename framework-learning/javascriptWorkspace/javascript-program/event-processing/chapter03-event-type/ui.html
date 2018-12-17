@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="../util.js"></script>
+</head>
+<body>
+	<input type="button" value="Click me" id="myBtn">
+</body>
+	<script type="text/javascript">
+		EventUtil.addHandler(window, 'load', function (event) {
+			console.log('event', event);
+			console.log('event.currentTarget', event.currentTarget);
+			console.log('event.target', event.target);
+			console.log('this===event.currentTarget', this === event.currentTarget);
+		});
+
+		var btn = document.getElementById('myBtn');
+
+		EventUtil.addHandler(document, 'click', function (event) {
+			console.log('btn event', event);
+			console.log('btn event.currentTarget', event.currentTarget);
+			console.log('btn event.target', event.target);
+			console.log('this===event.currentTarget', this === event.currentTarget);
+		});
+	</script>
+</html>

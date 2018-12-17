@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            //printName方法中的this，默认指向类的实例，一旦单独使用该方法，可能会报错
+            // class Logger {
+            //     printName(name = 'there') {
+            //         this.print(`Hello ${name}`);
+            //     }
+
+            //     print(text) {
+            //         console.log(text);
+            //     }
+            // }
+            // const logger = new Logger();
+            // const {printName} = logger;
+            //printName();  //Uncaught TypeError: Cannot read property 'print' of undefined
+            //由于该this指向运行时环境，所以会报错
+
+
+            //解决办法
+            //1.构造方法中绑定this
+            // class Logger {
+            //     constructor() {
+            //         this.printName = this.printName.bind(this);
+            //     }
+            //     printName(name = 'there') {
+            //         this.print(`Hello ${name}`);
+            //     }
+
+            //     print(text) {
+            //         console.log(text);
+            //     }
+            // }
+            //2.使用箭头函数
+            // class Logger {
+            //     constructor() {
+            //         this.printName = (name = 'there') => {
+            //             this.print(`Hello ${name}`);
+            //         }
+            //     }
+            //     printName(name = 'there') {
+            //         this.print(`Hello ${name}`);
+            //     }
+
+            //     print(text) {
+            //         console.log(text);
+            //     }
+            // }
+            //3.使用Proxy代理，自动绑定this
+            class Logger {
+                printName(name = 'there') {
+                    this.print(`Hello ${name}`);
+                }
+
+                print(text) {
+                    console.log(text);
+                }
+            }
+            function selfish (target) {
+              const cache = new WeakMap();
+              const handler = {
+                get (target, key) {
+                  const value = Reflect.get(target, key);
+                  if (typeof value !== 'function') {
+                    return value;
+                  }
+                  if (!cache.has(value)) {
+                    cache.set(value, value.bind(target));
+                  }
+                  return cache.get(value);
+                }
+              };
+              const proxy = new Proxy(target, handler);
+              return proxy;
+            }
+
+
+            const logger = selfish(new Logger());
+            // const logger = new Logger();
+            const {printName} = logger;
+            printName();
+
+
+            function Greeting(name) {
+                this.name = name;
+            }
+
+            // new 的写法
+            //const instance = new Greeting('张三');
+
+            // Reflect.construct 的写法
+            // const instance = Reflect.construct(Greeting, '张三');
+            // console.log(instance.name);
+            var myObject = {
+                foo: 1,
+            };
+
+            // 旧写法
+            //'foo' in myObject // true
+
+            // 新写法
+            console.log(Reflect.has(myObject, 'foo')); // true
+        </script> 
+    </head>
+    <body>
+    </body>
+</html>

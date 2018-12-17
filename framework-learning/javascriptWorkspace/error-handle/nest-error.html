@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+	try {
+		try {
+			throw 234;
+		} catch (e) {
+			console.log('e', e);
+		}
+		throw 123;
+	} catch (e) {
+		console.log(e);
+	}
+</script>

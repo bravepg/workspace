@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <router-view></router-view>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    const router = new VueRouter({
+        routes: [
+            {
+                path: '/foo',
+                component: Foo,
+                meta: { requiresAuth: true },
+                children: [
+                        {
+                        path: 'bar',
+                        component: Bar,
+                        // a meta field
+                        // $route.matched 数组中，如果使用 $route.meta 获取，那么父组件的 meta 字段无法获取
+                        meta: { requiresAuth: false }
+                    }
+                ]
+            }
+        ]
+    });
+
+</script>

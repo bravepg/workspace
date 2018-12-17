@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            //利用Symbol.for可以使用两个带有相同参数的Symbol值相等
+            console.log(Symbol.for() === Symbol.for()); //true
+            console.log(Symbol() === Symbol());         //false
+            console.log(Symbol() === Symbol.for());     //fasle
+
+
+            //Symbol.keyFor 可以返回一个已登记的Symbol类型值key
+            var s1 = Symbol.for();
+            var s2 = Symbol.for('foo');
+            var s3 = Symbol('foo');
+            console.log(Symbol.keyFor(s1), Symbol.keyFor(s2), Symbol.keyFor(s3));  //"undefined"  foo undefined
+
+            //Symbol.for登记的是全局的名字，可以在不同的iframe或service worker中获取
+            iframe = document.createElement('iframe');
+            iframe.src = String(window.location);
+            //document.body.appendChild(iframe);
+            //console.log(iframe.contentWindow.Symbol.for('foo') === Symbol.for('foo'));
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

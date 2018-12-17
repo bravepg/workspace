@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas tutorial</title>
+    <script type="text/javascript">
+        // 在火狐浏览器下演示
+        function draw() {
+            var canvas = document.getElementById('tutorial');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d'),
+                    image = document.images[0],
+                    imageData, data,
+                    i, len, average,
+                    red, green, blue, alpaha;
+
+                ctx.drawImage(image, 0, 0);
+
+                // 取得图像数据
+                imageData = ctx.getImageData(0, 0, image.width, image.height);
+                data = imageData.data;
+
+                console.log('data', data);
+
+
+                for (i = 0; i < data.length; i++) {
+                    red = data[i];
+                    green = data[i + 1];
+                    blue = data[i + 2];
+                    alpaha = data[i + 3];
+
+                    average = Math.floor((red + green + blue) / 3);
+
+                    // 设置颜色值，透明度不变
+                    data[i] = average;
+                    data[i + 1] = average;
+                    data[i + 2] = average;
+                }
+
+                imageData.data = data;
+                ctx.putImageData(imageData, 0, 0);
+            }
+        }
+    </script>
+    <style type="text/css">
+      canvas { border: 1px solid black; }
+    </style>
+</head>
+<body onload="draw();">
+    <canvas id="tutorial" width="500" height="750"></canvas>
+    <img src="./yuner.jpg">
+</body>
+</html>

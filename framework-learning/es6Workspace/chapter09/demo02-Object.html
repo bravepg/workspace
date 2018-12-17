@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript">
+            function Cat() {}
+            // console.log(Cat.prototype);
+            // console.log(new Cat() instanceof Cat);
+            // console.log(new Cat().constructor === Cat);
+
+            // console.log("=====================================");
+            // //Cat.prototype = {};
+            // console.log(Cat.prototype);
+            // console.log(new Cat() instanceof Cat);
+            // console.log(new Cat().constructor === Cat);
+
+            // console.log("=====================================");
+            function Dog() {}
+            // Dog.prototype = {};
+            // console.log(new Dog() instanceof Dog);
+            // console.log(new Dog() instanceof Object);
+
+            console.log("=====================================");
+            var dog1 = new Dog();
+            console.log('=====', dog1 instanceof Dog);       // true
+            console.log(Dog.prototype)
+            Dog.prototype = Cat.prototype;
+            console.log(Dog.prototype)
+            console.log('=====', dog1 instanceof Dog);       // false
+            console.log('+++++', dog1.constructor === Dog);       // true   
+            console.log(dog1 instanceof Cat);       // false
+            console.log(dog1 instanceof Object);    // true
+
+            // console.log("=====================================");
+            var dog2 = new Dog();
+            console.log(dog2.__proto__);  
+            console.log(dog2 instanceof Dog);       // true
+            console.log(dog2 instanceof Cat);       // true
+            console.log(dog2.constructor === Dog);    // false
+            console.log(dog2.constructor === Cat);    // true
+            console.log(dog2.constructor === Object);    // false
+
+            // console.log("=====================================");
+            // Dog.prototype = null; 
+            // var dog3 = new Dog();
+            // console.log(dog3 instanceof Cat);       // false
+            // console.log(dog3 instanceof Object);    // true
+            // console.log(dog3 instanceof Dog);       // error
+
+
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "my-ava",
+  "version": "1.0.0",
+  "description": "",
+  "main": "simple.js",
+  "scripts": {
+    "test": "./node_modules/.bin/ava -v simple.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ava": "^0.18.2"
+  }
+}

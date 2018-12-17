@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{QfWi:function(n,e,i){"use strict";i.r(e);var o=i("nsO7"),c=i.n(o);document.body.appendChild(function(){var n=document.createElement("div");return n.innerHTML=c.a.join(["Hello","webpack"]," "),n}())}},[["QfWi",2,1]]]);

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            //WeakSet的成员只能是对象，并且对象都是弱引用，因此WeakSet不可遍历
+            console.log(new WeakSet([[1, 2], [3, 4]]));
+            //console.log(new WeakSet([1, 2]));  Invalid value used in weak set
+
+            //WeakSet只有3个方法
+            //  1.add() 2.delete() 3.has()
+            var ws = new WeakSet();
+            var obj = {};
+            var foo = {};
+            ws.add(window);
+            ws.add(obj);
+
+            console.log(ws);
+            console.log(ws.has(window));
+            console.log(ws.has(foo));
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            //Object的键名只能是字符串，而Map结构的键名可以是对象
+            var m = new Map();
+            var o = {p: 'Hello'};
+            m.set(o, 'content');
+            console.log(m.get(o));
+
+            //Map接受一个数组作为参数，数组的成员是一个个表示键值对的数组
+            var map = new Map([['name', '张三'], ['title', 'Author']]);
+            console.log(map);
+
+            //字符串true和布尔值true是两个不同的键
+            //如果对同一个键多次赋值，后面的值将覆盖前面的值
+            map.set(true, 1);
+            map.set(true, 2);
+            console.log(map);  //Map {"name" => "张三", "title" => "Author", true => 2}
+
+
+            //只有对同一个对象的引用，Map结构才将其视为同一个键
+            map.set(['a'], 555);
+            console.log(map);
+            console.log(map.get(['a']));   //undefined  出现这个原因是因为看起来是针对同一个键，其实内存地址不同，不是同一个键
+
+            map.set({a: 1}, 555);
+            console.log(map);
+            console.log(map.get({a: 1})); //undefined 同理
+
+
+            //Map的属性和操作方法 
+            //  属性
+            //      1.size
+            //  方法
+            //      1.set
+            //      2.get
+            //      3.has
+            //      4.delete
+            //      5.clear
+
+            //===============================================================================================
+
+            //遍历方法
+            //  1.keys() 2.values() 3.entries() 4.forEach()
+            for(let item of map.keys()) {
+                console.log(item);
+            }
+            for(let item of map.values()) {
+                console.log(item);
+            }
+            for(let item of map.entries()) {
+                console.log(item);
+            }
+
+            //Map默认的遍历器接口是entries方法 map[Symbol.iterator] === map.entries
+            for(let [key, value] of map) {
+                console.log(key, value);
+            }
+
+            //Map结构转化为数组结构
+            console.log(map.keys());  //MapIterator {"name", "title", true, ["a"], Object {a: 1}} 遍历器方法
+            console.log([...map.keys()]);
+
+            map.forEach(function(value, key ,map) {
+                console.log("Key: %s, Value: %s", key, value);
+            })
+
+
+            //=========================================================
+            //Map转为数组
+            console.log(...map);
+            //数组转化为Map
+            console.log(new Map([[1, 2]]));
+            //Map转化为对象（所有的键都是字符串）
+            //对象转化为Map
+            //Map转为JSON
+            //  要区分两种情况，第一，Map键名全都是字符串，这时，可以先转为对象，再利用JSON.stringify
+            //  第二，Map键名有非字符串，转化为数组JSON（数组也可以利用JSON.stringify转为JSON）
+
+            //JSON转为Map
+            //  要区分两种情况，第一，JSON为对象
+            //  第二，JSON本身是个数组
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

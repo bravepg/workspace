@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #test:before {
+            content: 'Before ';
+            color: #FF0;
+        }
+    </style>
+</head>
+<body>
+    <div id="test">Test content</div>
+</body>
+</html>
+<script>
+    const ele = document.getElementById('test');
+    const styleObj = window.getComputedStyle(ele, ':before');
+    console.log(styleObj.getPropertyValue('content'));
+    console.log(document.styleSheets[0].ownerNode);
+</script>

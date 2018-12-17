@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<button id="btn">上传图片</button>
+</body>
+<script type="text/javascript">
+	document.getElementById('btn').onclick = function () {
+		var fakeInput = document.createElement('input');
+		fakeInput.type= 'file';
+		
+		fakeInput.onchange = function (e) {
+			var file = e.target.files[0];
+			console.log(e.target.result);
+			var newImage = document.createElement('img');
+			var url = URL.createObjectURL(file);
+			newImage.onload = function() {
+                URL.revokeObjectURL(url);
+            }
+            newImage.src = url;
+            document.body.appendChild(newImage);
+		}
+		fakeInput.click();
+	}
+</script>
+</html>

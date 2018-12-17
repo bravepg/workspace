@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="./browser.js"></script>
+        <script type="text/javascript">
+            //Generator函数实际上是一个状态机，调用该方法可以生成遍历器对象
+            function* helloWorldGenerator() {
+                yield 'hello';
+                yield 'world';
+                return 'ending';
+            }
+            var hw = helloWorldGenerator();
+            console.log(hw.next());
+            console.log(hw.next());
+            console.log(hw.next());
+            console.log(hw.next());
+            console.log('-------------');
+            //Generator中yield语句是暂停执行的意思，可以使用next()方法恢复执行
+            //当然可以不用yield语句，就单纯变成了一个暂缓执行的函数
+            function* f() {
+                console.log("执行了！");
+            }
+            var generator = f();
+            setTimeout(function() {
+                generator.next()
+            }, 2000);
+            //yield语句不能使用在一个普通函数中，会报错
+            var arr = [1, [[2, 3], 4], [5, 6]];
+            var flat = function* (a) {
+                var length = a.length;
+                for (var i = 0; i < length; i++) {
+                    var item = a[i];
+                    if(typeof item !== 'number') {
+                        yield* flat(item);
+                    } else {
+                        yield item;
+                    }
+                }
+            };
+            for(var f of flat(arr)) {
+                console.log(f);
+            }
+            console.log('------------------');
+            //yield语句如果在一个表达式之中，必须放在圆括号内
+            // console.log('Hello' + yield);
+
+            //与Iterator接口的关系
+            //任意一个对象的Symbol.iterator方法，等于该对象的遍历器生成函数，调用该函数会返回该对象的一个遍历器对象
+            //由于Generator函数就是遍历器生成函数，因此可以把Generator赋值给对象的Symbol.iterator属性
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

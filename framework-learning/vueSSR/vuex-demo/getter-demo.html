@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex@3.0.1/dist/vuex.js"></script>
+</head>
+<body>
+	<div id="app">
+        <counter></counter>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+    // 如果在模块化构建系统中，请确保在开头调用了 Vue.use(Vuex)
+    const store = new Vuex.Store({
+        state: {
+            todos: [
+                { id: 1, text: '...', done: true },
+                { id: 2, text: '...', done: false }
+            ]
+        },
+        // 可以认为是 store 的计算属性
+        getters: {
+            doneTodos: state => {
+                return state.todos.filter(todo => todo.done)
+            },
+            // 接受第二个参数 getters
+            doneTodosCount: (state, getters) => {
+                return getters.doneTodos.length
+            },
+            getTodoById: (state) => (id) => {
+                return state.todos.find(todo => todo.id === id);
+            }
+        },
+    });
+    // getter 在通过属性访问时是作为 Vue 的响应式系统的一部分缓存其中的
+    console.log(store.getters.doneTodosCount)
+    // getter 在通过方法访问时，每次都会去进行调用，而不会缓存结果
+    console.log(store.getters.getTodoById(2))
+
+    // 创建一个 Counter 组件
+    const Counter = {
+        template: `<div>{{ localCount }}</div>`,
+        data() {
+            return {
+                localCount: 1,
+            }
+        },
+        computed: {
+            ...mapGetters([
+                'doneTodosCount',
+                // ...
+            ])
+        }
+    }
+	new Vue({ 
+        el: '#app',
+        store,
+        components: { Counter },
+    });
+</script>
