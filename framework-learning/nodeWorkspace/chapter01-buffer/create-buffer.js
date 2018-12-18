@@ -20,5 +20,5 @@ arr[1] = 6000;
 console.log(buf1);  // <Buffer 88 a0>
 console.log(buf2);  // <Buffer 88 13 70 17> (7 * 16 + 0) + (1 * 16 + 7) * 256 = 6000
 
-console.log(buf2.buffer)
-console.log(buf2.poolSize)
+console.log(buf2.buffer);
+console.log(buf2.poolSize);
