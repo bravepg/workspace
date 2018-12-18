@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-05-07 19:09:27
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-07-26 20:23:32
-*/
-
-'use strict';
-
 // TypedArray 视图
 const arr = new Uint16Array(2);
 

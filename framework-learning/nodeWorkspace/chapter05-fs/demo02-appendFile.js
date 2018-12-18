@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-08-11 17:25:31
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-08-11 17:29:38
-*/
-
-'use strict';
 var fs = require('fs');
 
 // 异步地追加数据到一个文件，如果文件不存在则创建文件

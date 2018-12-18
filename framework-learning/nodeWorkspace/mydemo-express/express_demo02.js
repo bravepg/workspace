@@ -1,11 +1,3 @@
-/*
-* @Author: viruser
-* @Date:   2016-12-27 14:19:20
-* @Last Modified by:   viruser
-* @Last Modified time: 2016-12-27 14:27:18
-*/
-
-'use strict';
 var express = require('express');
 var app = express();
 

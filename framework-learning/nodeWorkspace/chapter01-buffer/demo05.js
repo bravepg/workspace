@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-07-26 23:01:30
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-07-26 23:16:12
-*/
-
-'use strict';
-
 const buf = Buffer.from([-1, 5]);
 
 console.log(buf.readInt8(0));

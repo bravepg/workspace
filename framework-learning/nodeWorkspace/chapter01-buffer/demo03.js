@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-06-19 16:18:59
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-07-26 20:19:36
-*/
-
-'use strict';
 const typearray = new Uint16Array(2);
 const buff = Buffer.from([1, 2, 3]);
 console.log(Buffer.isBuffer(typearray));

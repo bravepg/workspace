@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-07-27 09:53:42
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-07-27 10:17:25
-*/
-
-'use strict';
 const http = require('http');
 
 const server = http.createServer((req, res) => {

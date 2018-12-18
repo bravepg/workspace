@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-05-07 13:35:43
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-05-07 13:48:51
-*/
-
-'use strict';
-
 // 创建一个长度为10、且用0填充的 Buffer
 const buff1 = Buffer.alloc(10);
 console.log(buff1);  // <Buffer 00 00 00 00 00 00 00 00 00 00>

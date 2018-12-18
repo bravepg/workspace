@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-07-26 20:43:43
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-07-26 23:00:32
-*/
-
-'use strict';
 const arrayBuffer = new ArrayBuffer(16);
 const typearray = new Uint8Array(arrayBuffer);
 const buffer = Buffer.from(arrayBuffer);

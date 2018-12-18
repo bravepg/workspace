@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-07-28 12:01:37
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-07-28 22:23:22
-*/
-
-'use strict';
 const http = require('http');
 const net = require('net');
 const url = require('url');

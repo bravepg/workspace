@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-05-06 21:50:37
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-05-06 22:13:04
-*/
-
-'use strict';
-
 const net = require('net');
 
 process.stdin.resume();

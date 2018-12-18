@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-04-27 16:10:48
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-04-27 16:26:04
-*/
-
-'use strict';
-
 // 某些类型的对象 (触发器) 会周期性地触发 某些事件(命名事件) 来调用函数对象 (监听器)
 // 例如
 // 1. net.Server、http.Server(继承自net.Server)在每次有新连接时触发事件

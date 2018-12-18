@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-07-27 10:56:11
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-07-27 10:57:25
-*/
-
-'use strict';
-
 const { PassThrough, Writable } = require('stream');
 
 const pass = new PassThrough();

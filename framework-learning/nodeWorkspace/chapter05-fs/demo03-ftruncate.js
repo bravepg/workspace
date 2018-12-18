@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-08-11 17:57:21
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-08-11 18:01:00
-*/
-
-'use strict';
 var fs = require('fs');
 
 console.log(fs.readFileSync('message.txt', 'utf8'));  // data to appenddata to append

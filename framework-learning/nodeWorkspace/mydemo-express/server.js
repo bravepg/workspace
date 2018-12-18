@@ -1,11 +1,3 @@
-/*
-* @Author: viruser
-* @Date:   2016-12-27 14:41:37
-* @Last Modified by:   viruser
-* @Last Modified time: 2016-12-27 14:58:01
-*/
-
-'use strict';
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');

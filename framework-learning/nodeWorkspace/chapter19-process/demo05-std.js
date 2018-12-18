@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-08-11 10:25:37
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-08-11 14:55:18
-*/
-
-'use strict';
-
 // process.stdin.setEncoding('utf8');
 
 // // readable 事件和 read 方法 成对出现，如果使用 data 事件无法获取

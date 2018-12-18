@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-05-07 11:19:52
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-07-28 12:13:04
-*/
-
-'use strict';
-
 const http = require('http');
 const querystring = require('querystring');
 

@@ -1,11 +1,3 @@
-/*
-* @Author: viruser
-* @Date:   2016-12-26 15:10:27
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-07-27 14:15:36
-*/
-
-'use strict';
 var fs = require('fs');
 var data = '';
 // 创建可读流

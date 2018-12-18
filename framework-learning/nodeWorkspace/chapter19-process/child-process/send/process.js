@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-08-11 14:05:24
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-08-11 14:10:20
-*/
-
-'use strict';
 // const cp = require('child_process');
 // const n = cp.fork(`${__dirname}/subprocess.js`);
 

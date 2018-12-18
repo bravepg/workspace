@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-08-09 21:18:13
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-08-09 21:48:49
-*/
-
-'use strict';
 // var fs = require('fs');
 
 // process.on('unhandledRejection', (reason, p) => {

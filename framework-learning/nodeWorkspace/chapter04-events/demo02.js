@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-04-27 16:27:10
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-04-27 16:31:50
-*/
-
-'use strict';
-
 // 1. 注册相同事件的监听器会按照注册顺序同步执行
 // 2. 可以使用setImmediate() 或 process.nextTick() 方法切换到异步操作模式
 

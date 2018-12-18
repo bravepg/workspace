@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-08-11 14:23:11
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-08-11 14:36:35
-*/
-
-'use strict';
 const cluster = require('cluster');
 const http = require('http');
 const numCPUs = require('os').cpus().length;

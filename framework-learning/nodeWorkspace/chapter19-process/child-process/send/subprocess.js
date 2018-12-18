@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-08-11 14:06:44
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-08-11 14:10:28
-*/
-
-'use strict';
-
 // process.on('message', (m) => {
 //   	console.log('子进程收到消息：', m);
 // });

@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-07-28 11:44:04
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-07-28 15:38:54
-*/
-
-'use strict';
-
 const http = require('http');
 http.get('http://nodejs.org/dist/index.json', (res) => {
 	console.log(res.headers);

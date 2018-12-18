@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-08-09 22:35:40
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-08-11 10:23:13
-*/
-
-'use strict';
 process.argv.forEach((val, index) => {
   	console.log(`${index}: ${val}`);
 });

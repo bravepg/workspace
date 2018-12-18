@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-07-28 13:10:30
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-07-28 13:21:39
-*/
-
-'use strict';
 const http = require('http');
 
 // 创建一个 HTTP 服务器

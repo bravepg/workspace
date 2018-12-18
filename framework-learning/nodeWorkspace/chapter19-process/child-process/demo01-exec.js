@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-08-11 11:47:00
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-08-11 11:50:01
-*/
-
-'use strict';
 const { exec } = require('child_process');
 
 // exec('echo "The \\$HOME variable is $HOME"');

@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-05-06 21:43:24
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-07-27 13:49:44
-*/
-
-'use strict';
-
 const net = require('net');
 
 // 存储所有客户端socket

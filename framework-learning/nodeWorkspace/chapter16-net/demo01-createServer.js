@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-05-06 15:10:27
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-07-27 14:07:51
-*/
-
-'use strict';
-
 const net = require('net');
 
 // server 本身是一个EmitterEvent

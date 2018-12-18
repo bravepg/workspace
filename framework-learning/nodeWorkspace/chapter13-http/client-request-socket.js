@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-07-28 13:26:37
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-07-28 13:27:46
-*/
-
-'use strict';
 const http = require('http');
 const options = {
   	host: 'nodejs.cn',
