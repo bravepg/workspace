@@ -1,10 +1,3 @@
-/*
- * @Author: gaopeng 
- * @Date: 2018-09-04 09:46:52 
- * @Last Modified by: gaopeng
- * @Last Modified time: 2018-09-04 10:01:18
- */
-
 export default class Element {
 	constructor(tag, props, children, key) {
 		this.tag = tag;

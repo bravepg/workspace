@@ -1,10 +1,3 @@
-/*
-* @Author: gaopeng
-* @Date:   2017-08-16 13:34:49
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-06-13 13:43:00
-*/
-
 // 回调函数中有三个参数
 // 第一个参数表示newArr的每一项，第二个参数表示该项在数组中的索引值
 // 第三个表示数组本身

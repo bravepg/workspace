@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-08-14 16:14:09
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-08-14 16:51:37
-*/
-
-'use strict';
-
 const path = require('path');
 const webpack = require('webpack');
 

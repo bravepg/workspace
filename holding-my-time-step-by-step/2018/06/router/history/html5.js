@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-06-30 10:54:40
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-06-30 11:01:20
-*/
-
-'use strict';
 import { Base, match } from './base';
 
 export class HTML5History extends Base {

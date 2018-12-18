@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-03-26 15:47:56
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-03-26 15:54:29
-*/
-
-'use strict';
-
 const queuedObservers = new Set();
 
 const observe = fn => queuedObservers.add(fn);

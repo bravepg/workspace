@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-08-02 10:34:22
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-08-02 15:22:15
-*/
-
-'use strict';
 var express = require('express');
 var greet = express.Router();
 var app = express();

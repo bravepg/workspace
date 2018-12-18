@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-06-30 10:36:43
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-06-30 13:11:27
-*/
-
-'use strict';
 import { Base, match } from './base';
 
 export class HashHistory extends Base {

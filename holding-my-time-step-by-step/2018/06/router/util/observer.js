@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-06-30 09:55:10
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-06-30 13:39:45
-*/
-
-'use strict';
-
 // 观察数据变化
 import { Dep } from './dep';
 

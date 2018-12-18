@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-04-03 10:44:36
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-04-03 14:07:32
-*/
-
-'use strict';
-
 var mongoose = require('mongoose'),
 	bcrypt = require('bcrypt');
 

@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-08-14 16:14:09
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-08-14 16:59:16
-*/
-
-'use strict';
 /**
 * 通过 webpack-hot-middleware webpack-dev-middleware 插件
 * 我们已经实现了热更新

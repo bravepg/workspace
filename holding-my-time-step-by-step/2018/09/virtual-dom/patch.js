@@ -1,9 +1,3 @@
-/*
- * @Author: gaopeng 
- * @Date: 2018-09-04 10:40:43 
- * @Last Modified by:   gaopeng 
- * @Last Modified time: 2018-09-04 10:40:43 
- */
 let index = 0
 export default function patch(node, patchs) {
   let changes = patchs[index]

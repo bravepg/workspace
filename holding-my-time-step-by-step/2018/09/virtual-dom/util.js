@@ -1,10 +1,3 @@
-/*
- * @Author: gaopeng 
- * @Date: 2018-09-04 10:00:56 
- * @Last Modified by: gaopeng
- * @Last Modified time: 2018-09-04 10:11:16
- */
-
 export let StateEnums = {
     ChangeText: 0,
     ChangeProps: 1,

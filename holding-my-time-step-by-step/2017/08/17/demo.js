@@ -1,9 +1,3 @@
-/*
-* @Author: gaopeng
-* @Date:   2017-08-17 10:10:07
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2017-08-17 10:12:19
-*/
 function changeStuff(a, b, c) {
     a = a * 10;
     b.item = "changed";

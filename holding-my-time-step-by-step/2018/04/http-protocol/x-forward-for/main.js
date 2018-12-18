@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-04-25 10:59:40
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-07-06 15:49:23
-*/
-
-'use strict';
-
 var http = require('http');
 
 http.createServer(function (req, res) {

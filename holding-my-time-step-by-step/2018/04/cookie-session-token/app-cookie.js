@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-03-30 09:54:19
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-03-30 15:09:50
-*/
-
-'use strict';
-
 var express = require('express'),
 	cookieParser = require('cookie-parser'),
 	credentials = require('./credential.js');

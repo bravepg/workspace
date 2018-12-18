@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-06-30 10:02:08
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-06-30 10:05:31
-*/
-
-'use strict';
-
 export const isBroswer = window !== undefined;
 
 export const supportsPushState = isBroswer && (function () {

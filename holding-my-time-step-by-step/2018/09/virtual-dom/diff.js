@@ -1,9 +1,3 @@
-/*
- * @Author: gaopeng 
- * @Date: 2018-09-04 10:12:35 
- * @Last Modified by: gaopeng
- * @Last Modified time: 2018-09-04 10:40:23
- */
 /**
  * 核心思想:
  * 新的节点的 tagName 或者 key 和旧的不同, 这种情况代表需要替换旧的节点, 并且也不再需要遍历子节点

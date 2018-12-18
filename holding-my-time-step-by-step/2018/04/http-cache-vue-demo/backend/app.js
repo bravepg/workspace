@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-04-08 15:06:37
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-04-15 14:10:34
-*/
-
-'use strict';
 let http = require('http');
 
 // from disk cache

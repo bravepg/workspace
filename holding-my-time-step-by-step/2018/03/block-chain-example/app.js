@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-03-16 09:28:48
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-03-16 10:41:49
-*/
-
-'use strict';
-
 var SHA256 = require('crypto-js/sha256');
 
 class Block {

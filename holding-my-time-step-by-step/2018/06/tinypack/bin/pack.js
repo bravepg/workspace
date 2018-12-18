@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-06-12 14:32:11
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-06-12 14:44:47
-*/
-
-'use strict';
 var fs = require('fs')
 var path = require('path')
 var chalk = require('chalk')

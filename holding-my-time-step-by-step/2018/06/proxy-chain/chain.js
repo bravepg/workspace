@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-06-13 15:21:53
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-06-13 17:23:44
-*/
-
-'use strict';
 // 无报错链式调用https://zhuanlan.zhihu.com/p/29296692
 
 const dummy = () => {}

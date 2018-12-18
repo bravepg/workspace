@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-06-10 15:54:21
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-06-10 16:48:01
-*/
-
-'use strict';
 // esprima 把源码转化为抽象语法树
 
 let esprima = require('esprima');

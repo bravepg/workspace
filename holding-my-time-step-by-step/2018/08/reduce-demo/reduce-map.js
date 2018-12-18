@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-08-01 20:11:34
- * @Last Modified by: gaopeng
- * @Last Modified time: 2018-09-06 09:32:44
-*/
-
-'use strict';
-
 // 利用 reduce 代替 map 和 filter
 // [10, 20, 30, 40] 中每项乘以2后，取出大于50的项
 const numbers = [10, 20, 30, 40];

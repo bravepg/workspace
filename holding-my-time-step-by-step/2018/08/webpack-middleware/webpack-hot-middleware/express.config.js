@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-08-14 16:16:17
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-08-14 16:49:49
-*/
-
-'use strict';
-
 /**
 * 在上一个文件中，可以实现文件修改后自动打包
 * 但是浏览器却不能够自动刷新

@@ -2,7 +2,6 @@
   "name": "node-weather",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "gaopeng",
   "license": "MIT",
   "dependencies": {
     "request": "^2.81.0",

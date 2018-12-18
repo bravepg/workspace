@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-04-03 14:08:35
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-04-03 16:25:23
-*/
-
-'use strict';
-
 var express = require('express'),
 	bodyParser = require('body-parser'),
 	UserModel = require('../models/user'),

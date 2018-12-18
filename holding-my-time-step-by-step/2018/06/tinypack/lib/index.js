@@ -1,10 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-06-12 13:54:40
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-06-12 15:28:12
-*/
 // from: https://zhuanlan.zhihu.com/p/37864523
 
 'use strict';

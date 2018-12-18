@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-08-14 16:16:17
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-08-14 16:20:45
-*/
-
-'use strict';
-
 /**
 * webpack 是用来构建打包使用的
 * 但是每次修改文件都需要重新打包

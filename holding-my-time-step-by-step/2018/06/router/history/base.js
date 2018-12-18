@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-06-30 10:05:57
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-06-30 10:30:50
-*/
-
-'use strict';
-
 export class Base {
 	constructor(router) {
 		this.router = router;

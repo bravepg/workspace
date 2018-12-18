@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-03-12 14:35:28
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-03-12 15:17:59
-*/
-
-'use strict';
-
 var fs = require('fs'),
 	path = require('path'),
 	nconf = require('nconf');

@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-04-03 13:42:43
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-04-03 16:52:47
-*/
-
-'use strict';
-
 var url = require('url'),
 	UserModel = require('../models/user'),
 	jwt = require('jwt-simple');

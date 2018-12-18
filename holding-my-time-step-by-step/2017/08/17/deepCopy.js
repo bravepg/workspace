@@ -1,9 +1,3 @@
-/*
-* @Author: gaopeng
-* @Date:   2017-08-17 10:41:02
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2017-08-17 11:04:21
-*/
 // 浅拷贝
 var obj = { a: 1, arr: [2, 3] };
 var shallowObj = shallowCopy(obj);

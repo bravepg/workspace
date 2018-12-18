@@ -1,9 +1,3 @@
-/*
-* @Author: gaopeng
-* @Date:   2017-08-16 09:37:34
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2017-11-29 14:36:52
-*/
 // 第一版
 Function.prototype.applyOne = function (context) {
     context.fn = this;   // 首先获取调用applyOne的函数，用this可以获取

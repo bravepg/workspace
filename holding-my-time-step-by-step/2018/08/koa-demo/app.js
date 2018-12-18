@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-08-02 15:54:23
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-08-02 15:59:54
-*/
-
-'use strict';
 const Koa = require('koa');
 const app = new Koa();
 

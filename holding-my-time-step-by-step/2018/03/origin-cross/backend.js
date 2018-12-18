@@ -1,12 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-03-28 13:17:55
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-03-28 16:52:33
-*/
-
-'use strict';
 var express = require('express'),
 	app = express();
 

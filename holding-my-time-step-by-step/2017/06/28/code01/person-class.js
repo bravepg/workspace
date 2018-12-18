@@ -1,11 +1,3 @@
-/*
-* @Author: gaopeng
-* @Date:   2017-06-28 10:35:55
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2017-06-28 13:23:50
-*/
-
-'use strict';
 class Person {
     constructor(name) {
         this._name = name;

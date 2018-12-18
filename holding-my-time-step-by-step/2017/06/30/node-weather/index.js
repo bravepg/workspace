@@ -1,11 +1,3 @@
-/*
-* @Author: gaopeng
-* @Date:   2017-06-30 16:08:21
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2017-06-30 16:21:08
-*/
-
-'use strict';
 const request = require('request');
 const argv = require('yargs').argv;
 

@@ -1,11 +1,3 @@
-/*
-* @Author: gaopeng
-* @Date:   2017-06-28 13:44:03
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2017-06-28 14:27:42
-*/
-
-'use strict';
 function setName(person, strName) {
     return Object.assign({}, person, {name: strName});
 }

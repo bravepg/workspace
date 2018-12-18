@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-06-30 09:39:13
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-06-30 12:38:51
-*/
-
-'use strict';
-
 // 观察视图
 import { setTarget, cleanTarget } from './dep';
 

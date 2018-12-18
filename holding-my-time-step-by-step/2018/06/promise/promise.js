@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-06-29 09:56:06
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-06-29 15:16:04
-*/
-
-'use strict';
-
 class Promise {
 	// 构造器
 	constructor(excutor) {

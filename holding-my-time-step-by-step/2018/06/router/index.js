@@ -1,13 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-06-30 10:50:01
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-06-30 13:45:49
-*/
-
-'use strict';
-
 import { supportsPushState } from './util/push-state';
 import { HashHistory } from './history/hash';
 import { HTML5History } from './history/html5';
