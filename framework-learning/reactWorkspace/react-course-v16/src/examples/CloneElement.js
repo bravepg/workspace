@@ -19,11 +19,11 @@
 import React from 'react';
 
 function FancyBorder(props) {
-    console.log(props);
+    console.log(props.children);
     return (
         <div className={'FancyBorder FancyBorder-' + props.color}>
-            { props.children }
-            {React.cloneElement(props.children[0], { color: 'red' })}
+            {props.children}
+            {React.cloneElement(props.children[0], {style: {color: 'red'}})}
         </div>
     );
 }
