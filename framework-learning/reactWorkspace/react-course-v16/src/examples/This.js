@@ -1,6 +1,25 @@
 import React from 'react';
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        // 像这种如果多个状态都依赖于该方法，最好像下面一样把他提取出来
+        // this.state = {
+        //     person: this.caculatePerson(),
+        //     age: this.caculatePerson().age,
+        // }
+        const person = this.caculatePerson();
+        this.state = {
+            person,
+            age: person.age,
+        }
+    }
+    caculatePerson() {
+        return {
+            name: 'gao',
+            age: 23,
+        };
+    }
     handleClick(e) {
         console.log(this)
         console.log(App.prototype)
