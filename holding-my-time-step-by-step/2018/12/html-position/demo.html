@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="overflow: hidden;">
+  <!-- 文章内容来源 https://www.cnblogs.com/theWayToAce/p/5264436.html -->
+  <!-- 
+    块级元素默认在其前后添加换行，即使设置 width 为 0
+    <div>1</div>
+    <div>2</div> 
+  -->
+  <!-- 
+    如果某个文档流中的元素设置了marginTop，那么接下来文档流中的元素都会被影响
+    <div>1</div>
+    <div style="position: relative; margin-top: 20px;">2</div> 
+    <div>3</div> 
+  -->
+  <!-- 
+    relative 定位没有脱离文档流，此时 top 只影响这一个元素
+    如果 top 和 bottom 同时存在，只有 top 生效
+    如果 left 和 right 同时存在，只有 left 生效
+    <div>1</div>
+    <div style="position: relative; right: 20px;">2</div> 
+    <div>3</div> 
+
+    绝对(absolute)定位对象在可视区域之外会导致滚动条出现。
+    而放置相对(relative)定位对象在可视区域之外，滚动条不会出现
+    <div>1</div>
+    <div style="position: absolute; right: -20px;">2</div> 
+    <div>3</div> 
+  -->
+  <!-- 
+    float 脱离文档流，但是没有脱离文本流
+    absolute 既会脱离文本流也会脱离文档流
+    <div class="test01" style="width: 100px;height: 100px;border:1px solid red;float: left;"></div>
+    <div class="test01" style="width: 100px;height: 100px;border:1px solid red;position:absolute;"></div>
+    倘若我是跋涉千里的夜行者，母亲必是那重重夜幕里一盏温柔的灯光，远远的为我亮着，轻唤我迟疑的脚步；倘若我只是自怨自艾的蹩脚演员，母亲必是那热烈的掌声，呼唤我自信，鞭策我努力；倘若我是条嬉戏的小游鱼儿，母亲必是那一汪碧绿的湖水，在包容我顽皮任任性的同时，也将我的快乐涟漪般一圈圈的扩散了去。
+  -->
+  <div style="position: absolute; overflow: auto">
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+    <p>1</p>
+  </div>
+</body>
+</html>
+<script>
+  // 因为移动端是基于 touch 事件的, 所以在 body 上设置的 overflow: hidden 会无效
+</script>
