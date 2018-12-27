@@ -5,8 +5,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Page Title</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+      .over-hidden{overflow:hidden; height:30px; font-size:14px; width:100px; border:2px dotted #ddd;}
+      .outer{position:relative}
+      .inner1{position:absolute; top:0; background:yellow;}
+      .inner2{position:absolute; top:70px; background:pink;}
+      </style>
 </head>
-<body style="overflow: hidden;">
+<body>
   <!-- 文章内容来源 https://www.cnblogs.com/theWayToAce/p/5264436.html -->
   <!-- 
     块级元素默认在其前后添加换行，即使设置 width 为 0
@@ -40,7 +46,7 @@
     <div class="test01" style="width: 100px;height: 100px;border:1px solid red;position:absolute;"></div>
     倘若我是跋涉千里的夜行者，母亲必是那重重夜幕里一盏温柔的灯光，远远的为我亮着，轻唤我迟疑的脚步；倘若我只是自怨自艾的蹩脚演员，母亲必是那热烈的掌声，呼唤我自信，鞭策我努力；倘若我是条嬉戏的小游鱼儿，母亲必是那一汪碧绿的湖水，在包容我顽皮任任性的同时，也将我的快乐涟漪般一圈圈的扩散了去。
   -->
-  <div style="position: absolute; overflow: auto">
+  <!-- <div style="position: absolute; overflow: auto">
     <p>1</p>
     <p>1</p>
     <p>1</p>
@@ -71,6 +77,13 @@
     <p>1</p>
     <p>1</p>
     <p>1</p>
+  </div> -->
+
+  <div class='over-hidden'>
+    <div class='outer'>
+      <div class='inner1'>这是第一个盒子。这是第一个盒子</div>
+    </div>
+    <div class='inner2'>这是第二个盒子。这是第二个盒子</div>
   </div>
 </body>
 </html>
