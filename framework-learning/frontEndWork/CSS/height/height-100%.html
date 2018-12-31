@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    html, body {
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <!-- 方法一：生效 -->
+  <!-- <div style="height: 100%;">
+    <img src="./scenery.jpg" alt="" srcset="">
+  </div> -->
+
+  <!-- 方法二：不生效 -->
+  <!-- <div>
+    <img style="height: 100%;" src="./scenery.jpg" alt="" srcset="">
+  </div> -->
+
+  <!-- 方法三：生效 -->
+  <!-- <div>
+    <img style="position: absolute; height: 100%;" src="./scenery.jpg" alt="" srcset="">
+  </div> -->
+
+  <!-- 代码 ok -->
+  <div>
+    <img style="width: 100%;" src="./scenery.jpg" alt="" srcset="">
+  </div>
+
+  <!--
+    由上面三种情况可以知道，height 设置百分比，是相对父级元素来说的
+    如果给元素设置了这种 position: absolute，还需要考虑文档流的情况
+    由于宽度默认会继承，所以处理起来会容易一点
+  -->
+</body>
+</html>

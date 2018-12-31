@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <!-- 代码一无效，因为 vertical-align 属性只对 inline 或者 inline-block 生效 -->
+  <!-- <div>
+    <img style="display: block; vertical-align: middle;" src="./yuner.jpg" alt="" srcset="">允儿
+  </div> -->
+
+  <!-- 代码一无效，因为 vertical-align 属性只对 inline-block 生效 -->
+  <!-- <div>
+    <img style="display: inline-block; vertical-align: middle;" src="./scenery.jpg" alt="" srcset="">
+    <span style="vertical-align: middle;">风景</span>
+  </div> -->
+
+
+  <!-- vertical-align:middle属性的表现与否，仅仅与其父标签有关，至于我们通常看到的与后面的文字垂直居中显示那都是假象 -->
+  <div style="display: inline-block; line-height: 200px;">
+    <img style="vertical-align: middle;" src="./scenery.jpg" alt="" srcset="">
+    <span>风景</span>
+  </div>
+</body>
+</html>

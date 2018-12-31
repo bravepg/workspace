@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <p>这是一行普通的文字，这里有个 <img src="./scenery.jpg" style="float: left;" /> 图片<br />这是第二行</p>
+    <!-- 浮动破坏了图片的inline box，产生了两个结果：
+    一是图片无法与文字同行显示，脱离了其原来所在的line box链；
+    二是没有了高度（无inline box -> 无line box -> 无高度） -->
+</body>
+</html>

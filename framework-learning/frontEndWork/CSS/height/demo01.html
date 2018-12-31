@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  .test1 {
+    font-size:20px; 
+    line-height:0; 
+    border:1px solid #cccccc; 
+    background:#eeeeee;
+  }
+  .test2 {
+    font-size:0; 
+    line-height:20px; 
+    border:1px solid #cccccc; 
+    background:#eeeeee;
+  }
+  </style>
+</head>
+<body>
+  <div class="test1">测试</div>
+  <div class="test2">测试</div>
+  <!-- test1 div有文字大小，但行高为0，结果div的高度就是个0
+  test2 div文字大小为0，但是有行高，为20像素，结果div高度就是20像素。
+  这就说明撑开div高度的是line-height不是文字内容。 -->
+
+  <!-- 一个没有设置height属性的div的高度就是由一个一个line boxes的高度堆积而成的 -->
+</body>
+</html>
