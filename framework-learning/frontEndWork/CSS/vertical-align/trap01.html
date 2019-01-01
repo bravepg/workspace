@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .parent {
+      background-color: #679def;  
+    }
+    img {
+      width:200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <img src = "./scenery.jpg" >
+  </div>
+  <!-- 在一个没有设置宽高的盒子中加入一个图片什么下面有一个边距？？？？ -->
+  <!-- 其实 vertical-align 有个默认属性 baseline 就是使元素的基线与父元素的基线对齐 -->
+  <!-- 并且 vertical-align 属性是有前提的，
+    就是必须在行内元素才会起作用，例如img ,span,
+    或者在css中设置display:inline 或 display:inline-block -->
+  
+  <!-- 1. img默认的基线为自己的底部 -->
+  <!-- 2. vertical-align 属性默认是元素的基线对齐父元素的基线 -->
+
+
+  <!-- 所以出现这个问题的原因就是——下边距其实是父元素基线到底部的距离 -->
+
+  解决问题的办法
+  1. 把父元素的font-size: 0px
+  2. img 设置 vertical-align: bottom
+</body>
+</html>

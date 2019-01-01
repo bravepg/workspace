@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- line box的基线位置就是：字母x的底部 -->
+  <div>xxofdiv<span style="vertical-align: bottom; line-height: 20px;">xxofspan</span><input /></div>
+  <!-- 如果这个div只有一行，那么xxofdiv里的x的底部就是这个line box的基线，而不是xxofspan里面的x -->
+
+  上述代码 我们可能会发现 input 输入框的中心和xxofdiv 的底部是对齐的，但是其实不是，在输入框中输入x之后，会发现是输入框的
+  x底部和 xxofdiv 的底部是对齐的
+</body>
+</html>
