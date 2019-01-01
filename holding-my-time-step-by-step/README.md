@@ -39,5 +39,7 @@
 * jsonp
 * 元素属性
 ### 12
-* lodash 的柯里化
+* 学习eggjs
 * 防抖节流
+* html 格式化上下文
+* html 定位问题
