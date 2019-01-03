@@ -1,11 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2017-11-30 13:31:02
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-03-23 16:12:41
-*/
-
 'use strict';
 var currying = function(fn) {
 	var args = [].slice.call(arguments, 1);

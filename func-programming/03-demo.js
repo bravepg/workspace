@@ -1,11 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2018-05-28 10:48:21
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2018-05-28 12:26:57
-*/
-
 'use strict';
 // var compose = function(f, g) {
 // 	return function(x) {

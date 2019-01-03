@@ -1,11 +1,3 @@
-/*
-* @Author: gaopeng
-* @Email:  gaopeng_hdu@163.com
-* @Date:   2017-11-17 16:31:13
-* @Last Modified by:   gaopeng
-* @Last Modified time: 2017-11-17 17:00:20
-*/
-
 'use strict';
 
 // 实现缓存
