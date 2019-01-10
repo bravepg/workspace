@@ -10,6 +10,7 @@
   "author": "gaopeng <gaopeng19960108@gmail.com> (http://github.com/gaopeng0108)",
   "license": "MIT",
   "dependencies": {
-    "koa": "^2.5.2"
+    "koa": "^2.5.2",
+    "koa-route": "^3.2.0"
   }
 }
