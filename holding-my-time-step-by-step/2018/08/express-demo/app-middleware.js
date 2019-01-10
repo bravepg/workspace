@@ -13,7 +13,7 @@ app.use(function (req, res, next) {
 //   	next();
 // });
 // 在一个挂载点装载一组中间件
-app.use('/user/:id', function(req, res, next) {
+app.get('/user/:id', function(req, res, next) {
   	console.log('Request URL:', req.originalUrl);
   	next();
 }, function (req, res, next) {

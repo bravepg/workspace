@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var router2 = express.Router();
 var path = require('path');
 var app = express();
 
@@ -62,6 +63,10 @@ router.get('/about', function(req, res) {
   	res.send('About birds');
 });
 app.use('/birds', router);
+
+// 证明了一个 router 可以用作另一个 router 的中间件
+router2.use('/router2', router);
+app.use('/birds2', router2);
 
 var server = app.listen(3000, function () {
   	var host = server.address().address;
