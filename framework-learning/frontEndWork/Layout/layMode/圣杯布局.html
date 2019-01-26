@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>float+margin</title>
+    <style>
+        .main {
+            float: left;
+            width: 100%;
+            background-color: blue;
+        }  
+        .sub {
+            float: left;
+            width: 300px;
+            background-color: aqua;
+            margin-left: -100%;
+            position: relative;
+            left: -300px;
+        }   
+        .extra {
+            float: left;
+            width: 230px;
+            background-color: burlywood;
+            margin-left: -230px;
+            position: relative;
+            left: 230px;
+        }
+        #bd {
+            padding: 0 230px 0 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="bd">         
+        <div class="main">main</div>        
+        <div class="sub">sub</div>        
+        <div class="extra">extra</div>  
+    </div> 
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>垂直居中布局</title>
+    <style>
+        /* 子元素为行内元素 */
+        .parent {
+            height: 40px;
+            width: 200px;
+            border: 1px solid red;
+            margin-bottom: 50px;
+        }
+        .parent-span {
+            line-height: 40px;
+        }
+        .child-span {
+            border: 1px solid red;
+        }
+
+        /* 子元素为块状元素 */
+        .parent-div {
+            position: relative;
+        }
+        .child-div {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* 通用布局一 */
+        /* .parent-general {
+            position: relative;
+        }
+        .div-general {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        } */
+        /* 通用布局二 */
+        .parent-general {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- 子元素为行内元素 -->
+    <div class="parent parent-span">
+        <span class="child-span">22</span>
+    </div>
+    <!-- 子元素为块状元素 -->
+    <div class="parent parent-div">
+        <div class="child-div">22</div>
+    </div>
+    <!-- 通用布局 -->
+    <div class="parent parent-general">
+        <div class="div-general">22</div>
+    </div>
+</body>
+</html>

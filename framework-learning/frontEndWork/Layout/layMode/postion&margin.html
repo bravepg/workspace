@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>float+margin</title>
+    <style>
+        .sub, .extra {
+            position: absolute;
+            top: 0; 
+            width: 200px;
+        }
+        .sub { 
+            left: 0;
+            background-color: aqua;
+        }
+        .extra { 
+            right: 0;
+            background-color: burlywood;
+        }
+        .main { 
+            margin: 0 200px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div class="sub">left</div>
+        <div class="main">main</div>
+        <div class="extra">right</div>
+    </div> 
+</body>
+</html>

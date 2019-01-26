@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>flexvs传统布局</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        html, body {
+            height: 100%;
+        }
+        /* 传统方式使 footer 固定到底部 */
+        /* 
+        .wrapper {
+            height: 100%;
+            margin: 0 auto -2em;
+        }
+        .footer {
+            height: 2em;
+        } */
+
+        /* flex使 footer 固定到底部 */
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        .wrapper {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <p>404 not found</p>
+    </div>
+    <div class="footer">
+        <p>Copyright (c) 2008</p>
+    </div>
+</body>
+</html>

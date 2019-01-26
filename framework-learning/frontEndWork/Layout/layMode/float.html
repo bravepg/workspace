@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>单独做一个float的实验</title>
+	<style type="text/css">
+        .fcont {
+			border: 1px solid darkorange;
+            box-sizing: border-box;
+            padding: 8px;
+            clear: both;
+        }
+        /* 这段css用于清除浮动，overflow: hidden; 是利用了格式化上下文的效果，两者有很大不同 */
+        /* .fcont:after {
+            content: "";
+            clear: both;
+            display: block;
+        } */
+            
+        .fleft {
+            float:left;
+            border:1px solid lightcoral;
+            background:#fff;
+            padding:12px;
+            line-height:26px;
+        }
+        .fright {
+            float:right;
+            border:1px solid lightseagreen;
+            background:#fff;
+            padding:12px;
+            line-height:26px;
+        }
+        .fafter {
+            line-height:32px;
+            margin-top:12px;
+            text-align:center;
+            background:darkorange;
+        }
+        .fspan {
+            border:1px solid darkgoldenrod;
+            /* margin-left:6px; */
+        }
+    </style>
+</head>
+<body>
+    <div class="fcont">
+		<span class="fspan">我是行内元素1</span>
+		<div class="fleft">
+			看，我跑左边了<Br/>
+			而且我不受父元素控制<br>
+			哈哈哈
+		</div>
+		<div class="fright">
+			嘿，那我站右边<Br/>
+			我也不受父元素控制。<br/>
+			哈哈哈
+		</div>
+		<span class="fspan">我是行内元素2</span><span class="fspan1" style="border: 1px solid red;">我是行内元素3</span>
+		<div class="fafter">我是浮动元素后面内容</div>
+	</div>
+	<div class="fafter">我是浮动元素后面内容</div>
+</body>
+</html>
+<!-- 个人理解：所谓清除浮动，就是如果左边存在浮动，则下移显示，（相当于对浮动说，你是老大，我不惹你） -->
