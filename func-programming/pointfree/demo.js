@@ -17,3 +17,8 @@ var trace = curry(function(tag, x) {
   console.log(tag, x);
   return x;
 });
+
+// map :: Functor f -> (a -> b) -> f a -> f b
+var map = curry(function(f, any_functor_at_all) {
+  return any_functor_at_all.map(f);
+});
