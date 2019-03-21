@@ -1,0 +1,32 @@
+// 测试最简单的 less
+@nice-blue: #5B83AD;
+@light-blue: @nice-blue + #111;
+
+#header {
+  color: @light-blue;
+}
+
+// 变量作为选择器
+@mySelector: banner;
+.@{mySelector} {
+  font-weight: bold;
+  line-height: 40px;
+  margin: 0 auto;
+}
+
+// 变量值作为 url
+@images: '../img';
+body {
+  background: url("@{images}/white-sand.png");
+}
+
+// 导入语句
+@themes: 'themes';
+@import "@{themes}/import.less";
+
+// 作为属性使用
+@property: color;
+body {
+  @{property}: red;
+  background-@{property}: #999;
+}

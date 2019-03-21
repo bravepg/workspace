@@ -1,0 +1,35 @@
+// 混合属性
+.a, #b {
+  color: red;
+}
+
+.mixin-class {
+  .a();
+}
+
+.mixin-id {
+  #b;  // 注意可以不带括号
+}
+
+// 混合集是可以不输出的
+.my-mixin {
+  color: black;
+}
+.my-other-mixin() {    // 加上括号之后，我们会发现在编译后的代码里 不存在该段代码
+  background: white;
+}
+.class {
+  .my-mixin;
+  .my-other-mixin;
+}
+
+// 混合集可以加参数
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+#header {
+  .border-radius(4px);
+}

@@ -1,0 +1,15 @@
+{
+  "name": "css-module",
+  "version": "1.0.0",
+  "description": "编写 ``css`` 是非常简单的一件事情，但是编写可维护的 ``css`` 是非常困难的，为什么编写可维护的 ``css`` 是非常困难的呢？举个例子 ``` span { font-size: 10px; } ``` 这个样式是全局的，没有隔离的，这行代码有可能会影响页面上其他已有的样式",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "less": "^3.9.0"
+  }
+}

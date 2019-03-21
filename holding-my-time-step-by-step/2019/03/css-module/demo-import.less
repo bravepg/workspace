@@ -1,0 +1,7 @@
+// 在标准的CSS中，@import必须在所有其他类型的规则之前。但是Less.js不在乎你把@import语句放在什么位置。
+@import (reference) './themes/import.less';   // 只会引用，最后输出的文件不包含这些代码
+@import  './themes/import.less';
+
+body {
+  .demo;
+}
