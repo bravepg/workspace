@@ -16,7 +16,8 @@ export default {
   effects: {
     *deleteAfter1Second({ payload }, { call, put }) {
       yield call(delay, 2000);
-      yield put({ type: 'delete', payload });
+      const result = yield put({ type: 'delete', payload });
+      return result
     },
   },
 };
