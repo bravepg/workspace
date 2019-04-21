@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 // import App from './App';
-import App from './examples/Redux';
+import App from './examples/Hooks/index';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();

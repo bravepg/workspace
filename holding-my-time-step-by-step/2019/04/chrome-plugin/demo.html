@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const cssFiles = [
+      '1.css',
+      '2.css',
+    ]
+    const jsFiles = [
+      '1.js',
+      '2.js',
+    ]
+
+    eachTask([
+      (cb) => eachItem(cssFiles, inject('insertCSS'), cb),
+      (cb) => eachItem(jsFiles, inject('insertJS'), cb),
+    ])
+
+    function inject(fn) {
+      return (file, cb) => {
+        console.log(`${file}执行了`);
+        cb();
+      }
+    }
+
+    function eachTask(tasks, done) {
+      (function next(index = 0) {
+        if (index === tasks.length) {
+          done && done();
+        } else {
+          tasks[index](() => next(++index));
+        }
+      })();
+    }
+
+    function eachItem(arr, iter, done) {
+      const tasks = arr.map(item => {
+        return (cb) => iter(item, cb);
+      })
+      eachTask(tasks, done);
+    }
+  </script>
+</body>
+</html>

@@ -36,7 +36,8 @@ export default withMouse(App);
 // HOC 的劣势
 // 1. 一旦存在多个组件，无法确定 props 来自哪里
 // 2. HOC 加深了组件的层级
-// 3. 再执行 withMouse(App) 时就发生了一次构建
+// 3. 再执行 withMouse(App) 时就发生了一次构建，我觉得这样做是没有什么问题的，
+// 这是Dan讨论的内容 https://github.com/krasimir/react-in-patterns/issues/12
 
 // class MouseApp extends React.Component {
 
