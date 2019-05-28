@@ -138,7 +138,6 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-wallpaper-manager')
     implementation project(':rn-fetch-blob')
     implementation project(':react-native-view-shot')
     implementation fileTree(dir: "libs", include: ["*.jar"])

@@ -13,7 +13,6 @@
     "react-native-progress": "^3.6.0",
     "react-native-swiper": "^1.5.14",
     "react-native-view-shot": "^2.5.0",
-    "react-native-wallpaper-manager": "^0.3.16",
     "rn-fetch-blob": "^0.10.15"
   },
   "devDependencies": {

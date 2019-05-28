@@ -13,7 +13,6 @@ import Swiper from 'react-native-swiper';
 import NetworkImage from 'react-native-image-progress';
 import * as Progress from 'react-native-progress';
 import ViewShot from "react-native-view-shot";
-import WallPaperManager from 'react-native-wallpaper-manager';
 import { uniqueRandomNumbers } from './js/RandManager';
 import { distance } from './js/utils';
 	
