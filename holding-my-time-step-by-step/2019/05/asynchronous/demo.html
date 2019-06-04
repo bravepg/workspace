@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+</body>
+</html>
+<script>
+  // var startTime = new Date().getTime();
+  // console.log('startTime', startTime);
+  setTimeout(function(){
+    console.log('start timer a', new Date().getTime())
+    for(var i = 0; i < 5000000000; i++){}
+    console.log('end timer a', new Date().getTime())
+  }, 0)
+
+  // for (var j = 0; j < 5; j++) {
+  //   console.log(j);
+  // }
+
+  setTimeout(function() {
+    console.log('timer b');
+  }, 0)
+
+  // function waitFiveSeconds(){
+  //   var now = (new Date()).getTime();
+  //   while(((new Date()).getTime() - now) < 5000){}
+  //   console.log('finished waiting',  new Date().getTime());
+  // }
+
+  document.addEventListener('click', function(){
+    console.log('click');
+  })
+
+  // console.log('click begin', new Date().getTime());
+  // waitFiveSeconds();
+  // 在 safari 的机制和 chrome 上是不一样的
+  // chrome 
+  // start timer a 1559635123963
+  // end timer a 1559635128785
+  // click
+  // timer b
+
+  // safari 
+  // start timer a 1559635123963
+  // end timer a 1559635128785
+  // timer b
+  // click
+</script>
