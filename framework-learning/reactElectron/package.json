@@ -19,6 +19,6 @@
   },
   "devDependencies": {
     "electron": "^1.8.3",
-    "foreman": "^2.0.0"
+    "foreman": ">=3.0.1"
   }
 }
