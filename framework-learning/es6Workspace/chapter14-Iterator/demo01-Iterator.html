@@ -1,36 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <script type="text/javascript" src="./browser.js"></script>
-        <script type="text/javascript">
-            // Iterator的作用
-            // 1.为不同的数据结构、提供一个统一的访问接口
-            // 2.使得数据结构的成员能够按照某种次序排列
-            // 3.提供for...of遍历机制
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="./browser.js"></script>
+		<script type="text/javascript">
+			// Iterator的作用
+			// 1.为不同的数据结构、提供一个统一的访问接口
+			// 2.使得数据结构的成员能够按照某种次序排列
+			// 3.提供for...of遍历机制
 
-            var it = makeIterator(['a', 'b']);
-            console.log(it.next());
-            console.log(it.next());
-            console.log(it.next());
-            function makeIterator(array) {
-                var nextIndex = 0;
-                // 闭包，因此nextIndex可以一直存在
-                return {
-                    next: function() {
-                        return nextIndex < array.length ?
-                        {value: array[nextIndex++], done: false} :
-                        {value: undefined, done: true};
-                    }
-                };
-            }
+			var it = makeIterator(['a', 'b']);
+			console.log(it.next());
+			console.log(it.next());
+			console.log(it.next());
+			function makeIterator(array) {
+				var nextIndex = 0;
+				// 闭包，因此nextIndex可以一直存在
+				return {
+					next: function() {
+						return nextIndex < array.length ?
+						{ value: array[nextIndex++], done: false } :
+						{ value: undefined, done: true };
+					}
+				};
+			}
 
-            // Iterator是一个对象，具有next方法 比如上面的it
+			// Iterator是一个对象，具有next方法 比如上面的it
 
-            // 部署了Iterator接口的对象具有可遍历的效果
+			// 其实 Iterator 只是把接口的规格加到数据结构之上，本身他们是分离的，那么我们就可以写一个没有对应数据结构的遍历器对象
+			function idMaker() {
+				var index = 0;
+				return {
+					next: function() {
+						return {
+							value: index++,
+							done: false
+						}
+					}
+				}
+			}
 
-        </script>
-    </head>
-    <body>
-    </body>
+			var it = idMaker();
+			console.log(it.next());
+			console.log(it.next());
+
+			// 部署了Iterator接口的对象具有可遍历的效果
+
+		</script>
+	</head>
+	<body>
+	</body>
 </html>
