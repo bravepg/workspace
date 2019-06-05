@@ -12,23 +12,24 @@ var fs = require('fs');
 var thunkify = require('thunkify');
 var readFileThunk = thunkify(fs.readFile);
 
-var g = function* () {
+var gen = function* () {
 	var r1 = yield readFileThunk('./txt1.txt');
 	var r2 = yield readFileThunk('./txt2.txt');
 	console.log(r1.toString());
 	console.log(r2.toString());
 }
 
-function run(fn) {
-	var gen = fn();
+var g = gen();
+
+function run(g) {
 	function next(err, data) {
-		console.log('data', data);
-	    var result = gen.next(data);
-	    console.log('result', result);
-	    if (result.done) return;
-	    result.value(next);
+		if (err) return;
+		var result = g.next(data);
+		if (result.value) {
+			result.value(next)
+		}
 	}
-  	next();
+	next();
 }
 
 run(g);
