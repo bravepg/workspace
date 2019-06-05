@@ -1,101 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <script type="text/javascript" src="./browser.js"></script>
-        <script type="text/javascript">
-            //throw方法
-            var g = function* () {
-                try {
-                    yield;
-                } catch(e) {
-                    console.log('内部捕获', e);
-                }
-            }
-            var i = g();
-            console.log(i.next());
-            try {
-                i.throw('a');
-                i.throw('b');
-            } catch(e) {
-                console.log('外部捕获', e);
-            }
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="./browser.js"></script>
+		<script type="text/javascript">
+			// throw 方法
+			// throw 方法抛出的错误要被内部捕获，前提是必须至少执行过一次 next 方法。
+			var g = function* () {
+				try {
+					yield;
+				} catch (e) {
+					console.log('内部捕获', e);
+				}
+			}
+			var i = g();
+			console.log(i.next());
+			try {
+				i.throw('a');
+				i.throw('b');
+			} catch(e) {
+				console.log('外部捕获', e);
+			}
 
-            //如果Generator函数内部没有部署try...catch代码块，那么throw方法抛出的错误，将被外部try...catch代码块捕获
-            var g2 = function* () {
-                while(true) {
-                    yield;
-                    console.log('内部捕获', e);
-                }
-            }
-            var i2 = g2();
-            i2.next();
-            try {
-                i2.throw('a');
-                i2.throw('b');
-            } catch(e) {
-                console.log('外部捕获', e);
-            }
-            //return 方法
+			// 如果Generator函数内部没有部署try...catch代码块，那么throw方法抛出的错误，将被外部try...catch代码块捕获
+			var g2 = function* () {
+				while(true) {
+					yield;
+					console.log('内部捕获', e);
+				}
+			}
+			var i2 = g2();
+			i2.next();
+			try {
+				i2.throw('a');
+				i2.throw('b');
+			} catch(e) {
+				console.log('外部捕获', e);
+			}
+			// return 方法
 
-            //yield* 语句
-            //如果在Generator函数内部，调用了另一个Generator函数，默认是没有效果的(此时需要利用yield语句)
-            function* foo() {
-                yield 'a';
-                yield 'b';
-            }
+			// yield* 语句
+			// 如果在Generator函数内部，调用了另一个Generator函数，默认是没有效果的(此时需要利用yield语句)
+			function* foo() {
+				yield 'a';
+				yield 'b';
+			}
 
-            function* bar() {
-                yield 'x';
-                foo();
-                yield 'y';
-            }
+			function* bar() {
+				yield 'x';
+				foo();
+				yield 'y';
+			}
 
-            for(let v of bar()) {
-                console.log(v);
-            }
-
-
-            function* bar2() {
-                yield 'x';
-                yield* foo();
-                yield 'y'; 
-            }
-            for(let v of bar2()) {
-                console.log(v);
-            }
-            console.log('------------');
-
-            //yield后面跟着一个数组，由于原生数组支持遍历器，因此会遍历数组成员
-            //yield后面不加星号，返回的是整个数组，加了星号就表示返回的是数组的遍历器对象
-            function* gen() {
-                yield* ['a', 'b', 'c'];
-            }
-            console.log(gen().next());
+			for (let v of bar()) {
+				console.log(v);
+			}
 
 
-            //如果被代理的Generator函数有return语句，那么就可以向代理它的Generator函数返回数据
-            function *foo03() {
-                yield 2;
-                yield 3;
-                return 'foo03';
-            }
-            function *bar03() {
-                yield 1;
-                var v = yield* foo03();
-                console.log('v: ' + v);
-                yield 4;
-            }
-            var it03 = bar03();
-            console.log('-------------');
-            console.log(it03.next());
-            console.log(it03.next());
-            console.log(it03.next());
-            console.log(it03.next());
-            console.log(it03.next());
+			function* bar2() {
+				yield 'x';
+				yield* foo();
+				yield 'y'; 
+			}
+			for (let v of bar2()) {
+				console.log(v);
+			}
+			console.log('------------');
 
-        </script>
-    </head>
-    <body>
-    </body>
+			// yield 后面跟着一个数组，由于原生数组支持遍历器，因此会遍历数组成员
+			// yield 后面不加星号，返回的是整个数组，加了星号就表示返回的是数组的遍历器对象
+			// yield* 表达式表示后面是一个遍历器对象，无论是 Generator 还是 数组或者 Map 的遍历器对象
+			function* gen() {
+				yield* ['a', 'b', 'c'];
+			}
+			console.log(gen().next());
+
+
+			//如果被代理的Generator函数有return语句，那么就可以向代理它的Generator函数返回数据
+			function *foo03() {
+				yield 2;
+				yield 3;
+				return 'foo03';
+			}
+			function *bar03() {
+				yield 1;
+				var v = yield* foo03();
+				console.log('v: ' + v);
+				yield 4;
+			}
+			var it03 = bar03();
+			console.log('-------------');
+			console.log(it03.next());
+			console.log(it03.next());
+			console.log(it03.next());
+			console.log(it03.next());
+			console.log(it03.next());
+
+		</script>
+	</head>
+	<body>
+	</body>
 </html>
