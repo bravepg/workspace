@@ -2,6 +2,7 @@ var fs = require('fs');
 var data = '';
 // 创建可读流
 var readStream = fs.createReadStream('output.txt');
+// readStream.pipe(process.stdout);   // 所有的流刚开始都是暂停状态，调用 pipe 或者监听 data 时间会变成流动状态
 // 设置编码
 readStream.setEncoding("utf-8");
 
