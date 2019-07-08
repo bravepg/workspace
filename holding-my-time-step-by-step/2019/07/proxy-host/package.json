@@ -1,0 +1,19 @@
+{
+  "name": "proxy-host",
+  "version": "1.0.0",
+  "description": "",
+  "main": "reverse-proxy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "connect-timeout": "^1.9.0",
+    "express": "^4.17.1",
+    "http-proxy": "^1.17.0",
+    "http-proxy-middleware": "^0.19.1",
+    "request": "^2.88.0"
+  }
+}
