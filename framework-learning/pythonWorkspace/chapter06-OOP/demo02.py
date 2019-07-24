@@ -8,9 +8,10 @@ class Student(object):
         self.__name = name
         self.__score = score
 
-    def print_score():
+    def print_score(self):
         print ('%s: %s' % (self.__name, self.__score))
 bart = Student('Bart Simpson', 98)
+bart.print_score()
 #print(bart.__score)
 
 

@@ -4,9 +4,9 @@
 # @Last Modified by:   gaopeng
 # @Last Modified time: 2017-01-16 20:55:12
 
-
+import operator
 # Python内置函数
-print(cmp(1, 2))
+print(operator.eq(1, 2))
 
 # 数据类型转换
 print(unicode(100))
