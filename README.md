@@ -8,7 +8,7 @@
 函数式编程
 ## holding-my-time-step-by-step
 知识点学习
-## knowledge-technology
-其他技术
+## knowledge-system
+技术体系
 ## project-demo
 项目开发
