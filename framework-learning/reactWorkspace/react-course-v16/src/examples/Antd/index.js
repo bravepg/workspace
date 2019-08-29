@@ -1,50 +1,64 @@
 import React from 'react';
-// import { Steps, Icon, DatePicker } from 'antd';
-import { DatePicker } from 'antd';
+import { Form, Icon, Input, Button } from 'antd';
 
-// const Step = Steps.Step;
-const { RangePicker } = DatePicker;
+function hasErrors(fieldsError) {
+  return Object.keys(fieldsError).some(field => fieldsError[field]);
+}
 
-// class Demo extends React.Component {
-//   render() {
-//     return (
-//       <Steps size="small" labelPlacement="vertical" current={0}>
-//         <Step title="Finished" icon={<Icon type="edit" />} />
-//         <Step title="Waiting" status="error" />
-//       </Steps>
-//     )
-//   }
-// }
+class HorizontalLoginForm extends React.Component {
+  componentDidMount() {
+    // To disabled submit button at the beginning.
+    this.props.form.validateFields();
+  }
 
-class ControlledRangePicker extends React.Component {
-  state = {
-    mode: ['month', 'month'],
-    value: [],
-  };
-  handlePanelChange = (value, mode) => {
-    this.setState({
-      value,
-      mode: [mode[0] === 'date' ? 'month' : mode[0], mode[1] === 'date' ? 'month' : mode[1]],
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+      }
     });
   };
 
-  handleChange = value => {
-    this.setState({ value });
-  };
-
   render() {
-    const { value, mode } = this.state;
+    const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
+
+    // Only show error after a field is touched.
+    const usernameError = isFieldTouched('username') && getFieldError('username');
+    const passwordError = isFieldTouched('password') && getFieldError('password');
     return (
-      <RangePicker
-        placeholder={['Start month', 'End month']}
-        format="YYYY-MM"
-        value={value}
-        mode={mode}
-        // onChange={this.handleChange}
-        onPanelChange={this.handlePanelChange}
-      />
+      <div>
+        <Form.Item validateStatus={usernameError ? 'error' : ''} help={usernameError || ''}>
+        {getFieldDecorator('username', {
+          rules: [{ required: true, message: 'Please input your username!' }],
+        })(
+          <Input
+            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            placeholder="Username"
+          />,
+        )}
+      </Form.Item>
+        <Form.Item validateStatus={passwordError ? 'error' : ''} help={passwordError || ''}>
+          {getFieldDecorator('password', {
+            rules: [{ required: true, message: 'Please input your Password!' }],
+          })(
+            <Input
+              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              type="password"
+              placeholder="Password"
+            />,
+          )}
+        </Form.Item>
+        <Form.Item>
+        <Button type="primary" htmlType="submit" disabled={hasErrors(getFieldsError())}>
+          Log in
+        </Button>
+      </Form.Item>
+      </div>
     );
   }
 }
 
-export default ControlledRangePicker;
+const WrappedHorizontalLoginForm = Form.create({ name: 'horizontal_login' })(HorizontalLoginForm);
+
+export default WrappedHorizontalLoginForm
