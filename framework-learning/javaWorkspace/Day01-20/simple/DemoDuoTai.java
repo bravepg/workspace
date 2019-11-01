@@ -55,6 +55,7 @@ class DuoTaiDemo {
     //     c.eat();
     // }
     public static void method(Animal a) {
+        // 使用 Animal a，当面对共性内容时，所有的子类对象都可以接收，提高了代码的扩展性
         a.eat();
         // a.lookHome(); 报错，不能使用子类的特有功能
     }

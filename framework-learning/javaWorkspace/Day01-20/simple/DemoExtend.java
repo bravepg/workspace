@@ -10,7 +10,7 @@
 //         System.out.println(super.num);   // super 区分子父类的同名变量
 //     }
 // }
-class Fu {
+final class Fu {
     // static void show() {
     // }
 }

@@ -32,8 +32,8 @@ class DemoInner {
         Outer.Inner inner = new Outer().new Inner();
         inner.show();
 
-        Outer.Inner2 inner2 = new Outer().Inner2();
-        inner2.show();
+        Outer.Inner2 inner2 = new Outer.Inner2();
+        inner2.show2();
 
         Outer.Inner2.show3();
     }
