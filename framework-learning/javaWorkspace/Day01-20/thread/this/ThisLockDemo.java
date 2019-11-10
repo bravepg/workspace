@@ -12,12 +12,12 @@ class SaleTicket implements Runnable {
     Object obj = new Object();
 
     public void run() {
-        if (flag) {
+        if (this.flag) {
             while (true) {
                 synchronized(this) {  // synchronized(obj) { 使用 obj 则会出现数据错误问题
                     if (tickets > 0) {
                         try { Thread.sleep(10); } catch (InterruptedException e) {}
-                        System.out.println(Thread.currentThread().getName() + "---code---" + tickets--);
+                        System.out.println(Thread.currentThread().getName() + flag + "---code---" + tickets--);
                     }
                 }
             }
@@ -31,7 +31,7 @@ class SaleTicket implements Runnable {
     public synchronized void sale() {
         if (tickets > 0) {
             try { Thread.sleep(10); } catch (InterruptedException e) {}
-            System.out.println(Thread.currentThread().getName() + "---func---" + tickets--);
+            System.out.println(Thread.currentThread().getName() + flag +  "---func---" + tickets--);
         }
     }
 }
@@ -42,8 +42,8 @@ class TicketsDemo {
         Thread t1 = new Thread(t);
         Thread t2 = new Thread(t);
         t1.start();
-        Thread.sleep(10);
+        Thread.sleep(10); // 为了让主线程让出执行资格，让 Thread 1 执行，防止 t.flag = false; 执行完后，hread 1 和 2 才开始执行
         t.flag = false;
-        t2.start();
+        t2.start(); 
     }
 }

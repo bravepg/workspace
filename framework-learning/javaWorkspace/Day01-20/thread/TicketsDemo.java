@@ -2,6 +2,7 @@
  * 存在的问题
  * 每个对象拥有一个单独的 tickets，无法共用
  * 第一个解决思路是：使用 static，但是场景不满足
+ * private static int tickets = 100;
  * 
  * 那么如何共享 tickets 呢，使用 Runnable，将资源和线程对象分离
  */
