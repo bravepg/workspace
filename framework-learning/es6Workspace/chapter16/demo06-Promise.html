@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  // 控制 promise 并发数量，之前我们用过的 Promise.all 是无法控制并发数量的
+  // 但是在有的场景下是需要这样的能力的
+
+  // 第一种方法 利用类似多线程共享变量的思想
+  const sleep = (n) => new Promise((resolve) => setTimeout(resolve, 1000));
+
+  const arr = new Array(20);
+  const results = [];
+
+  async function doWork (iterator) {
+    for (let [key, value] of iterator) {
+      await sleep(value).then((res) => results[key] = res)
+    }
+  }
+  const workers = new Array(3).fill(arr.entries()).map(doWork);
+  Promise.all(workers).then(res => console.log(res));
+
+  // 第二种方法 控制 promise 的实例化
+  function asyncPool(poolLimit, array, iteratorFn) {
+    let i = 0;
+    const ret = [];
+    const executing = [];
+    const enqueue = function (value) {
+      // 边界处理
+      if (i === array.length) {
+          return Promise.resolve();
+      }
+      // 每调一次 enqueue，初始化一个 promise
+      const item = array[i++];
+      // Promise.resolve().then(() => iteratorFn(item, array)).then((value) => console.log('value', value));
+      const p = Promise.resolve().then(() => iteratorFn(item, array));
+      // p.then((value) => console.log('value', value))
+      // 放入 promises 数组
+      ret.push(p);
+      // promise 执行完毕，从 executing 数组中删除
+      // 为什么需要将执行完毕的 promise 删除
+      // 原因就是：如果不删除的话，Promise.race 会返回已经执行完的 Promise，无法达到限制并行的目的
+      const e = p.then((value) => { 
+        executing.splice(executing.indexOf(e), 1);
+        return value;
+      });
+      // 如果不删除 rvalue 都会返回 3000
+      // const e = p.then((value) => value);
+      // 插入 executing 数字，表示正在执行的 promise
+      executing.push(e);
+      // 使用 Promise.rece，每当 executing 数组中promise数量低于 poolLimit，就实例化新的 promise 并执行
+      let r = Promise.resolve();
+      if (executing.length >= poolLimit) {
+        r = Promise.race(executing);
+      }
+      // 递归，直到遍历完 array
+      return r.then((rvalue) => {
+        console.log('rvalue', rvalue)
+        enqueue();
+      });
+    };
+    return enqueue().then(() => Promise.all(ret));
+  }
+  const timeout = i => new Promise(resolve => setTimeout(() => resolve(i), i));
+  asyncPool(2, [5000, 3000, 2000, 1000], timeout).then(results => {
+      console.log('results', results);
+  });
+  // Promise.resolve().then(() => timeout(1000)).then((res) => console.log('res', res));
+</script>
