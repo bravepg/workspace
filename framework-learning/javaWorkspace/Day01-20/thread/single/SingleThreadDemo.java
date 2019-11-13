@@ -1,3 +1,6 @@
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * 饿汉式，相对于多线程并发，安全
  */
@@ -15,6 +18,7 @@ class Single {
  */
 class Single2 {
     private static Single s = null;
+    private static Lock lock = new ReentrantLock();
     private Single() {}
 
     // public static synchronized Single getInstance() {   // synchronized 解决多线程不安全的问题，但是效率低了
@@ -25,10 +29,24 @@ class Single2 {
     // }
 
     // 解决效率低下的问题 双重判断
+    // 使用同步锁
+    // public static Single getInstance() {
+    //     if (s == null) {
+    //         synchronized(Single.class) {
+    //             if (s == null) s = new Single2();
+    //         }
+    //     }
+    //     return s;
+    // }
+
+    // 使用自定义锁
     public static Single getInstance() {
         if (s == null) {
-            synchronized(Single.class) {
-                if (s == null) s = new Single2();
+            lock.lock();
+            try {
+                if (s == null) s = new Single2(); 
+            } finally {
+                lock.unlock();
             }
         }
         return s;

@@ -13,7 +13,7 @@ class ThreadDemo {
         Thread t1 = new Thread(d);
         Thread t2 = new Thread(d);
         t1.start();
-        // t1.join(); // t1 执行，main 暂停
+        // t1.join(); // t1 执行，main 暂停，主线程等待 t1 终止
         t2.start();
         // t1.join(); // t1 t2 交替执行，main 暂停
         t1.setPriority(Thread.MAX_PRIORITY);

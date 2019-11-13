@@ -1,6 +1,6 @@
 /**
  * 死锁
- * 场景一：锁嵌套
+ * 场景一：同步嵌套
  */
 class SaleTicket implements Runnable {
     private int tickets = 100;
