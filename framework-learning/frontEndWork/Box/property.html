@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" style="padding: 1px; border: 1px solid red; margin: 5px;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body style="padding: 5px; border: 5px solid blue; margin: 10px; position: relative; height: 400px; overflow: auto;"> <!-- 父元素设置 padding 或者 border 来保证父元素的 marginTop 不会被子子元素的 marginTop 影响 -->
+  <div id="div" style="height: 500px; padding: 10px; border: 10px solid; margin: 20px; overflow: auto; position: relative;">
+    <div id="div2" style="margin: 40px; border: 5px solid yellow;">测试1</div>
+    <div style="margin-top: 1000px;">测试2</div>
+  </div>
+</body>
+</html>
+<script>
+  // document.body 代表的是 body 节点
+  // document.documentElement 代表的是 html 节点
+
+  const div = document.getElementById('div');
+
+  // 元素的 client 系列（和内容是否溢出盒子无关）
+  // clientWidth = contentWidth + padding，特殊的元素 html 的 clientWidth = contentWidth + padding + border + margin = 可视区域的宽度（等于window.innerWidth）
+  // clientHeight = contentHeight + padding，特殊的元素 html 的 clientHeight = 可视区域的高度（等于window.innerHeight）
+
+
+  console.log(document.body.clientWidth);
+  console.log(document.body.clientHeight);
+  console.log(document.body.clientLeft); // 元素的左边框宽度
+  console.log(document.body.clientTop); // 元素上边框宽度
+
+  console.log(document.documentElement.clientWidth, window.innerWidth, document.documentElement.clientWidth === window.innerWidth);
+  console.log(document.documentElement.clientHeight, window.innerHeight, document.documentElement.clientHeight === window.innerHeight);
+  console.log(document.documentElement.clientLeft);
+  console.log(document.documentElement.clientTop);
+  
+  console.log(div.clientWidth);
+  console.log(div.clientHeight);
+  console.log(div.clientLeft);
+  console.log(div.clientTop);
+
+  console.log('================');
+
+  // 元素的 offset 系列（和内容是否溢出盒子无关）
+  // offsetWidth = clientWidth + border，特殊的元素 html 的 offsetWidth = clientWidth - margin
+  // offsetHeight = clientHeight + border，特殊元素 html 的 offesetHeight = contentHeight + padding + border
+  // 特殊的情况，如果 DOM 树中没有一个元素被定位，那么这时候 offsetParent 虽然打印了 body，但是定位是相当于与 html 元素的
+  // 所以一般让 html 和 body 重合就 ok
+
+  // 一般就是当前元素的 margin-left + 父元素的 padding-left
+  // 但是当 body 为父元素时，各个浏览器的表现大不一致，因此最好不要使用 body 为父元素
+  console.log(document.body.offsetWidth);
+  console.log(document.body.offsetHeight);
+  console.log(document.body.offsetLeft); // 返回对象元素边界的左上角顶点相对于 offsetParent（没有则指向body） 的左上角顶点的水平偏移量
+  console.log(document.body.offsetTop); // 返回对象元素边界的左上角顶点相对于 offsetParent（没有则指向body） 的左上角顶点的水平偏移量
+  console.log(document.body.offsetParent); // 指向子元素的定位父元素，如果没有就指向 body，body 指向 null
+
+  console.log(document.documentElement.offsetWidth);
+  console.log(document.documentElement.offsetHeight);
+  console.log(document.documentElement.offsetLeft);
+  console.log(document.documentElement.offsetTop);
+  console.log(document.documentElement.offsetParent);
+
+  console.log(div.offsetWidth);
+  console.log(div.offsetHeight);
+  console.log(div.offsetLeft);
+  console.log(div.offsetTop);
+  console.log(div.offsetParent);
+
+  const div2 = document.getElementById('div2');
+  console.log(div2.offsetLeft);
+
+  console.log('================');
+  
+  // 元素的 scroll 系列
+  // scrollWidth 当内容未溢出容器时等于 clientWidth，当溢出时是真实宽度 + 左右 padding
+  // scrollHeight 当内容未溢出容器时等于 clientHeight，当溢出时是真实高度 + 上下 padding
+  // scrollLeft 滚动条卷去的宽度
+  // scrollTop 滚动条卷去的高度
+  // 如果设置了 overflow:hidden; 各浏览器结果不同，并且在 html 和 body 上面设置是无效的，解决方法就是用 div 覆盖在 body 上面
+  // 并且在网页中存在兼容性，带 <!DOCTYPE> 的页面 document.body.scrollTop 是 0，因此可以使用下面方式获取浏览器的滚动高度
+  // const top = document.documentElement.scrollTop || document.body.scrollTopl;
+  console.log(document.body.scrollWidth);
+  console.log(document.body.scrollHeight);
+  console.log(document.body.scrollLeft);
+  console.log(document.body.scrollTop);
+  
+  console.log(document.documentElement.scrollWidth);
+  console.log(document.documentElement.scrollHeight);
+  console.log(document.documentElement.scrollLeft);
+  console.log(document.documentElement.scrollTop)
+
+  console.log(div.scrollWidth);
+  console.log(div.scrollHeight);
+  console.log(div.scrollLeft);
+  console.log(div.scrollTop);
+</script>
