@@ -166,7 +166,10 @@ class Cat extends React.Component {
     render() {
         const mouse = this.props.mouse;
         return (
-          <img src="../../logo.svg" style={{ position: 'absolute', left: mouse.x, top: mouse.y }} />
+            <div style={{ position: 'absolute', left: mouse.x, top: mouse.y }}>
+                <img src="logo.svg" alt="" />
+                cat
+            </div>
         );
     }
 }
