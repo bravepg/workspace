@@ -24,4 +24,31 @@ function Example() {
   );
 }
 
+// function Container(props) {
+//   return (
+//     <div>You clicked {props.number} time</div>
+//   )
+// }
+
+// class Example extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       number: 0,
+//     };
+//   }
+//   render() {
+//     return (
+//       <div>
+//         <Container number={this.state.number} />
+//         <button onClick={() => { this.setState({
+//           number: this.state.number  + 1,
+//         }) }}>
+//          Click me
+//        </button>
+//       </div>
+//     )
+//   }
+// }
+
 export default Example;
