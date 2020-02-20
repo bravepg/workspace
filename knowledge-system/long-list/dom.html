@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+  <button id="btn">createElements</button>
+  <div id="app">
+    {{ message }}
+  </div>
+</body>
+</html>
+<script>
+  document.getElementById('btn').addEventListener('click', () => {
+    const start = new Date();
+    const count = 10000;
+    
+    for (let i = 0; i < count; i++) {
+      var element = document.createElement('div');
+      element.appendChild(document.createTextNode('' + i));
+      document.body.appendChild(element);
+    }
+
+    console.log(new Date() - start);
+    setTimeout(function() {
+      console.log(new Date() - start);
+    }, 0);
+  });
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue!',
+    },
+  });
+</script>
