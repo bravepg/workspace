@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 
-function Child({ foo }) {
+function Child(props) {
   console.log('rerender');
 
   useEffect(() => {
@@ -8,13 +8,24 @@ function Child({ foo }) {
   }, []);
 
   return (
-    <div>child</div>
+    <button onClick={() => { props.onClick() }}>child</button>
   )
 }
 
 function Parent() {
+  const [count, setCount] = useState(0);
+  const [state, setState] = useState(0);
+
+  const onClick = useCallback(() => { setState(state + 1) }, [state])
+
+  // useMemo 类似 componentDidUpdate
+  const child = useMemo(() => <Child onClick={onClick} />, [onClick]);
+
   return (
-    <Child />
+    <React.Fragment>
+      <button onClick={() => { setCount(count + 1); }}>parent count { count }</button>
+      {child}
+    </React.Fragment>
   )
 }
 
