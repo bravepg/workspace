@@ -1,0 +1,16 @@
+{
+  "name": "andy-lerna-popular",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "gaopeng0108.andy@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "andy-lerna-core": "^0.1.0",
+    "dayjs": "^1.8.28"
+  }
+}
