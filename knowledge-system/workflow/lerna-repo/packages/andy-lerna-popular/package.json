@@ -1,6 +1,6 @@
 {
   "name": "andy-lerna-popular",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "author": "gaopeng0108.andy@gmail.com",
   "license": "MIT",
   "dependencies": {
-    "andy-lerna-core": "^1.0.4",
+    "andy-lerna-core": "^1.0.6",
     "dayjs": "^1.8.28"
   }
 }
