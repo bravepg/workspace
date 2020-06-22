@@ -1,4 +1,4 @@
-const format = 'YYYY-MM-DD HH:mm:ss';
+const format = 'YYYY-MM-DD';
 
 module.exports = {
   format,

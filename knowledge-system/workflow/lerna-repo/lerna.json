@@ -2,5 +2,10 @@
   "packages": [
     "packages/*"
   ],
+  "command": {
+    "publish": {
+      "message": "v1.0.7"
+    }
+  },
   "version": "independent"
 }
