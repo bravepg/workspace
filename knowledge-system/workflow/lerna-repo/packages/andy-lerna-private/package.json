@@ -3,7 +3,7 @@
   "name": "andy-lerna-private",
   "version": "0.0.0",
   "dependencies": {
-    "andy-lerna-core": "^1.0.8",
+    "andy-lerna-core": "^1.0.9",
     "dayjs": "^1.8.28"
   }
 }
