@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <script src="https://cdn.bootcss.com/rxjs/7.0.0-alpha.0/rxjs.umd.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.0.0/Rx.min.js"></script>
+</head>
+<body>
+  <button id="btn">click me</button>
+</body>
+</html>
+<script>
+  // demo1 注册事件监听器
+  const element = document.getElementById('btn');
+  // 常规写法
+  // element.addEventListener('click', () => {
+  //   console.log('click me');
+  // });
+
+  // Rx写法
+  // Rx.Observable.fromEvent(element, 'click')
+  //   .subscribe(() => { console.log('observable click me'); });
+
+  
+  // demo2 purity
+  // 常规非纯写法，事件订阅的函数之外共享变量
+  // let count = 0;
+  // element.addEventListener('click', () => {
+  //   console.log(`click ${++count} me`);
+  // });
+
+  // Rx 写法将订阅本身与外部隔离
+  // Rx.Observable.fromEvent(element, 'click')
+  //   .scan(count => count + 1, 0) // 与高阶函数 reduce 类似
+  //   .subscribe((count) => { console.log(`observable click ${count} me`); });
+
+  
+  // demo3 flow
+  // 常规写法，设置一个控制时间
+  let count = 0;
+  let rate = 1000;
+  let lastClick = Date.now() - rate;
+  element.addEventListener('click', () => {
+    if (Date.now() - lastClick > rate) {
+      console.log(`click ${++count} me`);
+      lastClick = Date.now();
+    }
+  });
+
+  // Rx 写法
+  Rx.Observable.fromEvent(element, 'click')
+  .throttleTime(1000)
+  .scan(count => count + 1, 0)
+  .subscribe(count => console.log(`observable click ${count} me`));
+
+  const finalObserver = Rx.Observable.create(function subscribe(proxyObserver) {
+    proxyObserver.next(1);
+    proxyObserver.next(2);
+    proxyObserver.next(3);
+    proxyObserver.next(4);
+  })
+  console.log(finalObserver);
+</script>

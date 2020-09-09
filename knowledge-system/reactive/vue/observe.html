@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1 s-text="name"></h1>
+</body>
+</html>
+<script src="./observe.js"></script>
+<script>
+  const HTMLApp = new MakeObservale();
+  HTMLApp.observeData(App.data);
+
+  function syncNode(node, observe, property) {
+    node.innerHTML = observe[property];
+    HTMLApp.observe(property, () => {
+      node.innerHTML = observe[property];
+    });
+  }
+
+  document.querySelectorAll('[s-text]').forEach((node) => {
+    syncNode(node, App.data, node.attributes['s-text'].value);
+  })
+</script>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <script src="https://cdn.bootcss.com/rxjs/7.0.0-alpha.0/rxjs.umd.min.js"></script> -->
+  <script src="https://cdn.bootcss.com/rxjs/5.5.0/Rx.min.js"></script>
+</head>
+<body>
+  <button id="btn">click me</button>
+  <div id="count"></div>
+  <div id="app" style="margin-top: 100px;">
+    number: <text id="text"></text>
+    <div>
+      <button id="increase">增加</button>
+      <button id="decrease">减少</button>
+    </div>
+    输入值: <input id="input" type="number">
+  </div>
+</body>
+</html>
+<script>
+  // 无状态的纯函数
+  // 纯函数是指不依赖并且不改变作用域之外变量状态的函数
+  // 在响应式编程中，状态都是暂时的，不会永久存在
+
+  const button = document.querySelector("#btn");
+  Rx.Observable.fromEvent(button, 'click')
+    // 对流进行 scan (reduce) 操作，以获取 count 的值
+    .scan(count => count + 1, 0)
+    // 每次改变时都在元素上设置 count
+    .subscribe(count => document.querySelector('#count').innerHTML = count);
+  
+  // 在函数式编程中，往往纯函数也会存在某些情况需要和外界交互，比如修改 dom 之类的操作
+  // 在响应式编程中，副作用的操作通常是在观察者中完成
+
+
+  const increaseBtn = document.querySelector("#increase");
+  const increase = Rx.Observable.fromEvent(increaseBtn, 'click')
+    // 将 click 映射成函数
+    .map(() => (state) => Object.assign({}, state, { count: state.count + 1 }));
+    // .scan((state, changeFn) => changeFn(state), { count: 0 });
+
+  const decreaseBtn = document.querySelector("#decrease");
+  const decrease = Rx.Observable.fromEvent(decreaseBtn, 'click')
+    // 将 click 映射成函数
+    .map(() => (state) => Object.assign({}, state, { count: state.count - 1 }));
+    // .scan((state, changeFn) => changeFn(state), { count: 0 });
+  
+  const inputElement = document.querySelector("#input");
+  const input = Rx.Observable.fromEvent(inputElement, 'input')
+    // 将 click 映射成函数
+    .map((event) => (state) => Object.assign({}, state, { count: event.target.value }));
+  
+  const state = Rx.Observable.merge(
+    increase,
+    decrease,
+    input,
+  ).scan((state, changeFn) => changeFn(state), {
+    count: 0,
+    inputValue: ''
+  });
+  
+  state.subscribe(state => document.querySelector('#text').innerHTML = state.count);
+</script>

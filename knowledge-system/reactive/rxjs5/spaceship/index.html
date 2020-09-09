@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.0.0/Rx.min.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+</body>
+</html>
+<script>
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  document.body.appendChild(canvas);
+
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+</script>
+<script src="./start.js"></script>
+<script src="./hero.js"></script>
+<script src="./enemy.js"></script>
+<script src="./score.js"></script>
+<script src="./hero_shots.js"></script>
+<script src="./index.js"></script>

@@ -1,0 +1,23 @@
+<script src="https://unpkg.com/vue@2.5.15/dist/vue.js"></script>
+<div id="app">
+  <!-- 如果试图渲染一个不存在的属性，则会报错 -->
+  {{message}}--{{fullName}}
+</div>
+<script>
+  const vm = new Vue({
+    data: {
+      message: 'gao',
+      firstName: 'gao',
+      lastName: 'peng',
+    },
+    computed: {
+      fullName() {
+        return this.firstName + this.lastName;
+      }
+    }
+  }).$mount('#app');
+  setTimeout(() => {
+    vm.message = 'gao1';
+    vm.firstName = 'gao1';
+  }, 2000);
+</script>
