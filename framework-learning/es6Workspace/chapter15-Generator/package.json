@@ -11,7 +11,7 @@
   "dependencies": {
     "co": "^4.6.0",
     "fs-readfile-promise": "^3.0.0",
-    "node-fetch": "^1.7.3",
+    "node-fetch": ">=2.6.1",
     "thunkify": "^2.1.2"
   }
 }
