@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './examples/Hooks/performance/identity';
+import App from './examples/Hooks/ParentChild';
 import * as serviceWorker from './serviceWorker';
 
+// <React.StrictMode>
+//    <App />
+// </React.StrictMode>
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <App />,
   document.getElementById('root')
 );
 
