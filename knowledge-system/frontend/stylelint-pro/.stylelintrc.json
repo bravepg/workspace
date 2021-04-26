@@ -1,0 +1,18 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": [
+    
+  ],
+  "rules": {
+    "color-named": ["never", {
+      "message": "color literal only can be defined"
+    }],
+    "color-no-hex": [true, {
+      "message": "color literal only can be defined"
+    }],
+    "function-disallowed-list": [["rgb", "rgba"], {
+      "message": "color literal only can be defined"
+    }],
+    "plugin/stylelint-variable-no-color-literal": []
+  }
+}
