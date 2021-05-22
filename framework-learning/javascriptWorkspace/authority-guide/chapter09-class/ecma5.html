@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  function freezeProps(o) {
+    const props = arguments.length === 1 ? Object.hasOwnProperty(o) : Array.prototype.slice.call(arguments, 1);
+
+    props.forEach(function(prop) {
+      if (!Object.getOwnPropertyDescriptor(o, prop).configurable) {
+        return;
+      }
+      Object.defineProperty(o, prop, { writable: false, configurable: false });
+    });
+
+    return o;
+  }
+
+  function hideProps(o) {
+    const props = arguments.length === 1 ? Object.getOwnPropertyNames(o) : Array.prototype.slice.call(arguments, 1);
+
+    props.forEach(function(prop) {
+      if (!Object.getOwnPropertyDescriptor(o, prop).configurable) {
+        return;
+      }
+      Object.defineProperty(o, prop, { enumerable: false });
+    });
+
+    return o;
+  }
+
+  function Range(from, to) {
+    function getFrom() {
+      return from;
+    }
+    function setFrom(_from) {
+      return from = _from;
+    }
+    function getTo() {
+      return to;
+    }
+    function setTo(_to) {
+      return to = _to;
+    }
+    console.log('this', this);
+    Object.defineProperties(this, {
+      from: { get: getFrom, set: setFrom, enumerable: true, configurable: false },
+      to: { get: getTo, set: setTo, enumerable: true, configurable: false }
+    });
+  }
+  Range.prototype = hideProps({
+    constructor: Range,
+    getDistance: function() {
+      console.log(this.from + this.to);
+    }
+  });
+
+  new Range(1, 2).getDistance();
+</script>

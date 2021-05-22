@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+</body>
+</html>
+<script>
+  const extend = (function() {
+    // 检测是否可以识别覆盖不可枚举的同名属性
+    for (var p in { toString: null }) {
+      return function extend(o) {
+        for (let i = 1; i < arguments.length; i++) {
+          const source = arguments[i];
+          for (let j in source) {
+            o[j] = source[j];
+          }
+        }
+        return o;
+      }
+    }
+
+    const properties = [
+      'toString',
+      'valueOf',
+      'constructor',
+      'hasOwnProperty',
+      'isPrototypeOf',
+      'propertyIsEnumberable',
+      'toLocaleString'
+    ];
+    return function extend_patched(o) {
+      for (let i = 1; i < arguments.length; i++) {
+        const source = arguments[i];
+        for (let j in source) {
+          o[j] = source[j];
+        }
+        for (let k in properties) {
+          if (source.hasOwnproperty(properties[k])) {
+            o[properties[k]] = source[k];
+          }
+        }
+      }
+      return o;
+    }
+  })();
+
+  function defineClass(constructor, methods, statics) {
+    extend(constructor.prototype, methods);
+    extend(constructor, statics)
+    return constructor;
+  }
+
+  function School(students) {
+    this.students = students;
+  }
+  World.prototype.teach = function() {
+    console.log(this.students);
+  }
+  School._master = 'shcool';
+  School.change = function() {
+    console.log(School.master);
+  }
+</script>

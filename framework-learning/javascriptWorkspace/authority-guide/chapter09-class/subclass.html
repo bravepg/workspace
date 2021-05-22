@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  function inherit(o) {
+    function F() {}
+    F.prototype = o;
+    return new F();
+  }
+  function extend() {
+    const o = arguments[0];
+    for (let i = 1; i < arguments.length; i++) {
+      for (let j in arguments[i]) {
+        if (!o.hasOwnProperty(j)) {
+          o[j] = arguments[i][j];
+        }
+      }
+    }
+    return o;
+  }
+  function defineSubClass(constructor, methods, statics) {
+    constructor.prototype = inherit(superclass.prototype);
+    constructor.prototype.constructor = constructor;
+
+    extend(constructor.prototype, methods);
+    extend(constructor, statics);
+    return constructor;
+  }
+</script>

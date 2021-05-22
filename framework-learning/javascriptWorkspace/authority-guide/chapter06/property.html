@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  function inherit(o) {
+    if (!o) {
+      throw new Error('传入的数据不可继承');
+    }
+    if (typeof o !== "object" && typeof o !== "function") {
+      throw new Error('传入的数据非法');
+    }
+
+    function F() {}
+    F.prototype = o;
+
+    return new F();
+  }
+
+  const demo = inherit({
+    x: 1,
+    get name() {
+      return '2';
+    },
+    set name(x) {
+      this.x = x;
+    },
+  });
+  demo.y = 2;
+
+  console.log(Object.getOwnPropertyDescriptor(Object.getPrototypeOf(demo), 'name'));
+
+
+  Object.defineProperty(Object.prototype, 'extend', {
+    writable: true,
+    enumerable: false,
+    configurable: true,
+    value: function(o) {
+      console.log('this', this);
+      // 不能写成箭头函数
+      const names = Object.getOwnPropertyNames(o);
+
+      for (let i = 0; i < names.length; i++) {
+        if (names[i] in this) {
+          continue;
+        }
+        const descriptor = Object.getOwnPropertyDescriptor(o, names[i]);
+        Object.defineProperty(this, names[i], descriptor);
+      }
+    }
+  });
+
+  const parent = {
+    y: 3,
+    get z() {
+      return 4;
+    },
+  };
+
+  demo.extend(parent);
+</script>

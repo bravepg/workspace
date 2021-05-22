@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  function inherit(o) {
+    function F() {}
+    F.prototype = o;
+    return new F();
+  }
+  function extend() {
+    const o = arguments[0];
+    for (let i = 1; i < arguments.length; i++) {
+      for (let j in arguments[i]) {
+        o[j] = arguments[i][j];
+      }
+    }
+  }
+  function MySet() {
+    this.values = {};
+    this.n = 0;
+    this.add.apply(this, arguments);
+  }
+  MySet.prototype.add = function() {
+    for (let i = 0; i < arguments.length; i++) {
+      const val = arguments[i];
+      const str = MySet._v2s(val);
+
+      console.log('val', str, val);
+      
+      if (!this.values.hasOwnProperty(str)) {
+        this.values[str] = val;
+        this.n++;
+      }
+    }
+    return this; // 链式调用
+  }
+
+  // 任意 Javacript 值生成唯一字符串
+  MySet._v2s = function(val) {
+    const objectId = (o) => {
+      const prop = '|**objectid**|';
+      if (!o.hasOwnProperty(prop)) {
+        o[prop] = MySet._v2s.next++;
+      }
+      return o[prop];
+    }
+    switch (val) {
+      case undefined:
+        return 'u';
+      case null:
+        return 'n';
+      case true:
+        return 't';
+      case false:
+        return 'f';
+      default: switch (typeof val) {
+        case 'number':
+          return `#${val}`;
+        case 'string':
+          return `"${val}`;
+        default:
+          return `@${objectId(val)}`
+      }
+    }
+  }
+  MySet._v2s.next = 100;
+
+
+  function SingletonSet(member) {
+    this.member = member;
+  }
+
+  SingletonSet.prototype = inherit(MySet.prototype);
+
+  extend(SingletonSet.prototype, {
+    add: function () {
+      throw 'readonly';
+    }
+  })
+
+  function filteredSubClass(superclass, filter) {
+    const constructor = function() {
+      superclass.call(this, arguments);
+    }
+
+    const proto = constructor.prototype = inherit(superclass.prototype);
+    proto.constructor = constructor;
+
+    proto.add = function(val) {
+      if (filter(val)) {
+        superclass.prototype.add.apply(this, arguments);
+      }
+    }
+
+    return constructor;
+  }
+
+  filteredSubClass(MySet, function(x) { return typeof x !== 'function' });
+
+</script>

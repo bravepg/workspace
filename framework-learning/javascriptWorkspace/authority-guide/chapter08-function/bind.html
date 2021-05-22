@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  const o = {
+    m: function(x, y) {
+      console.log('this', this);
+      return x + y;
+    },
+  };
+
+  function trace(o, m) {
+    const originFunc = o[m];
+    const self = this;
+
+    // o[m] = function() {
+    //   console.log('start Time: ', +new Date());
+    //   const ret = originFunc.apply(this, arguments);
+    //   console.log('end Time: ', +new Date());
+    //   return ret;
+    // }
+    return function() {
+      console.log('start Time: ', +new Date());
+      const ret = originFunc.apply(self, arguments);
+      console.log('end Time: ', +new Date());
+      return ret;
+    }
+  }
+
+  const traceM = trace.bind(o)(o, 'm');
+
+  console.log(traceM(1, 2));
+
+
+  // 如果不存在 bind 函数
+  if (!Function.prototype.bind) {
+    /**
+     * o 是需要绑定的对象
+     */
+    Function.prototype.bind = function(o) {
+      var self = this, boundArgs = arguments;
+
+      return function() {
+        var args = [];
+        for (var i = 1; i < boundArgs.length; i++) {
+          args.push(boundArgs[i]);
+        }
+        for (var j = 0; i < arguments.length; j++) {
+          args.push(boundArgs[j]);
+        }
+
+        return self.apply(o, args);
+      }
+    }
+  }
+</script>

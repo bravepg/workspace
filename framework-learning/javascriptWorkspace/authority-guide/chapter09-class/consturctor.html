@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  function Demo(x) {
+    this.x = x;
+  }
+  Demo.prototype.say = function() {
+    console.log(this.x);
+  }
+  Demo.staticAge = 1;
+  Demo.staticMethod = function() {
+    console.log('age', Demo.staticAge);
+  }
+</script>

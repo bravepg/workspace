@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  const o = {};
+  o[1] = '1';
+
+  const arr = [1, 2, 3];
+  delete arr[1];
+  arr.length = 2;
+  console.log('arr', arr);
+
+  const arr2 = [1, 2];
+
+  // Object.defineProperty(arr2, 'length', {
+  //   value: 1,
+  //   writable: false,
+  // });
+
+  Array.prototype.name = 'name';
+
+  Object.defineProperty(arr2, '1', {
+    value: 3,
+    writable: false,
+    configurable: false,
+  });
+  arr2[3.3] = 3;
+
+  arr2.length = 1;
+
+  // 建议不要使用 for in 遍历数组
+  for (let i in arr2) {
+    // 过滤原型上的属性
+    if (!arr2.hasOwnProperty(i)) {
+      continue;
+    }
+    // 过滤非负整数
+    if (String(Math.floor(Math.abs(Number(i)))) !== i) {
+      continue;
+    }
+    console.log('for in', i);
+  }
+
+  arr2.forEach((item, i, arr) => {
+    console.log('forEach', item, i, arr);
+  });
+
+  console.log('arr2', arr2);
+
+
+  const a = {
+    // '0': 'a',
+    // '1': 'b',
+    // '2': 'c',
+    'a': 'd',
+    length: 4,
+  }
+
+  console.log(Array.prototype.slice.call(a, 0));
+</script>

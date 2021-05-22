@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  function inherit(o) {
+    function F() {}
+    F.prototype = o;
+    return new F();
+  }
+
+  function Demo() {}
+
+  function enumeration(namesToValues) {
+    const enumeration = function () { throw 'can\'t instantiate enumerations' };
+
+    const proto = enumeration.prototype = {
+      constructor: enumeration,
+      // constructor 是公共标识，匿名函数下可能拿不到标识名称
+      toString: function() {
+        return this.name;
+      },
+      valueOf: function() {
+        return this.value;
+      },
+      toJSON: function() {
+        return this.name;
+      }
+    }
+
+    for (let name in namesToValues) {
+      const e = inherit(proto);
+      e.name = name;
+      e.value = namesToValues[name];
+      enumeration[name] = e;
+    }
+
+    return enumeration;
+  }
+</script>
