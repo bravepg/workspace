@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  class A {
+    m = 2;
+
+    constructor() {
+      // new.target 指向正在执行的函数 B
+      // super 内部的 this 指向子类
+      console.log('new.target.name --- ',new.target.name);
+    }
+    p() {
+      return 2;
+    }
+  }
+
+  A.prototype.pm = 3;
+
+  class B extends A {
+    constructor(...args) {
+      // 1. 如果子类显示声明 constructor，必须要调用 super()
+      // 2. super() 作为函数只能使用在构造函数中
+      super(...args);
+
+      // 3. super.p() === A.prototype.p()
+      // super 指向 A.prototype
+      console.log(super.p()); // 2
+    }
+
+    get superM() {
+      console.log('super.m', super.m)
+      return super.m;
+    }
+
+    get protoM() {
+      console.log('super.m', super.pm)
+      return super.pm;
+    }
+  }
+
+  const b = new B();
+  console.log(b.superM, b.protoM);
+</script>

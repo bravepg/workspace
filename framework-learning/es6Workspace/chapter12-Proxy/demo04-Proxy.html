@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  function demo(num1, num2) {
+    console.log('demo call', num1, num2);
+    return num1 * num2;
+  }
+  demo.__proto__.protoAge = 10;
+  Object.defineProperties(demo, {
+    age: {
+      value: 10,
+      enumerable: true,
+      configurable: true,
+      writable: true,
+    },
+    gender: {
+      value: 'male',
+      enumerable: true,
+      configurable: false,
+      writable: false,
+    }
+  });
+
+  const handler = {
+    // 增(apply、construct)
+    apply(target, ctx, args) {
+      console.log('apply call');
+      return Reflect.apply(...arguments);
+      // 拦截
+      // demoProxy(1, 2);
+      // demoProxy.call(null, 1, 2);
+      // demoProxy.apply(null, [1, 2]);
+      // Reflect.apply(demoProxy, null, [9, 10])
+    },
+    construct(target, args, newTarget) {
+      console.log('construct call', this === handler);
+      // return new target(...args);
+      return Reflect.construct(target, [...args]);
+      // 拦截
+      // new demoProxy(1, 2);
+    },
+
+    // 删 deleteProperty
+    deleteProperty(target, key) {
+      // delete target[key];
+      // return true;
+      return Reflect.deleteProperty(target, key);
+      // 拦截(configurable 不可为 false)
+      // delete demoProxy.age
+    },
+
+    // 查(get)
+    get(target, propKey, receiver) {
+      console.log('get call ' + propKey);
+      return Reflect.get(target, propKey);
+      // 拦截
+      // demoProxy.age
+      // demoProxy['age']
+      // demoProxy.hasOwnProperty('name')
+      // demoProxy.propertyIsEnumerable('name')
+    },
+    has(target, propKey) {
+      console.log('has call');
+      Object.preventExtensions(demo);
+      return false;
+      // 拦截(对 for ... in 无效)
+      // 'age' in demoProxy(configurable 不可以为 false，并且对象必须可以扩展)
+    },
+    ownKeys(target) {
+      console.log('ownKeys call');
+      // 返回值只能是字符串或者 Symbol
+      // 不可配置的属性必须被返回
+      // 不可扩展的对象必须返回所有属性
+      Object.preventExtensions(target);
+      return ['length', 'name', 'age', 'arguments', 'caller', 'prototype', 'gender']
+      // 拦截
+      // Object.getOwnPropertyNames(demoProxy)
+      // Object.getOwnPropertySymbols(demoProxy)
+      // Object.keys(demoProxy)
+      // for...in 循环
+    },
+    getPrototypeOf(target) {
+      console.log('getPrototypeOf call');
+      // 如果 target 不可扩展，会返回原型对象 target.__proto__
+      // Object.preventExtensions(target);
+      // return target.__proto__;
+      return Reflect.getPrototypeOf(target);
+      // 拦截
+      // Object.getPrototypeOf(demoProxy)
+      // Object.prototype.isPrototypeOf(demoProxy)
+      // Reflect.getPrototypeOf(demoProxy)
+      // demoProxy instanceof demo
+    },
+    getOwnPropertyDescriptor(target, key) {
+      return Object.getOwnPropertyDescriptor(target, key);
+      // 拦截
+      // Object.getOwnPropertyDescriptor(demoProxy, 'gender')
+    },
+    isExtensible(target) {
+      console.log('isExtensible call');
+      return true;
+    },
+
+    // 改(set)
+    set(target, key, value, receiver) {
+      console.log('set call');
+      // 如果传入 receiver，会调用 Proxy.defineProperty
+      Reflect.set(target, key, value, receiver);
+      // 拦截
+      // demoProxy.age = 1;
+      // demoProxy['age'] = 1;
+    },
+    defineProperty(target, key, descriptor) {
+      // Object.preventExtensions(demo);
+      console.log('defineProperty call');
+      Object.defineProperty(target, key, descriptor);
+      return true;
+      // 拦截(configurable 和 write 不可以同时为 false，并且对象必须可以扩展)
+      // Object.defineProperty(demoProxy, 'demoAge', {
+      //   value: 5,
+      // });
+      // 如果 set 操作符不存在，也可以拦截
+      // demoProxy.demoAge = 5;
+    },
+    setPrototypeOf(target, proto) {
+      // 如果目标对象不可扩展，则不得改变目标对象的原型
+      throw new Error('Changing the prototype is forbidden');
+    },
+    preventExtensions(target) {
+      Object.preventExtensions(target);
+      // 只有 isExtensible 返回 false，该返回才能返回 true
+      return true;
+      // 拦截
+      // Object.preventExtensions(demoProxy)
+    }
+  };
+
+  const demoProxy = new Proxy(demo, handler);
+  console.log(Object.getPrototypeOf(demoProxy));
+  // demoProxy.demoAge = 5;
+  console.log('demoProxy', demoProxy);
+</script>
