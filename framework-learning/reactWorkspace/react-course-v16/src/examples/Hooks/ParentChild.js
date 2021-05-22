@@ -2,7 +2,7 @@
  * 测试组件卸载仍然执行的 bug
  */
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 function Child({ state }) {
 
   console.log('rerender');
@@ -21,22 +21,18 @@ function Child({ state }) {
   )
 }
 
-function Parent() {
-  const [state, setState] = useState(0);
+class A extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      number: 0,
+    };
+  }
 
-  useEffect(() => {
-    setState(1);
-  }, []);
-
-  const child = useMemo(() => <Child state={state} />, [state]);
-  
-  return (
-    <>
-      <button onClick={() => setState(state + 1)}>父组件</button>
-      {/* <Child /> */}
-      {child}
-    </>
-  )
+  render() {
+    return <input value = {this.state.number} />
+  }
 }
 
-export default Parent;
+
+export default A;

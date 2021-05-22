@@ -8,61 +8,90 @@ import React from 'react';
  *      radio checkbox:        e.target.checked  =>  默认值 defaultChecked
  */
 
-// class ControlledForm extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             value: ''
-//         };
-//     }
+class ControlledForm extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			value: props.value,
+		};
+	}
+	UNSAFE_componentWillReceiveProps(nextProps) {
+		this.setState({
+			// 对输入的元素进行格式化
+			value: nextProps.value,
+		});
+	}
 
-//     handleChange = (event) => {
-//         this.setState({
-//             // 对输入的元素进行格式化
-//             value: event.target.value.toUpperCase()
-//         });
-//     }
+	handleChange = (event) => {
+		this.setState({
+			// 对输入的元素进行格式化
+			value: event.target.value.toUpperCase()
+		});
+	}
 
-//     handleSubmit = (event) => {
-//         event.preventDefault();
-//     }
+	handleSubmit = (event) => {
+		event.preventDefault();
+	}
 
-//     render() {
-//         return (
-//             <form onSubmit={this.handleSubmit}>
-//                 <label>
-//                     Name:
-//                     <input type="text" value={this.state.value} onChange={this.handleChange}  />
-//                 </label>
-//                 <input type="submit" value="Submit" />
-//             </form>
-//         );
-//     }
-// }
-
-class UnControlledForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.fileInput = React.createRef();
-    }
-    handleSubmit = (event) => {
-        console.log(event.target.name);
-        event.preventDefault();
-        console.log(this.fileInput)
-        console.log(this.fileInput.current.files[0].name)
-    }
-
-    render() {
-        return (
-            <form name="form" onSubmit={this.handleSubmit}>
-                <label>
-                Upload file:
-                    <input type="file" ref={this.fileInput}  />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
-        );
-    }
+	render() {
+		return (
+			<form onSubmit={this.handleSubmit}>
+				<label>
+					Name:
+					<input type="text" value={this.state.value} onChange={this.handleChange}  />
+				</label>
+				<input type="submit" value="Submit" />
+			</form>
+		);
+	}
 }
 
-export default UnControlledForm;
+class WrapContainer extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			value: 'DEMO'
+		};
+		setTimeout(() => {
+			this.setState({
+				value: 'DEMO222',
+			});
+		}, 2000);
+	}
+	render() {
+		return (
+			<ControlledForm
+				value={this.state.value}
+			/>
+		);
+	}
+}
+
+// class UnControlledForm extends React.Component {
+// 	constructor(props) {
+// 		super(props);
+// 		this.fileInput = React.createRef();
+// 	}
+// 	handleSubmit = (event) => {
+// 		console.log(event.target.name);
+// 		event.preventDefault();
+// 		console.log(this.fileInput)
+// 		console.log(this.fileInput.current.files[0].name)
+// 	}
+
+// 	render() {
+// 		return (
+// 			<form name="form" onSubmit={this.handleSubmit}>
+// 				<label>
+// 				Upload file:
+// 					<input type="file" ref={this.fileInput}  />
+// 				</label>
+// 				<input type="submit" value="Submit" />
+// 			</form>
+// 		);
+// 	}
+// }
+
+
+
+export default WrapContainer;

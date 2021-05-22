@@ -19,21 +19,21 @@ import React from "react";
 //     }
 // }
 function Button(props) {
-    return (
-        <button ref={props.forwardedRef} className="FancyButton">
-                {props.children}
-        </button>
-    )
+	return (
+		<button ref={props.forwardedRef} className="FancyButton">
+			{props.children}
+		</button>
+	)
 }
 // 第二步，利用 forwardRef 传递 ref
 const FancyButton = React.forwardRef((props, ref) => {
-    return (
-        /* 第三步，将 ref 绑定到真实 dom 上 */
-        // <button ref={ref} className="FancyButton">
-        //     {props.children}
-        // </button>
-        <Button forwardedRef={ref}>{props.children}</Button>
-    );
+	return (
+		/* 第三步，将 ref 绑定到真实 dom 上 */
+		// <button ref={ref} className="FancyButton">
+		//     {props.children}
+		// </button>
+		<Button forwardedRef={ref}>{props.children}</Button>
+	);
 });
 
 // ``ref``属性不能直接使用在 ``functional components``上
@@ -42,21 +42,21 @@ const FancyButton = React.forwardRef((props, ref) => {
 // }
 
 class Demo extends React.Component {
-    constructor(props) {
-        super(props);
-        // 第一步，创建 ref
-        this.ref = React.createRef();
-    }
+	constructor(props) {
+		super(props);
+		// 第一步，创建 ref
+		this.ref = React.createRef();
+	}
 
-    componentDidMount() {
-        console.log('this.ref.current', this.ref.current)
-    }
+	componentDidMount() {
+		console.log('this.ref.current', this.ref.current)
+	}
 
-    render() {
-        return (
-            <FancyButton ref={this.ref}>Click me!</FancyButton>
-        );
-    }
+	render() {
+		return (
+			<FancyButton ref={this.ref}>Click me!</FancyButton>
+		);
+	}
 }
 export default Demo;
 

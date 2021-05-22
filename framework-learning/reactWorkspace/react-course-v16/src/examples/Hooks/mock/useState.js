@@ -23,12 +23,19 @@ const myReact = (function() {
     },
     useEffect(callback, depArray) {
       const hasNoDeps = !depArray;
-      const deps = hooks[currentHook];
+      const effect = hooks[currentHook] = hooks[currentHook] || {};
+      const deps = effect.deps || [];
+      const umount = effect.umount;
+      if (umount) {
+        umount();
+      }
       const hasChangedDeps  = deps ? !depArray.every((el, i) => el === deps[i]) : true;
-      // console.log('deps', deps, depArray);
       if (hasNoDeps || hasChangedDeps) {
-        callback();
-        hooks[currentHook] = depArray
+        const umount = callback();
+        if (umount) {
+          effect.umount = umount;
+        }
+        effect.deps = depArray;
       }
       currentHook++;
     },

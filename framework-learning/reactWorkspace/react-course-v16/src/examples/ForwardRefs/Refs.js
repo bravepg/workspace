@@ -1,31 +1,33 @@
 import React, { Fragment } from "react";
 
 class CustomTextInput extends React.Component {
-    constructor(props) {
-        super(props);
-        this.textInput = React.createRef();
-        this.focusTextInput = this.focusTextInput.bind(this);
-    }
+	constructor(props) {
+		super(props);
+		this.textInput = React.createRef();
+		this.focusTextInput = this.focusTextInput.bind(this);
+	}
 
-    focusTextInput() {
-        this.textInput.current.focus();
-    }
+	focusTextInput() {
+		console.log('domRef', this.textInput.current);
+		this.textInput.current.focus();
+	}
 
-    render() {
-        return (
-            <Fragment>
-                <input
-                    type="text"
-                    ref={this.textInput} />
+	render() {
+		return (
+			<Fragment>
+				<input
+					type="text"
+					ref={this.textInput} // add a ref to a DOM Element
+				/>
 
-                <input
-                    type="button"
-                    value="Focus the text input"
-                    onClick={this.focusTextInput}
-                />
-            </Fragment>
-        );
-    }
+				<input
+					type="button"
+					value="Focus the text input"
+					onClick={this.focusTextInput}
+				/>
+			</Fragment>
+		);
+	}
 }
 
 /**
@@ -34,24 +36,24 @@ class CustomTextInput extends React.Component {
  * 但是最好使用 createRef
  */
 class AutoFocusTextInput extends React.Component {
-    constructor(props) {
-        super(props);
-        this.textInput = React.createRef();
-    }
-  
-    componentDidMount() {
-        console.log(this.textInput.current)
-        this.textInput.current.focusTextInput();
-        // console.log(this.textInput)
-        // this.textInput.focusTextInput();
-    }
-  
-    render() {
-        return (
-            <CustomTextInput ref={this.textInput} />
-            // <CustomTextInput ref={el => this.textInput = el} />
-        );
-    }
+	constructor(props) {
+		super(props);
+		this.textInput = React.createRef();
+	}
+
+	componentDidMount() {
+		console.log(this.textInput.current)
+		this.textInput.current.focusTextInput();
+		// console.log(this.textInput)
+		// this.textInput.focusTextInput();
+	}
+
+	render() {
+		return (
+			<CustomTextInput ref={this.textInput} /> // add a ref to a Class Component
+			// <CustomTextInput ref={el => this.textInput = el} />
+		);
+	}
 }
 
 export default AutoFocusTextInput;

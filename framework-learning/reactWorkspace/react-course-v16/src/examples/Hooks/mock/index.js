@@ -34,3 +34,5 @@ App = myReact.render(Counter)
 // render {count: 1, text: 'bar'}
 // App.click()
 // App = myReact.render(Counter)
+
+export default () => null;
