@@ -22,7 +22,11 @@ function App() {
 }
 
 function Parent() {
-  return <Child />
+  return (
+    <themeContext.Provider value={{theme: 'light'}}>
+      <Child />
+    </themeContext.Provider>
+  )
 }
 
 function Child() {

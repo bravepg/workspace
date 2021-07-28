@@ -55,6 +55,10 @@ class Counter extends React.Component {
         console.log('didMount');
     }
 
+    componentDidUpdate(preProps, preState) {
+        console.log('didUpdate');
+    }
+
     componentWillUnmount() {
         console.log('willUnmount');
     }
@@ -87,10 +91,14 @@ class App extends React.Component {
     //         num: 2
     //     })
     // }
+    componentDidUpdate(preProps, preState) {
+        console.log(preProps, this.props, preState, this.state);
+    }
     componentDidMount() {
-        this.setState({
-            num: 2
-        })
+        // this.setState({
+        //     num: 2
+        // })
+        console.log('parent didmount')
     }
     handleClick = () => {
         this.setState({
@@ -103,6 +111,7 @@ class App extends React.Component {
     // }
 
     render() {
+        console.log('parent rerender');
         this.tag = this.state.num === 1 ? 'div' : 'span';
         return (
             // 如果节点相同 不会卸载 该例子符合上述观点2 

@@ -1,6 +1,6 @@
 import React from 'react';
-import { createStore } from 'redux';
-import { Provider, connect } from  'react-redux';
+import { createStore } from '../../myRedux';
+import { Provider, connect } from  '../../myReactRedux';
 
 // const initialState = {
 //   theme: "dark",
@@ -173,7 +173,7 @@ const todos = (state, action) => {
 };
 
 function AppProviders({ children }) {
-  const store = createStore(todos, initialState);
+  const store = createStore(initialState, todos);
   return (
     <Provider store={store}>
       <LanguageProvider>
