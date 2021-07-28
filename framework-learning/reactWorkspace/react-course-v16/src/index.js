@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './examples/Hooks/ParentChild';
+import App from './examples/Context/examples/index';
 import * as serviceWorker from './serviceWorker';
 
 // <React.StrictMode>

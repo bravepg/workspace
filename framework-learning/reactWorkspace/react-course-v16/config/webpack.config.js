@@ -1,9 +1,9 @@
 'use strict';
-
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const resolve = require('resolve');
+// const AntDesignThemePlugin = require('antd-theme-webpack-plugin');
 const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
@@ -49,6 +49,8 @@ const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
+const lessRegex = /\.(less)$/;
+const lessModuleRegex = /\.module\.less$/;
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
@@ -121,6 +123,9 @@ module.exports = function(webpackEnv) {
           loader: require.resolve(preProcessor),
           options: {
             sourceMap: true,
+            modifyVars: {
+              theme: 'dark',
+            },
           },
         }
       );
@@ -485,6 +490,43 @@ module.exports = function(webpackEnv) {
                 'sass-loader'
               ),
             },
+            {
+              test: lessRegex,
+              exclude: lessModuleRegex,
+              use: getStyleLoaders(
+                {
+                  // modules: true,
+                  importLoaders: 2,
+                  sourceMap: isEnvProduction && shouldUseSourceMap,
+                  // modules: {
+                  //   // getLocalIdent: getCSSModuleLocalIdent,
+                  //   localIdentName: '[local]_[hash:base64:5]'
+                  // },
+                },
+                'less-loader'
+              ),
+              // Don't consider CSS imports dead code even if the
+              // containing package claims to have no side effects.
+              // Remove this when webpack adds a warning or an error for this.
+              // See <https://github.com/webpack/webpack/issues/6571>
+              sideEffects: true,
+            },
+            {
+              test: lessModuleRegex,
+              use: getStyleLoaders(
+                {
+                  modules: true,
+                  importLoaders: 2,
+                  sourceMap: isEnvProduction && shouldUseSourceMap,
+                  // modules: {
+                  //   // getLocalIdent: getCSSModuleLocalIdent,
+                  //   localIdentName: '[local]_[hash:base64:5]'
+                  // },
+                  module: true,
+                },
+                'less-loader'
+              ),
+            },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
             // In production, they would get copied to the `build` folder.
@@ -598,6 +640,14 @@ module.exports = function(webpackEnv) {
           };
         },
       }),
+      // new AntDesignThemePlugin({
+      //   antDir: path.join(__dirname, '../node_modules/antd'),
+      //   stylesDir: path.join(__dirname, '../src/style'),
+      //   varFile: path.join(__dirname, './src/styles/light.less'),
+      //   themeVariables: ['@primary-color'],
+      //   indexFileName: 'index.html',
+      //   generateOnce: false,
+      // }),
       // Moment.js is an extremely popular library that bundles large locale files
       // by default due to how webpack interprets its code. This is a practical
       // solution that requires the user to opt into importing specific locales.

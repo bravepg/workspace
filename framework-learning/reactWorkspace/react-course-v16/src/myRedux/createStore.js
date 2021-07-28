@@ -1,9 +1,9 @@
-export default function createStore(reducer, enhancer) {
+export default function createStore(initalState, reducer, enhancer) {
     if (typeof enhancer !== 'undefined') {
         return enhancer(createStore)(reducer);
     }
 
-    let state = null;
+    let state = initalState;
     const listeners = [];
     const subscribe = (listener) => {
         listeners.push(listener);
