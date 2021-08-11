@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-function validate(target: any, key: string, descriptor: PropertyDescriptor) {
+function validate1(target: any, key: string, descriptor: PropertyDescriptor) {
   const originalFn = descriptor.value;
 
   console.log('target', target, key);
@@ -8,8 +8,8 @@ function validate(target: any, key: string, descriptor: PropertyDescriptor) {
 
   descriptor.value = function(...args: any[]) {
     args.forEach((arg, index) => {
-      console.log('designParamTypes', designParamTypes);
       const paramType = designParamTypes[index];
+      console.log('designParamTypes', designParamTypes, paramType.toString());
       
       const result = arg.constructor === paramType || arg instanceof paramType;
 
@@ -25,10 +25,10 @@ function validate(target: any, key: string, descriptor: PropertyDescriptor) {
 }
 
 class MetaData {
-  @validate
+  @validate1
   sayRepeat(word: string, x: number) {
     return Array(x).fill(word).join(' ');
   }
 }
 
-new MetaData().sayRepeat('hello', '' as any);
+new MetaData().sayRepeat('hello', 1);

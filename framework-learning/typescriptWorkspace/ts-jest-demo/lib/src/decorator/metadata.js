@@ -15,7 +15,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
-function validate(target, key, descriptor) {
+function validate1(target, key, descriptor) {
     var originalFn = descriptor.value;
     console.log('target', target, key);
     var designParamTypes = Reflect.getMetadata('design:paramtypes', target, key);
@@ -25,8 +25,8 @@ function validate(target, key, descriptor) {
             args[_i] = arguments[_i];
         }
         args.forEach(function (arg, index) {
-            console.log('designParamTypes', designParamTypes);
             var paramType = designParamTypes[index];
+            console.log('designParamTypes', designParamTypes, paramType.toString());
             var result = arg.constructor === paramType || arg instanceof paramType;
             if (!result) {
                 throw new Error("Failed for validating parameter: " + arg + " of the index: " + index);
@@ -42,11 +42,11 @@ var MetaData = /** @class */ (function () {
         return Array(x).fill(word).join(' ');
     };
     __decorate([
-        validate,
+        validate1,
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [String, Number]),
         __metadata("design:returntype", void 0)
     ], MetaData.prototype, "sayRepeat", null);
     return MetaData;
 }());
-new MetaData().sayRepeat('hello', '');
+new MetaData().sayRepeat('hello', 1);

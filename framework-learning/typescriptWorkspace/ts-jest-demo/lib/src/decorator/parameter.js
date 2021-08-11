@@ -20,6 +20,7 @@ var validateMap = {};
 function typedDecoratorFactory(validator) {
     return function (_, key, index) {
         var _a;
+        console.log('key', _, key, index);
         var target = (_a = validateMap[key]) !== null && _a !== void 0 ? _a : [];
         target[index] = validator;
         validateMap[key] = target;
@@ -39,6 +40,7 @@ function validate(_, key, descriptor) {
             var validator = validatorList[index];
             if (!validator)
                 return;
+            console.log('validator', validator.toString(), arg);
             var result = validator(arg);
             if (!result) {
                 throw new Error("Failed for parameter: " + arg + " of the index: " + index);
@@ -55,7 +57,7 @@ var MultipleDecorator = /** @class */ (function () {
     };
     __decorate([
         validate,
-        __param(0, isString), __param(1, isInt),
+        __param(0, isString), __param(0, isInt), __param(1, isInt),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [String, Number]),
         __metadata("design:returntype", void 0)

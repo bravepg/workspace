@@ -6,6 +6,7 @@ const validateMap: Record<string, Validator[]> = {};
 
 function typedDecoratorFactory(validator: Validator): ParameterDecorator {
   return (_, key: string, index: number) => {
+    console.log('key', _, key, index)
     const target = validateMap[key] ?? [];
     target[index] = validator;
     validateMap[key] = target;
@@ -27,6 +28,7 @@ function validate(_: any, key: string, descriptor: PropertyDescriptor) {
 
       if (!validator) return;
 
+      console.log('validator', validator.toString(), arg)
       const result = validator(arg);
 
       if (!result) {
@@ -42,7 +44,7 @@ function validate(_: any, key: string, descriptor: PropertyDescriptor) {
 
 class MultipleDecorator {
   @validate
-  sayRepeat(@isString word: string, @isInt x: number) {
+  sayRepeat(@isString@isInt word: string, @isInt x: number) {
     return Array(x).fill(word).join('');
   }
 }

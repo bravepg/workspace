@@ -39,6 +39,7 @@ var B = /** @class */ (function () {
 var A = /** @class */ (function () {
     function A(b) {
         this.b = b;
+        console.log('b', b)
         b.sayHello();
     }
     A = __decorate([

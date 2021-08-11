@@ -10,17 +10,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 function capitalizeFirstLetter(str) {
     return "" + str.charAt(0).toUpperCase() + str.slice(1);
 }
-function observable(target, key) {
-    var targetKey = "on" + capitalizeFirstLetter(key) + "Change";
-    console.log('arguments', target, key);
-    target[targetKey] = function (fn) {
-        var prev = this[key];
-        Reflect.defineProperty(this, key, {
-            set: function (next) {
-                fn(prev, next);
-                prev = next;
-            }
-        });
+function observableWrapper() {
+    return function (target, key) {
+        var targetKey = "on" + capitalizeFirstLetter(key) + "Change";
+        console.log('arguments', target, key);
+        target[targetKey] = function (fn) {
+            var prev = this[key];
+            Reflect.defineProperty(this, key, {
+                set: function (next) {
+                    fn(prev, next);
+                    prev = next;
+                }
+            });
+        };
+    };
+}
+function observableWrapper2() {
+    return function (target, key) {
+        var targetKey = "on" + capitalizeFirstLetter(key) + "2Change";
+        console.log('arguments', target, key);
+        target[targetKey] = function (fn) {
+            var prev = this[key];
+            Reflect.defineProperty(this, key, {
+                set: function (next) {
+                    fn(prev, next);
+                    prev = next;
+                }
+            });
+        };
     };
 }
 var PropertyC = /** @class */ (function () {
@@ -28,21 +45,27 @@ var PropertyC = /** @class */ (function () {
         this.foo = -1;
         this.bar = 'bar';
     }
+    PropertyC.foo = 'staticfoo';
     __decorate([
-        observable,
+        observableWrapper(),
+        observableWrapper2(),
         __metadata("design:type", Object)
     ], PropertyC.prototype, "foo", void 0);
     __decorate([
-        observable,
+        observableWrapper(),
         __metadata("design:type", Object)
     ], PropertyC.prototype, "bar", void 0);
+    __decorate([
+        observableWrapper(),
+        __metadata("design:type", Object)
+    ], PropertyC, "foo", void 0);
     return PropertyC;
 }());
 var propertyC = new PropertyC();
-console.log('propertyC', propertyC);
-// propertyC.onFooChange((prev: any, next: any) => console.log(`prev: ${prev}, next: ${next}`))
-// propertyC.onBarChange((prev: any, next: any) => console.log(`prev: ${prev}, next: ${next}`))
-// propertyC.foo = 100; // -> prev: -1, next: 100
-// propertyC.foo = -3.14; // -> prev: 100, next: -3.14
-// propertyC.bar = "baz"; // -> prev: bar, next: baz
-// propertyC.bar = "sing"; // -> prev: baz, next: sing
+console.log('propertyC', PropertyC.prototype, PropertyC);
+propertyC.onFooChange(function (prev, next) { return console.log("prev: " + prev + ", next: " + next); });
+propertyC.onBarChange(function (prev, next) { return console.log("prev: " + prev + ", next: " + next); });
+propertyC.foo = 100; // -> prev: -1, next: 100
+propertyC.foo = -3.14; // -> prev: 100, next: -3.14
+propertyC.bar = "baz"; // -> prev: bar, next: baz
+propertyC.bar = "sing"; // -> prev: baz, next: sing

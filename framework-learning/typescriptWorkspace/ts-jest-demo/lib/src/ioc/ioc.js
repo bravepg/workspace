@@ -49,6 +49,8 @@ function classFactory(_constructor) {
             return new val();
         }
     });
-    return new (_constructor.bind.apply(_constructor, __spreadArray([void 0], paramInstance)))();
+    // new (F.bind.apply(F, [undefined, 12]))
+    // new (F.bind(undefined, 12)())
+    return new (_constructor.bind.apply(_constructor, __spreadArray([void 0], paramInstance)));
 }
 exports.classFactory = classFactory;
