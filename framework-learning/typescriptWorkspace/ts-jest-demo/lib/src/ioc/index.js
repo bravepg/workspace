@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var ioc_1 = require("./ioc");
+var myIoc_1 = require("./myIoc");
 var C = /** @class */ (function () {
     function C() {
     }
@@ -17,7 +17,7 @@ var C = /** @class */ (function () {
         console.log("hello");
     };
     C = __decorate([
-        ioc_1.Injectable(),
+        myIoc_1.Injectable(),
         __metadata("design:paramtypes", [])
     ], C);
     return C;
@@ -31,7 +31,7 @@ var B = /** @class */ (function () {
         this.c.sayHello();
     };
     B = __decorate([
-        ioc_1.Injectable(),
+        myIoc_1.Injectable(),
         __metadata("design:paramtypes", [C])
     ], B);
     return B;
@@ -39,14 +39,14 @@ var B = /** @class */ (function () {
 var A = /** @class */ (function () {
     function A(b) {
         this.b = b;
-        console.log('b', b)
+        console.log('b', b);
         b.sayHello();
     }
     A = __decorate([
-        ioc_1.Injectable(),
+        myIoc_1.Injectable(),
         __metadata("design:paramtypes", [B])
     ], A);
     return A;
 }());
-//产生实例
-var a = ioc_1.classFactory(A);
+// 产生实例
+var a = myIoc_1.classFactory(A);

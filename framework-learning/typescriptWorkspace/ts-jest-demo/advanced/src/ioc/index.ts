@@ -1,4 +1,4 @@
-import { Injectable, classFactory } from './ioc';
+import { Injectable, classFactory } from './myIoc';
 
 @Injectable()
 class C {
@@ -25,5 +25,5 @@ class A {
 	}    
 }
 
-//产生实例
+// 产生实例
 let a: A = classFactory(A);

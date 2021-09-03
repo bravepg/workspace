@@ -7,40 +7,35 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.classFactory = exports.Injectable = void 0;
 require("reflect-metadata");
-// ioc 容器
 var classPool = [];
-// 注册该类进入容器
-function Injectable() {
+var Injectable = function () {
     return function (_constructor) {
-        var paramTypes = Reflect.getMetadata('design:paramtypes', _constructor);
-        console.log('paramTypes', _constructor, paramTypes);
-        // 已注册
+        // 如果当前类已经注册
         if (classPool.indexOf(_constructor) !== -1) {
             return;
         }
-        for (var _i = 0, paramTypes_1 = paramTypes; _i < paramTypes_1.length; _i++) {
-            var val = paramTypes_1[_i];
+        var designTypes = Reflect.getMetadata('design:paramtypes', _constructor);
+        console.log('designTypes', designTypes);
+        for (var _i = 0, designTypes_1 = designTypes; _i < designTypes_1.length; _i++) {
+            var val = designTypes_1[_i];
             if (val === _constructor) {
-                throw new Error('不能依赖自己');
+                throw new Error('自己不能依赖自己');
             }
-            else if (classPool.indexOf(val) === -1) {
-                throw new Error(val + "\u6CA1\u6709\u88AB\u6CE8\u518C");
+            if (classPool.indexOf(val) === -1) {
+                throw new Error('该类尚未被注册');
             }
         }
         classPool.push(_constructor);
     };
-}
+};
 exports.Injectable = Injectable;
-// 实例化工程
 function classFactory(_constructor) {
-    var paramTypes = Reflect.getMetadata('design:paramtypes', _constructor);
-    // 参数实例化
-    var paramInstance = paramTypes.map(function (val) {
+    var designTypes = Reflect.getMetadata('design:paramtypes', _constructor);
+    console.log(designTypes);
+    var params = designTypes.map(function (val) {
         console.log('val', val, val.length);
-        if (classPool.indexOf(val) === -1) {
-            throw new Error(val + "\u6CA1\u6709\u88AB\u6CE8\u518C");
-        }
-        else if (val.length) {
+        // 直接通过函数参数的长度判断
+        if (val.length) {
             // 参数还有依赖
             return classFactory(val);
         }
@@ -51,6 +46,8 @@ function classFactory(_constructor) {
     });
     // new (F.bind.apply(F, [undefined, 12]))
     // new (F.bind(undefined, 12)())
-    return new (_constructor.bind.apply(_constructor, __spreadArray([_co_constructorn], paramInstance)));
+    // https://www.yuque.com/docs/share/f9350b61-cfa6-49c7-9d09-606a6599b848?# 《02-this相关》
+    return new (_constructor.bind(...__spreadArray([_constructor], params)));
+    // return new (_constructor.bind.apply(_constructor, __spreadArray([_constructor], params)));
 }
 exports.classFactory = classFactory;

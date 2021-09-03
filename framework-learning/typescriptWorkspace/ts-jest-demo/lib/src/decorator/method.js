@@ -22,7 +22,21 @@ function logger(target, propKey, descriptor) {
         }
         console.log.apply(console, __spreadArray(['params: '], args));
         var result = original.call.apply(original, __spreadArray([this], args));
-        console.log('result: ', result);
+        console.log('result3: ', result);
+        return result;
+    };
+}
+function logger2(target, propKey, descriptor) {
+    console.log('target2', target, propKey, descriptor);
+    var original = descriptor.value;
+    descriptor.value = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        console.log.apply(console, __spreadArray(['params2: '], args));
+        var result = original.call.apply(original, __spreadArray([this], args));
+        console.log('result2: ', result);
         return result;
     };
 }
@@ -30,11 +44,14 @@ var MethodC = /** @class */ (function () {
     function MethodC(value) {
         this.number = value;
     }
+    // 洋葱圈模型
+    // 入参包括 prototype key keyDescriptor
     MethodC.prototype.add = function (x, y) {
         return x + y;
     };
     __decorate([
         logger,
+        logger2,
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Number, Number]),
         __metadata("design:returntype", void 0)
@@ -43,3 +60,4 @@ var MethodC = /** @class */ (function () {
 }());
 var methodC = new MethodC(3);
 methodC.add(1, 2);
+methodC.add(1, 3);
