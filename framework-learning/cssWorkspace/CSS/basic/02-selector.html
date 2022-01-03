@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 第一个 article 元素 */
+    article:first-child {
+      color: blue;
+    }
+    /* article 元素的第一个子元素 */
+    article :first-child {
+      background-color: #666;
+    }
+
+    .notebox {
+      border: 4px solid #666;
+      padding: .5em;
+    }
+
+    .notebox + .warning {
+      border-color: red;
+    }
+
+    .notebox.warning {
+      border-color: orange;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+  <article>
+    123
+    <p>456</p>
+    <p>789</p>
+  </article>
+
+  <article>
+    123
+    <p>456</p>
+    <p>789</p>
+  </article>
+
+  <div class="notebox">
+    This is an informational note.
+  </div>
+
+  <div class="notebox warning">
+    This note shows a warning.
+  </div>
+</body>
+</html>
