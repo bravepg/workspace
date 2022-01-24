@@ -45,7 +45,7 @@ int main() {
 	Array a = array_create(100);
 	printf("%d\n", array_size(&a));
 
-	*array_at(&a, 0) = 10;
+	*array_at(&a, 0) = 10; // array_at 返回指针的目的是，可以很方便进行读写操作
 	printf("%d\n", *array_at(&a, 0));
 
 	array_free(&a);

@@ -7,6 +7,6 @@ int main() {
 	for (int i; i < 10; i++) {
 		printf("%d ", a[i]);
 	}
-	// int b[] = a;
+	// int b[] = 0; // 数组无法进行赋值，表示 const 类型的指针 int *const b;
 	return 0;
 }

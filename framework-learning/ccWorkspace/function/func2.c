@@ -12,6 +12,7 @@ int main() {
 
 	int a[] = {1, 2};
 
+	// 函数指针
 	void (*pf)(void) = f;
 	(*pf)();
 	
