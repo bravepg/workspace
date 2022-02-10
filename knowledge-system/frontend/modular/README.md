@@ -3,6 +3,32 @@
   模块是一个设计术语，是能够单独命名并独立完成一定功能的程序的语句的集合。它包括两个基本的特征
   * 外部特征：其他模块或程序调用该模块的方式（包括输入输出参数、引用的全局变量）和该模块的功能
   * 内部特征：模块的局部数据和程序代码（逻辑）
+  网络上的一篇文章（http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html）很好的定义了模块所要关注的东西————输入和输出
+  ``IIFE`` 模式增强是这种方式比较好的体现
+  ```
+  // 定义了 jQuery, YAHOO 作为输出
+  (function ($, YAHOO) {
+    // now have access to globals jQuery (as $) and YAHOO in this code
+  }(jQuery, YAHOO));
+  ```
+  ```
+  var MODULE = (function () {
+    var my = {},
+      privateVariable = 1;
+
+    function privateMethod() {
+      // ...
+    }
+
+    my.moduleProperty = 1;
+    my.moduleMethod = function () {
+      // ...
+    };
+    // 定义了模块的输出
+    return my;
+  }());
+  ```
+
 ### 模块化
   来自百度百科的解释：模块化是指在解决一个复杂问题时，自顶向下逐层把系统划分成若干模块的过程，模块有多种属性，分别反映外部特性与内部特性
 ### 发展历程
@@ -140,7 +166,7 @@
   })
   ```
   * ``umd``
-  简单的一个小插曲，``umd`` 是 ``amd`` 和 ``commonjs`` 的糅合，目的是解决跨平台的问题
+  简单的一个小插曲，``umd`` 是 ``amd`` 和 ``commonjs`` 的糅合，目的是解决跨平台的问题，在使用 webpack 或者 rollup 打包的时候，umd module 通常会作为兜底方案
   * ``es6``
   这里先加一个小插曲，无论是 ``amd`` 还是 ``cmd`` 从历史的发展眼光来看无疑是浏览器一些本身处理机制的缺陷所带来的产物，``umd`` 和 ``browserify``都是为了解决跨平台的问题而做出的努力，``es6`` 的到来彻底颠覆了之前的模块化开发方式
 

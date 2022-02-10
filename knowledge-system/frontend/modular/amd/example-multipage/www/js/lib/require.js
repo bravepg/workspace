@@ -2061,11 +2061,6 @@ var requirejs, require, define;
     define = function (name, deps, callback) {
         var node, context;
 
-        // 很骚的处理方式
-        // 1. 如果 name 不是 string
-        // 调用方式则是 define([], function() {})
-        // 2. 如果 deps 不是 []
-        // 调用方式则是 define(function() {})
         //Allow for anonymous modules
         if (typeof name !== 'string') {
             //Adjust args appropriately
@@ -2079,6 +2074,8 @@ var requirejs, require, define;
             callback = deps;
             deps = null;
         }
+
+        console.log('deps', name, deps. callback);
 
         //If no name, and callback is a function, then figure out if it a
         //CommonJS thing with dependencies.
@@ -2144,7 +2141,7 @@ var requirejs, require, define;
         /*jslint evil: true */
         return eval(text);
     };
-    // console.log('req', req, cfg)
+
     //Set up with config info.
     req(cfg);
 }(this, (typeof setTimeout === 'undefined' ? undefined : setTimeout)));
