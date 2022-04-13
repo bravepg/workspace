@@ -1,16 +1,16 @@
-function binarySearch(list, item) {
+function binarySearch(list, item, itemLow, itemHigh) {
   if (list.length <= 1) {
     return list.indexOf(item);
   }
-  let low = 0, high = list.length - 1;
+  let low = itemLow || 0, high = itemHigh || list.length - 1;
   const mid = Math.floor((low + high) / 2);
   if (item === list[mid]) {
     return mid;
   } else if (item > list[mid]) {
-    return binarySearch(list.splice(mid + 1, high), item);
+    return binarySearch(list, item, mid + 1, high);
   } else {
-    return binarySearch(list.splice(0, mid - 1), item);
+    return binarySearch(list, item, low, mid - 1);
   }
 }
 
-console.log(binarySearch([1, 2, 3, 4, 5, 6], 7));
+console.log(binarySearch([1, 2, 3, 4, 5, 6, 9, 11], 11));
